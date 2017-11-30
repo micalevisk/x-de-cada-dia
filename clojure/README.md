@@ -17,3 +17,12 @@
 - [ ] [The case for Clojure](https://www.youtube.com/watch?v=NvxyTKyXSRg)
 - [x] [Understanding destructuring in Clojure](https://www.youtube.com/watch?v=R-_uNvM6gpE) [:memo:](./avulsos/understanding-destructuring-in-clojure.clj)
 - [ ] [Understanding pattern matching in Clojure with core.match](https://www.youtube.com/watch?v=mi3OtBc73-k)
+
+
+## outros
+
+- [ ] [ClojureScript - Quick Start](https://clojurescript.org/guides/quick-start)
+- [ ] [Himera Translations from JavaScript](http://himera.herokuapp.com/synonym.html)
+- [ ] [Learn Clojure - Clojure Koans Walkthrough](http://www.clojurescreencasts.com)
+- [ ] [ClojureScript Koans](http://clojurescriptkoans.com)
+- [ ] [Learn Clojure in Y Minutes](https://learnxinyminutes.com/docs/clojure)
