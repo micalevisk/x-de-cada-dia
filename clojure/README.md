@@ -15,5 +15,5 @@
 - [ ] [Understanding list comprehension in Clojure](https://www.youtube.com/watch?v=5lvV9ICwaMo)
 - [ ] [Generative testing in Clojure](https://www.youtube.com/watch?v=u0TkAw8QqrQ)
 - [ ] [The case for Clojure](https://www.youtube.com/watch?v=NvxyTKyXSRg)
-- [x] [Understanding destructuring in Clojure](https://www.youtube.com/watch?v=R-_uNvM6gpE)
+- [x] [Understanding destructuring in Clojure](https://www.youtube.com/watch?v=R-_uNvM6gpE) [:memo:](./avulsos/understanding-destructuring-in-clojure.clj)
 - [ ] [Understanding pattern matching in Clojure with core.match](https://www.youtube.com/watch?v=mi3OtBc73-k)
