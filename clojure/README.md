@@ -11,7 +11,6 @@
 
 - [ ] [Test-driving Clojure in Light Table](https://www.youtube.com/watch?v=H_teKHH_Rk0)
 - [ ] [Understanding Clojure's thread macros](https://www.youtube.com/watch?v=qxE5wDbt964)
-- [ ] [Datomic: up and running](https://www.youtube.com/watch?v=ao7xEwCjrWQ)
 - [ ] [Understanding list comprehension in Clojure](https://www.youtube.com/watch?v=5lvV9ICwaMo)
 - [ ] [Generative testing in Clojure](https://www.youtube.com/watch?v=u0TkAw8QqrQ)
 - [ ] [The case for Clojure](https://www.youtube.com/watch?v=NvxyTKyXSRg)
