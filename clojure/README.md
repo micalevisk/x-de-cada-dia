@@ -25,4 +25,4 @@
 - [ ] [Himera Translations from JavaScript](http://himera.herokuapp.com/synonym.html)
 - [ ] [Learn Clojure - Clojure Koans Walkthrough](http://www.clojurescreencasts.com)
 - [ ] [ClojureScript Koans](http://clojurescriptkoans.com)
-- [ ] [Learn Clojure in Y Minutes](https://learnxinyminutes.com/docs/clojure)
+- [x] [Learn Clojure in Y Minutes](https://learnxinyminutes.com/docs/clojure) [:memo:](./avulsos/learn-clojure-in-y-minutes.clj)
