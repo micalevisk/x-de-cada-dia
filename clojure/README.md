@@ -11,7 +11,7 @@
 
 - [ ] [Test-driving Clojure in Light Table](https://www.youtube.com/watch?v=H_teKHH_Rk0)
 - [ ] [Understanding Clojure's thread macros](https://www.youtube.com/watch?v=qxE5wDbt964)
-- [ ] [Understanding list comprehension in Clojure](https://www.youtube.com/watch?v=5lvV9ICwaMo)
+- [x] [Understanding list comprehension in Clojure](https://www.youtube.com/watch?v=5lvV9ICwaMo) [:memo:](./avulsos/understanding-list-comprehension-in-clojure.clj)
 - [ ] [Generative testing in Clojure](https://www.youtube.com/watch?v=u0TkAw8QqrQ)
 - [ ] [The case for Clojure](https://www.youtube.com/watch?v=NvxyTKyXSRg)
 - [x] [Understanding destructuring in Clojure](https://www.youtube.com/watch?v=R-_uNvM6gpE) [:memo:](./avulsos/understanding-destructuring-in-clojure.clj)
