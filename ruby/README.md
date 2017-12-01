@@ -11,6 +11,7 @@
 
 - [ ] [Tutoriais Ruby - playlist](https://www.youtube.com/playlist?list=PLIPUpvW8kY_Mk6akPkQ9EkuZvyawSO-rq)
 - [ ] [Curso de Ruby on Rails para Iniciantes - playlist](https://www.youtube.com/playlist?list=PLe3LRfCs4go-mkvHRMSXEOG-HDbzesyaP)
+- [ ] [Não tema o GIL: programação concorrente em Ruby por Renan Ranelli](https://www.youtube.com/watch?v=kiaZd8dmbtI)
 
 
 ## outros
