@@ -7,7 +7,7 @@
 # _Elixir_ de Cada Dia
 
 
-## from _Youtube_
+## Youtube
 
 - [ ] [Introdução ao Elixir - Elixir Five Minutes](https://www.youtube.com/watch?v=hAv24yIdyjI)
 - [ ] [Elixir Nativo: e quando já tá pronto em C?](https://www.youtube.com/watch?v=ZrBhuP6OrFI)
@@ -22,3 +22,6 @@
 ## outros
 
 - [ ] [Elixir School](https://elixirschool.com/pt)
+
+
+## livros/artigos
