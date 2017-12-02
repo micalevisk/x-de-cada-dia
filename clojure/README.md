@@ -1,4 +1,4 @@
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/1024px-Clojure_logo.svg.png" width="150" align="right">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/1024px-Clojure_logo.svg.png" width="160" align="right">
 <br>
 <br>
 <br>
@@ -7,7 +7,7 @@
 # _Clojure_ de Cada Dia
 
 
-## from _Youtube_
+## Youtube
 
 - [ ] [Test-driving Clojure in Light Table](https://www.youtube.com/watch?v=H_teKHH_Rk0)
 - [x] [Understanding Clojure's thread macros](https://www.youtube.com/watch?v=qxE5wDbt964) [:memo:](./avulsos/understanding-clojure's-thread-macros.clj)
@@ -32,3 +32,12 @@
 - [ ] [ClojureScript Koans](http://clojurescriptkoans.com)
 - [x] [Learn Clojure in Y Minutes](https://learnxinyminutes.com/docs/clojure) [:memo:](./avulsos/learn-clojure-in-y-minutes.clj)
 - [ ] [Tutorial ClojureScript - Github](https://github.com/victorvoid/tutorial-clojurescript)
+- [ ] [Some Practical Clojure Examples](www.unexpected-vortices.com/clojure/some-practical-examples/running-clojure-programs.html)
+
+
+## livros/artigos
+
+- [ ] [The beauty of Go - Hackernoon](https://hackernoon.com/the-beauty-of-go-98057e3f0a7d)
+- [ ] [Learning ClojureScript - W. David Jarvis, Rafik Naccache, Allen Rohner _{2016}_](https://www.packtpub.com/web-development/learning-clojurescript)
+- [ ] [Practical Clojure -  L. VanderHart, Stuart S. _{2010}_ ](https://www.apress.com/br/book/9781430272311)
+- [ ] **chapter 7 ::** [Seven Languages in Seven Weeks - Bruce A. Tate _{2010}_](https://geneticmail.com/scott/library/text/seven-languages-in-seven-weeks_p1_0.pdf)
