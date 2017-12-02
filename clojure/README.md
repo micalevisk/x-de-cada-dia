@@ -41,3 +41,4 @@
 - [ ] [Learning ClojureScript - W. David Jarvis, Rafik Naccache, Allen Rohner _{2016}_](https://www.packtpub.com/web-development/learning-clojurescript)
 - [ ] [Practical Clojure -  L. VanderHart, Stuart S. _{2010}_ ](https://www.apress.com/br/book/9781430272311)
 - [ ] **chapter 7 ::** [Seven Languages in Seven Weeks - Bruce A. Tate _{2010}_](https://geneticmail.com/scott/library/text/seven-languages-in-seven-weeks_p1_0.pdf)
+- [ ] [A linguagem de programação Clojure: Tire proveito do plug-in Clojure do Eclipse - IBM _{2009}_](https://www.ibm.com/developerworks/br/opensource/library/os-eclipse-clojure/index.html)
