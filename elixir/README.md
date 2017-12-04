@@ -19,6 +19,11 @@
 - [ ] [Elixir, quem é esse pokemon? - Bruno Volcov](https://www.youtube.com/watch?v=aA-XHI-EYcM)
 - [ ] [Basic Design in Functional Programming Languages - Tomasz Kowal | ElixirLive 2016](https://www.youtube.com/watch?v=arYOSYrjC8s)
 - [ ] [Elixir - Easy fun for busy developers by David Schmitz](https://www.youtube.com/watch?v=naNN_gJas2A)
+- [ ] [WTF is Elixir?](https://www.youtube.com/watch?v=ZDwygVf_LJM)
+- [ ] [1 minute of Elixir - playlist](https://www.youtube.com/playlist?list=PLaY7qWIrmqtE0jLlSySWWeG3rqcPLZXXr)
+- [ ] [Hello World | Zero to Hero in Elixir - playlist](https://www.youtube.com/playlist?list=PLaY7qWIrmqtFoZLvOvYRZG5hl367UybRp)
+- [ ] [Awesome Elixir](https://www.youtube.com/playlist?list=PLaY7qWIrmqtHfAfucvVAGxGYuTKT_8OZc)
+- [ ] [Elixir For Beginners - playlist](https://www.youtube.com/playlist?list=PLei96ZX_m9sW6hZ1SvCE2dP01jbIxWlM0)
 
 
 ## outros
