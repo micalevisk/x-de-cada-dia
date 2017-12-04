@@ -30,3 +30,4 @@
 
 - [ ] [Quick & Easy Elixir Refactorings — Part 1](https://medium.com/@efexen/quick-easy-elixir-refactorings-part-1-17376e9c455a)
 - [ ] [Elixir for Java Developers, Episode I](https://medium.com/skyhub-labs/elixir-for-java-developers-episode-i-66b65c862652)
+- [ ] [Intro to Elixir for non Ruby programmers](https://ryanwinchester.ca/posts/intro-to-elixir-for-non-ruby-programmers)
