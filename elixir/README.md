@@ -22,7 +22,7 @@
 - [ ] [WTF is Elixir?](https://www.youtube.com/watch?v=ZDwygVf_LJM)
 - [ ] [1 minute of Elixir - playlist](https://www.youtube.com/playlist?list=PLaY7qWIrmqtE0jLlSySWWeG3rqcPLZXXr)
 - [ ] [Hello World | Zero to Hero in Elixir - playlist](https://www.youtube.com/playlist?list=PLaY7qWIrmqtFoZLvOvYRZG5hl367UybRp)
-- [ ] [Awesome Elixir](https://www.youtube.com/playlist?list=PLaY7qWIrmqtHfAfucvVAGxGYuTKT_8OZc)
+- [ ] [Awesome Elixir - playlist](https://www.youtube.com/playlist?list=PLaY7qWIrmqtHfAfucvVAGxGYuTKT_8OZc)
 - [ ] [Elixir For Beginners - playlist](https://www.youtube.com/playlist?list=PLei96ZX_m9sW6hZ1SvCE2dP01jbIxWlM0)
 
 
