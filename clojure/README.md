@@ -42,3 +42,5 @@
 - [ ] [Practical Clojure -  L. VanderHart, Stuart S. _{2010}_ ](https://www.apress.com/br/book/9781430272311)
 - [ ] **chapter 7 ::** [Seven Languages in Seven Weeks - Bruce A. Tate _{2010}_](https://geneticmail.com/scott/library/text/seven-languages-in-seven-weeks_p1_0.pdf)
 - [ ] [A linguagem de programação Clojure: Tire proveito do plug-in Clojure do Eclipse - IBM _{2009}_](https://www.ibm.com/developerworks/br/opensource/library/os-eclipse-clojure/index.html)
+- [ ] [How to Use Emacs, an Excellent Clojure Editor](https://www.braveclojure.com/basic-emacs)
+- [ ] [Clojure, Emacs and Cider](https://mping.github.io/2015/11/17/clojure-emacs-cider.html)
