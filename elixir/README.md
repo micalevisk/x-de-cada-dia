@@ -15,7 +15,6 @@
 - [ ] [Elixir Tutorial](https://www.youtube.com/watch?v=pBNOavRoNL0)
 - [ ] [Intro to Elixir](https://www.youtube.com/watch?v=lly-1UYmnFI)
 - [ ] [Kevin Rockwood | A Practical Guide to Elixir Protocols](https://www.youtube.com/watch?v=sJvfCE6PFxY)
-- [ ] [Intro to Elixir](https://www.youtube.com/watch?v=lly-1UYmnFI)
 - [ ] [Elixir, quem é esse pokemon? - Bruno Volcov](https://www.youtube.com/watch?v=aA-XHI-EYcM)
 - [ ] [Basic Design in Functional Programming Languages - Tomasz Kowal | ElixirLive 2016](https://www.youtube.com/watch?v=arYOSYrjC8s)
 - [ ] [Elixir - Easy fun for busy developers by David Schmitz](https://www.youtube.com/watch?v=naNN_gJas2A)
