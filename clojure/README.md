@@ -22,6 +22,7 @@
 - [ ] [Clojure/ClojureScript: One Language to Rule the Web](https://www.youtube.com/watch?v=EpcNDd8nuYY)
 - [ ] [A arte da simplicidade com Clojure por Maurício Szabo](https://www.youtube.com/watch?v=_kGwRVuH6mU)
 - [ ] [Sean Johnson - Pattern Matching in Clojure](https://www.youtube.com/watch?v=n7aE6k8o_BU)
+- [ ] [Clojure Enemy of the State](https://www.youtube.com/watch?v=qe60zwUAOqE)
 
 
 ## outros
@@ -44,3 +45,4 @@
 - [ ] [A linguagem de programação Clojure: Tire proveito do plug-in Clojure do Eclipse - IBM _{2009}_](https://www.ibm.com/developerworks/br/opensource/library/os-eclipse-clojure/index.html)
 - [ ] [How to Use Emacs, an Excellent Clojure Editor](https://www.braveclojure.com/basic-emacs)
 - [ ] [Clojure, Emacs and Cider](https://mping.github.io/2015/11/17/clojure-emacs-cider.html)
+- [ ] [Programming Clojure - Stuart Halloway _{2009}_](http://blog.shuo1.com/zms/clojure/Programming_Clojure.pdf)
