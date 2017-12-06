@@ -24,6 +24,7 @@
 - [ ] [Sean Johnson - Pattern Matching in Clojure](https://www.youtube.com/watch?v=n7aE6k8o_BU)
 - [ ] [Clojure Enemy of the State](https://www.youtube.com/watch?v=qe60zwUAOqE)
 - [ ] [Intro to ClojureScript (CLJS) - Julio Barros](https://www.youtube.com/watch?v=C2JmQ1gSqjk)
+- [ ] ["Literate interactive coding: Devcards" by Bruce Hauman](https://www.youtube.com/watch?v=G7Z_g2fnEDg)
 
 
 ## outros
