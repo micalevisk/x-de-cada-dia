@@ -23,6 +23,7 @@
 - [ ] [A arte da simplicidade com Clojure por Maurício Szabo](https://www.youtube.com/watch?v=_kGwRVuH6mU)
 - [ ] [Sean Johnson - Pattern Matching in Clojure](https://www.youtube.com/watch?v=n7aE6k8o_BU)
 - [ ] [Clojure Enemy of the State](https://www.youtube.com/watch?v=qe60zwUAOqE)
+- [ ] [Intro to ClojureScript (CLJS) - Julio Barros](https://www.youtube.com/watch?v=C2JmQ1gSqjk)
 
 
 ## outros
