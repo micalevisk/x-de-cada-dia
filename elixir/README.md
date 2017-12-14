@@ -24,6 +24,7 @@
 - [ ] [Awesome Elixir - playlist](https://www.youtube.com/playlist?list=PLaY7qWIrmqtHfAfucvVAGxGYuTKT_8OZc)
 - [ ] [Elixir For Beginners - playlist](https://www.youtube.com/playlist?list=PLei96ZX_m9sW6hZ1SvCE2dP01jbIxWlM0)
 - [ ] [Intro to OTP in Elixir](https://www.youtube.com/watch?v=CJT8wPnmjTM)
+- [ ] [Introdução a Elixir | #livecoding - com Leandro Bighetti](https://www.youtube.com/watch?v=sReZI1izRZI)
 
 
 ## outros
