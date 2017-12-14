@@ -29,3 +29,4 @@
 - [ ] [Ruby: Aprenda a programar na linguagem mais divertida - Lucas Souza](https://www.casadocodigo.com.br/products/livro-ruby)
 - [ ] [Ruby on Rails: coloque sua aplicação web nos trilhos - Vinícius Baggio Fuentes](https://www.casadocodigo.com.br/products/livro-ruby-on-rails)
 - [ ] **chapter 2 ::** [Seven Languages in Seven Weeks - Bruce A. Tate _{2010}_](https://geneticmail.com/scott/library/text/seven-languages-in-seven-weeks_p1_0.pdf)
+- [ ] [21 Ruby Tricks You Should Be Using In Your Own Code](http://www.rubyinside.com/21-ruby-tricks-902.html)

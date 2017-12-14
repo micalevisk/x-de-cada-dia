@@ -26,6 +26,7 @@
 - [ ] [Intro to ClojureScript (CLJS) - Julio Barros](https://www.youtube.com/watch?v=C2JmQ1gSqjk)
 - [ ] ["Literate interactive coding: Devcards" by Bruce Hauman](https://www.youtube.com/watch?v=G7Z_g2fnEDg)
 - [ ] [From JavaScript to ClojureScript](https://www.youtube.com/watch?v=8UYa8PV3CXQ)
+- [ ] [Native mobile apps with ClojureScript - Viktor Eriksson](https://www.youtube.com/watch?v=6IYm34nDL64)
 
 
 ## outros
