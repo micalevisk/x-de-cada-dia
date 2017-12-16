@@ -9,8 +9,14 @@
 
 ## Youtube
 
-- [ ] [Curso de Introdução a Linguagem Go (Golang) - playlist](https://www.youtube.com/playlist?list=PLXFk6ROPeWoAvLMyJ_PPfu8oF0-N_NgEI)
+- [ ] [Go Programming](https://www.youtube.com/watch?v=CF9S4QZuV30)
+- [ ] [Go Programming Tutorial](https://www.youtube.com/watch?v=U7oAV65wIeE)
+- [ ] [[Webinar] Introdução a GO](https://www.youtube.com/watch?v=GtQWUGX33XE)
+- [ ] [Comparing Erlang and Go Concurrency](https://www.youtube.com/watch?v=2yiKUIDFc2I)
 
+### playlists
+
+- [ ] [Curso de Introdução a Linguagem Go (Golang)](https://www.youtube.com/playlist?list=PLXFk6ROPeWoAvLMyJ_PPfu8oF0-N_NgEI)
 
 ## outros
 

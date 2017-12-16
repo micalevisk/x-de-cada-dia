@@ -19,12 +19,15 @@
 - [ ] [Basic Design in Functional Programming Languages - Tomasz Kowal | ElixirLive 2016](https://www.youtube.com/watch?v=arYOSYrjC8s)
 - [ ] [Elixir - Easy fun for busy developers by David Schmitz](https://www.youtube.com/watch?v=naNN_gJas2A)
 - [ ] [WTF is Elixir?](https://www.youtube.com/watch?v=ZDwygVf_LJM)
-- [ ] [1 minute of Elixir - playlist](https://www.youtube.com/playlist?list=PLaY7qWIrmqtE0jLlSySWWeG3rqcPLZXXr)
-- [ ] [Hello World | Zero to Hero in Elixir - playlist](https://www.youtube.com/playlist?list=PLaY7qWIrmqtFoZLvOvYRZG5hl367UybRp)
-- [ ] [Awesome Elixir - playlist](https://www.youtube.com/playlist?list=PLaY7qWIrmqtHfAfucvVAGxGYuTKT_8OZc)
-- [ ] [Elixir For Beginners - playlist](https://www.youtube.com/playlist?list=PLei96ZX_m9sW6hZ1SvCE2dP01jbIxWlM0)
 - [ ] [Intro to OTP in Elixir](https://www.youtube.com/watch?v=CJT8wPnmjTM)
 - [x] [Introdução a Elixir | #livecoding - com Leandro Bighetti](https://www.youtube.com/watch?v=sReZI1izRZI) [:memo:](./avulsos/introducao-a-elixir-livecoding---com-leandro-bighetti.exs)
+
+### playlists
+
+- [ ] [1 minute of Elixir](https://www.youtube.com/playlist?list=PLaY7qWIrmqtE0jLlSySWWeG3rqcPLZXXr)
+- [ ] [Zero to Hero in Elixir](https://www.youtube.com/playlist?list=PLaY7qWIrmqtFoZLvOvYRZG5hl367UybRp)
+- [ ] [Awesome Elixir](https://www.youtube.com/playlist?list=PLaY7qWIrmqtHfAfucvVAGxGYuTKT_8OZc)
+- [ ] [Elixir For Beginners](https://www.youtube.com/playlist?list=PLei96ZX_m9sW6hZ1SvCE2dP01jbIxWlM0)
 
 
 ## outros
