@@ -32,3 +32,4 @@
 - [ ] [Programando em Go - Caio Filipini](https://www.casadocodigo.com.br/products/livro-google-go)
 - [ ] [Go Lang A linguagem do Google - Suelen Goularte Carvalho](https://www.ime.usp.br/~gold/cursos/2015/MAC5742/reports/GoLang.pdf)
 - [ ] [The beauty of Go - Hackernoon](https://hackernoon.com/the-beauty-of-go-98057e3f0a7d)
+- [ ] [Go with Peter Bourgon](http://howistart.org/posts/go/1/)

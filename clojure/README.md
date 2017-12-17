@@ -57,6 +57,7 @@
 - [ ] [Clojure from the ground up: basic types](https://aphyr.com/posts/302-clojure-from-the-ground-up-basic-types)
 - [ ] [Clojure Design Patterns](http://mishadoff.com/blog/clojure-design-patterns/)
 - [ ] [Clojure for the brave and true](https://www.braveclojure.com/clojure-for-the-brave-and-true/)
+- [ ] [Clojure with Carin Meier](http://howistart.org/posts/clojure/1/)
 
 ### programação funcional
 
