@@ -57,6 +57,7 @@
 - [ ] [Function Syntax in Clojure](https://coderwall.com/p/panlza/function-syntax-in-clojure)
 - [ ] [Clojure from the ground up: basic types](https://aphyr.com/posts/302-clojure-from-the-ground-up-basic-types)
 - [ ] [Clojure Design Patterns](http://mishadoff.com/blog/clojure-design-patterns/)
+- [ ] [Clojure for the brave and true](https://www.braveclojure.com/clojure-for-the-brave-and-true/)
 
 ### programação funcional
 
