@@ -17,6 +17,7 @@
 ### playlists
 
 - [ ] [Curso de Introdução a Linguagem Go (Golang)](https://www.youtube.com/playlist?list=PLXFk6ROPeWoAvLMyJ_PPfu8oF0-N_NgEI)
+- [ ] [Tour da Linguagem Go](https://www.youtube.com/playlist?list=PLlirAFBMoIJt5YY81q9l4jM9BFLHRdngZ)
 
 ## outros
 
