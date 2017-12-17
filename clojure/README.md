@@ -62,3 +62,4 @@
 
 - [ ] [Programação funcional – parte 1](https://blog.taller.net.br/programacao-funcional-parte1/)
 - [ ] [Começando com o cálculo lambda e a programação funcional](http://blog.caelum.com.br/comecando-com-o-calculo-lambda-e-a-programacao-funcional-de-verdade/)
+- [ ] [Functional programming in Javascript is an antipattern And Clojure is actually easier](https://hackernoon.com/functional-programming-in-javascript-is-an-antipattern-58526819f21e)
