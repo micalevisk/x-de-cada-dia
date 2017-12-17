@@ -52,3 +52,13 @@
 - [ ] [How to Use Emacs, an Excellent Clojure Editor](https://www.braveclojure.com/basic-emacs)
 - [ ] [Clojure, Emacs and Cider](https://mping.github.io/2015/11/17/clojure-emacs-cider.html)
 - [ ] [Programming Clojure - Stuart Halloway _{2009}_](http://blog.shuo1.com/zms/clojure/Programming_Clojure.pdf)
+- [ ] [Command line applications in Clojure](http://markwoodhall.com/26-06-2014-command-line-applications-in-clojure/)
+- [ ] [Building Command Line Apps with Clojure](https://yobriefca.se/blog/2014/03/02/building-command-line-apps-with-clojure/)
+- [ ] [Function Syntax in Clojure](https://coderwall.com/p/panlza/function-syntax-in-clojure)
+- [ ] [Clojure from the ground up: basic types](https://aphyr.com/posts/302-clojure-from-the-ground-up-basic-types)
+- [ ] [Clojure Design Patterns](http://mishadoff.com/blog/clojure-design-patterns/)
+
+### programação funcional
+
+- [ ] [Programação funcional – parte 1](https://blog.taller.net.br/programacao-funcional-parte1/)
+- [ ] [Começando com o cálculo lambda e a programação funcional](http://blog.caelum.com.br/comecando-com-o-calculo-lambda-e-a-programacao-funcional-de-verdade/)
