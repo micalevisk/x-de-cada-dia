@@ -28,6 +28,8 @@
 - [ ] [Zero to Hero in Elixir](https://www.youtube.com/playlist?list=PLaY7qWIrmqtFoZLvOvYRZG5hl367UybRp)
 - [ ] [Awesome Elixir](https://www.youtube.com/playlist?list=PLaY7qWIrmqtHfAfucvVAGxGYuTKT_8OZc)
 - [ ] [Elixir For Beginners](https://www.youtube.com/playlist?list=PLei96ZX_m9sW6hZ1SvCE2dP01jbIxWlM0)
+- [ ] [Elixir Tutorial](https://www.youtube.com/playlist?list=PLDbt-8dyNTUWRUv0Cutoj2avYUd_lqdqn)
+- [ ] [Elixir Tutorial - Basics](https://www.youtube.com/playlist?list=PLDbt-8dyNTUUQZcX5oVP1c9dABuS8ZsMp)
 
 
 ## outros
