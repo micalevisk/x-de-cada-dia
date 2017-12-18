@@ -9,7 +9,7 @@
 ##  e/ou só atualizar o contador (badge) de tarefas prontas.
 ##
 ##  using:
-##  echo, sed, mapfile, awk, mkdir, touch
+##  echo, sed, mapfile, awk, read
 ##
 
 

@@ -9,7 +9,7 @@
 ##  arquivos relativos a uma tarefa não feita.
 ##
 ##  using:
-##  echo, sed, mapfile, awk, mkdir, touch
+##  echo, sed, mapfile, awk, read, mkdir, touch
 ##
 
 
