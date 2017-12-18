@@ -5,7 +5,8 @@
 <br>
 
 # _Elixir_ de Cada Dia
-
+<img src="https://img.shields.io/badge/done-4%25-6E4A7E.svg" width="160" align="right">
+<br>
 
 ## Youtube
 

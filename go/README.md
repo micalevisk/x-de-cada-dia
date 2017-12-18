@@ -5,6 +5,8 @@
 <br>
 
 # _Go_ de Cada Dia
+<img src="https://img.shields.io/badge/done-0%25-375EAB.svg" width="160" align="right">
+<br>
 
 
 ## Youtube

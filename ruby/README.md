@@ -5,7 +5,8 @@
 <br>
 
 # _Ruby_ de Cada Dia
-
+<img src="https://img.shields.io/badge/done-0%25-701516.svg" width="160" align="right">
+<br>
 
 ## Youtube
 
