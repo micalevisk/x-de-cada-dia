@@ -23,35 +23,35 @@ test $# -ne 1 && {
 }
 test -w "$PATH_TO_FILE" || exit 2 ## TODO: indiciar que o arquivo não existe para escrita
 
-declare -a tasks
+declare -a tasks_not_done
 declare -i nums_tasks nums_tasks_done num_task line_selected_task
 declare -x percentage list_not_done task_name
 # declare -A cores=( ["clojure"]="DB5855" ["ruby"]="701516" ["elixir"]="6E4A7E" ["go"]="375EAB" )
 
 
 list_not_done=$(grep -P -o '(?<=- \[ \] \[).+(?=\])' "$PATH_TO_FILE")
-mapfile -t tasks <<< "$list_not_done"
-nums_tasks=${#tasks[*]}
+mapfile -t tasks_not_done <<< "$list_not_done"
+nums_tasks=$(grep -Pc '^- \[.\].+' "$PATH_TO_FILE")
 
 
 awk '{ print NR ":\t" $0 } END { print "\n" }' <<< "$list_not_done"
 read -a task_metadata -p "[task] done = "
 
 num_task=$((task_metadata[0]-1))
-task_name=${tasks[num_task]}
+task_name=${tasks_not_done[num_task]}
 
 ## TODO: retornar para o 'read' se o número dado for inválido
-[[ $num_task -lt $nums_tasks ]] || exit 3
+[[ $num_task -lt ${#tasks_not_done[*]} ]] || exit 3
 
 line_selected_task=$(grep -n -m1 -F "$task_name" "$PATH_TO_FILE" | cut -d: -f1)
 
-if [[ -n "${task_metadata[0]}" ]]; then
+if [[ -n ${task_metadata[0]} ]]; then
   read -n1 -p "Task \"$task_name\" was done? (y/N) "
   [[ "${REPLY,,}" == "y" ]] && sed -i "${line_selected_task}s/\[ \]/[x]/" "$PATH_TO_FILE"
 fi
 
 
-nums_tasks_done=$(grep -P -c '^- \[x\] \[.+' "$PATH_TO_FILE")
+nums_tasks_done=$(grep -Pc '^- \[x\].+' "$PATH_TO_FILE")
 percentage=$(( nums_tasks_done*100/nums_tasks ))
 
 sed -i -r "

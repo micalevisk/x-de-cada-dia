@@ -23,14 +23,14 @@ test $# -ne 1 && {
 }
 test -w "$PATH_TO_FILE" || exit 2 ## TODO: indiciar que o arquivo não existe para escrita
 
-declare -a tasks
+declare -a tasks_not_done
 declare -i nums_tasks num_task
 declare -x extension list_not_done
 declare -f set_file_and_dir confirm
 
 
 function set_file_and_dir() {
-  local task_name="${tasks[$num_task]}"
+  local task_name="${tasks_not_done[$num_task]}"
 
   local normalized=$(sed -r '
     y/àáâãäåèéêëìíîïòóôõöùúûü/aaaaaaeeeeiiiiooooouuuu/
@@ -52,8 +52,8 @@ function confirm() {
 
 
 list_not_done=$(grep -P -o '(?<=- \[ \] \[).+(?=\])' "$PATH_TO_FILE")
-mapfile -t tasks <<< "$list_not_done"
-nums_tasks=${#tasks[*]}
+mapfile -t tasks_not_done <<< "$list_not_done"
+nums_tasks=$(grep -Pc '^- \[.\].+' "$PATH_TO_FILE")
 
 
 awk '{ print NR ":\t" $0 } END { print "\n" }' <<< "$list_not_done"
@@ -63,7 +63,7 @@ num_task=$((task_metadata[0]-1))
 extension=${task_metadata[1]}
 
 ## TODO: retornar para o 'read' se o número dado for inválido
-[[ $num_task -lt $nums_tasks ]] || exit 4
+[[ $num_task -lt ${#tasks_not_done[*]} && -n ${task_metadata[0]} ]] || exit 4
 
 set_file_and_dir
 
