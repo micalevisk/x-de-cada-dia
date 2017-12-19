@@ -5,7 +5,7 @@
 <br>
 
 # _Clojure_ de Cada Dia
-<img src="https://img.shields.io/badge/done-10%25-DB5855.svg" width="160" align="right">
+<img src="https://img.shields.io/badge/done-9%25-DB5855.svg" width="160" align="right">
 <br>
 
 
