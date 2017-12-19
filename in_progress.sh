@@ -1,7 +1,7 @@
 #!/bin/bash
 ##
 ##  [in_progress.sh]
-##  Created by Micael Levi on 17/12/2017
+##  Created by Micael Levi on 12/17/2017
 ##  Copyright (c) 2017 mllc@icomp.ufam.edu.br; All rights reserved.
 ##
 ##  Recebe o nome do diretório raiz que contém do README.md
@@ -9,7 +9,7 @@
 ##  arquivos relativos a uma tarefa não feita.
 ##
 ##  using:
-##  echo, sed, mapfile, awk, read, mkdir, touch
+##  echo, grep, sed, mapfile, awk, read, mkdir, touch
 ##
 
 

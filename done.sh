@@ -1,7 +1,7 @@
 #!/bin/bash
 ##
 ##  [done.sh]
-##  Created by Micael Levi on 17/12/2017
+##  Created by Micael Levi on 12/17/2017
 ##  Copyright (c) 2017 mllc@icomp.ufam.edu.br; All rights reserved.
 ##
 ##  Recebe o nome do diretório raiz que contém do README.md
@@ -9,7 +9,7 @@
 ##  e/ou só atualizar o contador (badge) de tarefas prontas.
 ##
 ##  using:
-##  echo, sed, mapfile, awk, read
+##  echo, grep, sed, mapfile, awk, read
 ##
 
 
@@ -26,7 +26,6 @@ test -w "$PATH_TO_FILE" || exit 2 ## TODO: indiciar que o arquivo não existe pa
 declare -a tasks_not_done
 declare -i nums_tasks nums_tasks_done num_task line_selected_task
 declare -x percentage list_not_done task_name
-# declare -A cores=( ["clojure"]="DB5855" ["ruby"]="701516" ["elixir"]="6E4A7E" ["go"]="375EAB" )
 
 
 list_not_done=$(grep -P -o '(?<=- \[ \] \[).+(?=\])' "$PATH_TO_FILE")
