@@ -27,7 +27,7 @@ MISCELLANEOUS_DIR="${CURR_DIR,,}/$MISCELLANEOUS"
 declare -A COLORS=( [w]=$'\e[37;1m' [y]=$'\e[33;1m' [g]=$'\e[32;1m' [r]=$'\e[31;1m' [p]=$'\e[35;1m' [n]=$'\e[0m' )
 declare -a tasks_not_done
 declare -i nums_tasks nums_tasks_done num_task line_selected_task
-declare -x percentage list_not_done task_name normalized_task_name file dir task_ref
+declare -x percentage list_not_done task_name normalized_task_name file dir task_ref emoji
 declare -f set_file_and_dir
 
 
@@ -73,10 +73,10 @@ if [[ -n ${task_metadata[0]} ]]; then
 
     sed -i "${line_selected_task} s/\[ \]/[x]/" "$PATH_TO_FILE"
 
-    [[ -n "$extension" && -e "$file" ]] && task_ref="./$MISCELLANEOUS/${normalized_task_name}.$extension"
-    [[ -d "$dir"  ]] && task_ref="./$normalized_task_name"
+    [[ -n "$extension" && -e "$file" ]] && { task_ref="./$MISCELLANEOUS/${normalized_task_name}.$extension"; emoji="memo"; }
+    [[ -d "$dir"  ]] && { task_ref="./$normalized_task_name"; emoji="file_folder"; }
 
-    [[ -n "$task_ref" ]] && sed -ri "${line_selected_task} s%$% [:memo:](${task_ref})%" "$PATH_TO_FILE"
+    [[ -n "$task_ref" ]] && sed -ri "${line_selected_task} s%$% [:${emoji}:](${task_ref})%" "$PATH_TO_FILE"
   fi
 fi
 
