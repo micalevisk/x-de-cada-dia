@@ -40,8 +40,9 @@
 - [ ] [Learn Clojure - Clojure Koans Walkthrough](http://www.clojurescreencasts.com)
 - [ ] [ClojureScript Koans](http://clojurescriptkoans.com)
 - [x] [Learn Clojure in Y Minutes](https://learnxinyminutes.com/docs/clojure) [:memo:](./avulsos/learn-clojure-in-y-minutes.clj)
-- [ ] [Tutorial ClojureScript - Github](https://github.com/victorvoid/tutorial-clojurescript)
+- [ ] [Tutorial ClojureScript - GitHub](https://github.com/victorvoid/tutorial-clojurescript)
 - [ ] [Some Practical Clojure Examples](www.unexpected-vortices.com/clojure/some-practical-examples/running-clojure-programs.html)
+- [ ] [Modern ClojureScript - GitHub](https://github.com/magomimmo/modern-cljs)
 
 
 ## livros/artigos
