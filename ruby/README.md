@@ -24,6 +24,7 @@
 
 ## outros
 
+- [ ] [Aprenda Ruby em Y Minutos](https://learnxinyminutes.com/docs/pt-br/ruby-pt)
 - [ ] [Aprenda Ruby on Rails - Github](https://github.com/felipeorlando/aprenda-rubyonrails)
 - [ ] [Learn Ruby - Github](https://github.com/alexch/learn_ruby)
 - [ ] [Iniciando com Ruby - School of Net](https://www.schoolofnet.com/curso-iniciando-com-ruby/)
@@ -34,6 +35,7 @@
 
 - [ ] [Ruby: Aprenda a programar na linguagem mais divertida - Lucas Souza](https://www.casadocodigo.com.br/products/livro-ruby)
 - [ ] [Ruby on Rails: coloque sua aplicação web nos trilhos - Vinícius Baggio Fuentes](https://www.casadocodigo.com.br/products/livro-ruby-on-rails)
-- [ ] **chapter 2 ::** [Seven Languages in Seven Weeks - Bruce A. Tate _{2010}_](https://geneticmail.com/scott/library/text/seven-languages-in-seven-weeks_p1_0.pdf)
+- [ ] [Seven Languages in Seven Weeks - Bruce A. Tate _{2010}_](https://geneticmail.com/scott/library/text/seven-languages-in-seven-weeks_p1_0.pdf)
+  > * verificar o capítulo 2
 - [ ] [21 Ruby Tricks You Should Be Using In Your Own Code](http://www.rubyinside.com/21-ruby-tricks-902.html)
 - [ ] [Ruby with Steve Klabnik](http://howistart.org/posts/ruby/1/)

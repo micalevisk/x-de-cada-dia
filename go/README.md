@@ -24,6 +24,7 @@
 
 ## outros
 
+- [ ] [Aprenda Go em Y Minutos](https://learnxinyminutes.com/docs/pt-br/go-pt)
 - [ ] [Aprenda Go - Github](https://github.com/geiltonxavier/aprenda-go)
 - [ ] [An Introduction to Programming in Go](http://www.golang-book.com/books/intro)
 - [ ] [A Tour of Go](https://tour.golang.org/welcome/1)

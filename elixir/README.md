@@ -33,9 +33,9 @@
 - [ ] [Elixir Tutorial - Basics](https://www.youtube.com/playlist?list=PLDbt-8dyNTUUQZcX5oVP1c9dABuS8ZsMp)
 - [ ] [Getting Started with Elixir Tutorial](https://www.youtube.com/playlist?list=PLTgRMOcmRb3Nd4IJDrGWaUhCjeuWLVcdI)
 
-
 ## outros
 
+- [ ] [Aprenda Elixir em Y Minutos](https://learnxinyminutes.com/docs/pt-br/elixir-pt)
 - [ ] [Elixir School](https://elixirschool.com/pt)
 
 
