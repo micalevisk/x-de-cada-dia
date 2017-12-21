@@ -5,7 +5,7 @@
 <br>
 
 # _Go_ de Cada Dia
-<img src="https://img.shields.io/badge/done-0%25-375EAB.svg" width="160" align="right">
+<img src="https://img.shields.io/badge/done-0%25%20(0%20of%2016)-375EAB.svg" width="200" align="right">
 <br>
 
 

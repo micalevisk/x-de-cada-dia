@@ -5,7 +5,7 @@
 <br>
 
 # _Ruby_ de Cada Dia
-<img src="https://img.shields.io/badge/done-0%25-701516.svg" width="160" align="right">
+<img src="https://img.shields.io/badge/done-0%25%20(0%20of%2017)-701516.svg" width="200" align="right">
 <br>
 
 ## Youtube
@@ -35,7 +35,7 @@
 
 - [ ] [Ruby: Aprenda a programar na linguagem mais divertida - Lucas Souza](https://www.casadocodigo.com.br/products/livro-ruby)
 - [ ] [Ruby on Rails: coloque sua aplicação web nos trilhos - Vinícius Baggio Fuentes](https://www.casadocodigo.com.br/products/livro-ruby-on-rails)
-- [ ] [Seven Languages in Seven Weeks - Bruce A. Tate _{2010}_](https://geneticmail.com/scott/library/text/seven-languages-in-seven-weeks_p1_0.pdf)
-  > * verificar o capítulo 2
+- [ ] [Seven Languages in Seven Weeks - Bruce A. Tate](https://geneticmail.com/scott/library/text/seven-languages-in-seven-weeks_p1_0.pdf)
+  > * livro geral; verificar o capítulo 2 `[2010]`
 - [ ] [21 Ruby Tricks You Should Be Using In Your Own Code](http://www.rubyinside.com/21-ruby-tricks-902.html)
 - [ ] [Ruby with Steve Klabnik](http://howistart.org/posts/ruby/1/)
