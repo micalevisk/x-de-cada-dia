@@ -5,7 +5,7 @@
 <br>
 
 # _Ruby_ de Cada Dia
-<img src="https://img.shields.io/badge/done-0%25%20(0%20of%2017)-701516.svg" width="200" align="right">
+<img src="https://img.shields.io/badge/done-0%25%20(0%20of%2018)-701516.svg" width="200" align="right">
 <br>
 
 ## Youtube
@@ -39,3 +39,4 @@
   > * livro geral; verificar o capítulo 2 `[2010]`
 - [ ] [21 Ruby Tricks You Should Be Using In Your Own Code](http://www.rubyinside.com/21-ruby-tricks-902.html)
 - [ ] [Ruby with Steve Klabnik](http://howistart.org/posts/ruby/1/)
+- [ ] [Livro de Ruby - Eustaquio Rangel](http://eustaquiorangel.com/livro-ruby)
