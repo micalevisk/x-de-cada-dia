@@ -86,7 +86,7 @@ percentage=$(( nums_tasks_done*100/nums_tasks ))
 [[ percentage -eq 100 ]] && opt='g'
 
 sed -i -r "
-  s/done-[0-9]+%/done-${percentage}%/
+  s_(done-)[0-9]+(.+)\([0-9]+(.+of%20)[0-9]+\)_\1${percentage}\2(${nums_tasks_done}\3${nums_tasks})_i
   t end
   :end
-" "$PATH_TO_FILE" && echo -e "\n${COLORS[w]}Now ${COLORS[${opt:-r}]}${percentage}% ${COLORS[w]}done!${COLORS[n]}"
+" "$PATH_TO_FILE" && echo -e "\n${COLORS[w]}Now ${COLORS[${opt:-r}]}${percentage}% ${COLORS[w]}(${nums_tasks_done} of ${nums_tasks}) done!${COLORS[n]}"
