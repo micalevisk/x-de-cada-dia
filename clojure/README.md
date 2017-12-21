@@ -5,7 +5,7 @@
 <br>
 
 # _Clojure_ de Cada Dia
-<img src="https://img.shields.io/badge/done-9%25-DB5855.svg" width="160" align="right">
+<img src="https://img.shields.io/badge/done-11%25-DB5855.svg" width="160" align="right">
 <br>
 
 
@@ -84,7 +84,7 @@
 
 ### programação funcional
 
-- [ ] [Programação funcional – parte 1](https://blog.taller.net.br/programacao-funcional-parte1/)
+- [x] [Programação funcional – parte 1](https://blog.taller.net.br/programacao-funcional-parte1/)
   > * primeiro artigo da série de artigos sobre Programação Funcional da Taller `[2016]`
 - [ ] [Começando com o cálculo lambda e a programação funcional](http://blog.caelum.com.br/comecando-com-o-calculo-lambda-e-a-programacao-funcional-de-verdade/)
   > * introdução de formalidades do paradigma funcional `[2011]`
