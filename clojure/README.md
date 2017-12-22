@@ -5,7 +5,7 @@
 <br>
 
 # _Clojure_ de Cada Dia
-<img src="https://img.shields.io/badge/done-11%25%20(5%20of%2043)-DB5855.svg" width="200" align="right">
+<img src="https://img.shields.io/badge/done-13%25%20(6%20of%2043)-DB5855.svg" width="200" align="right">
 <br>
 
 
@@ -86,7 +86,7 @@
 
 - [x] [Programação funcional – parte 1](https://blog.taller.net.br/programacao-funcional-parte1/)
   > * primeiro artigo da série de artigos sobre Programação Funcional da Taller `[2016]`
-- [ ] [Começando com o cálculo lambda e a programação funcional](http://blog.caelum.com.br/comecando-com-o-calculo-lambda-e-a-programacao-funcional-de-verdade/)
+- [x] [Começando com o cálculo lambda e a programação funcional](http://blog.caelum.com.br/comecando-com-o-calculo-lambda-e-a-programacao-funcional-de-verdade/)
   > * introdução de formalidades do paradigma funcional `[2011]`
 - [ ] [Functional programming in Javascript is an antipattern And Clojure is actually easier](https://hackernoon.com/functional-programming-in-javascript-is-an-antipattern-58526819f21e)
   > * exposição do uso do JavaScript e Clojure em termos da Programação Funcional `[2017]`

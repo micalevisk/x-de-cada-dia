@@ -9,7 +9,7 @@
 ##  e/ou só atualizar o contador (badge) de tarefas prontas.
 ##
 ##  using:
-##  echo, grep, cut, sed, mapfile, awk, read
+##  echo, grep, cut, sed, mapfile, awk, read, git
 ##
 
 
@@ -20,11 +20,11 @@ PATH_TO_FILE="${CURR_DIR,,}/$FILE"
 MISCELLANEOUS_DIR="${CURR_DIR,,}/$MISCELLANEOUS"
 
 
-[[ $# -ne 1 ]] && { echo -e "usage: \e[36m$0\e[0m \e[35;1m<lang_directory>\e[0m"; exit 1; }
-[[ -w "$PATH_TO_FILE" ]] || exit 2 ## TODO: indiciar que o arquivo não existe para escrita
+[ $# -ne 1 ] && { echo -e "usage: \e[36m$0\e[0m \e[35;1m<lang_directory>\e[0m"; exit 1; }
+[ -w "$PATH_TO_FILE" ] || exit 2 ## TODO: indiciar que o arquivo não existe para escrita
 
 
-declare -A COLORS=( [w]=$'\e[37;1m' [y]=$'\e[33;1m' [g]=$'\e[32;1m' [r]=$'\e[31;1m' [p]=$'\e[35;1m' [n]=$'\e[0m' )
+declare -A COLORS=( [w]=$'\e[37;1m' [y]=$'\e[33;1m' [g]=$'\e[32;1m' [r]=$'\e[31;1m' [p]=$'\e[35;1m' [n]=$'\e[0m' [gr]=$'\e[30;1m' )
 declare -a tasks_not_done
 declare -i nums_tasks nums_tasks_done num_task line_selected_task
 declare -x percentage list_not_done task_name normalized_task_name file dir task_ref emoji
@@ -60,23 +60,25 @@ extension=${task_metadata[1]}
 task_name=${tasks_not_done[num_task]}
 
 ## TODO: retornar para o 'read' se o número dado for inválido
-[[ $num_task -lt ${#tasks_not_done[*]} ]] || exit 3
+[ $num_task -lt ${#tasks_not_done[*]} ] || exit 3
 
 line_selected_task=$(grep -n -m1 -F "$task_name" "$PATH_TO_FILE" | cut -d: -f1)
 
-if [[ -n ${task_metadata[0]} ]]; then
+if [ -n "${task_metadata[0]}" ]
+then
   ## TODO: retornar para o 'read' se a resposta for N
   read -n1 -p "${COLORS[w]}Task ${COLORS[y]}${task_name}${COLORS[w]} was done? ${COLORS[r]}(y/N)${COLORS[n]} "
 
-  if [[ "${REPLY,,}" == "y" ]]; then
+  if [[ "${REPLY,,}" == "y" ]]
+  then
     set_file_and_dir
 
     sed -i "${line_selected_task} s/\[ \]/[x]/" "$PATH_TO_FILE"
 
-    [[ -n "$extension" && -e "$file" ]] && { task_ref="./$MISCELLANEOUS/${normalized_task_name}.$extension"; emoji="memo"; }
-    [[ -d "$dir"  ]] && { task_ref="./$normalized_task_name"; emoji="file_folder"; }
+    [ -n "$extension" -a -e "$file" ] && { task_ref="./$MISCELLANEOUS/${normalized_task_name}.$extension"; emoji="memo"; }
+    [ -d "$dir" ] && { task_ref="./$normalized_task_name"; emoji="file_folder"; }
 
-    [[ -n "$task_ref" ]] && sed -ri "${line_selected_task} s%$% [:${emoji}:](${task_ref})%" "$PATH_TO_FILE"
+    [ -n "$task_ref" ] && sed -ri "${line_selected_task} s%$% [:${emoji}:](${task_ref})%" "$PATH_TO_FILE"
   fi
 fi
 
@@ -90,3 +92,17 @@ sed -i -r "
   t end
   :end
 " "$PATH_TO_FILE" && echo -e "\n${COLORS[w]}Now ${COLORS[${opt:-r}]}${percentage}% ${COLORS[w]}(${nums_tasks_done} of ${nums_tasks}) done!${COLORS[n]}"
+
+
+## ----------------- EXTRA ----------------- ##
+DEFAULT_GIT_MSG="one done"
+
+git add -v "$PATH_TO_FILE"
+
+if [ $? -eq 0 ]
+then
+  git commit -vm "$DEFAULT_GIT_MSG" && {
+    read -n1 -p "${COLORS[w]}Do ${COLORS[y]}git push${COLORS[w]}? ${COLORS[r]}(y/N)${COLORS[n]} "
+    [[ "${REPLY,,}" == "y" ]] && git push -v || echo -e "\n${COLORS[gr]}Not pushed...${COLORS[n]}"
+  }
+fi
