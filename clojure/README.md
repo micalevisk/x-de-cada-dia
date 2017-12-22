@@ -5,30 +5,48 @@
 <br>
 
 # _Clojure_ de Cada Dia
-<img src="https://img.shields.io/badge/done-13%25%20(6%20of%2043)-DB5855.svg" width="200" align="right">
+<img src="https://img.shields.io/badge/done-13%25%20(6%20of%2045)-DB5855.svg" width="200" align="right">
 <br>
 
 
 ## Youtube
 
-- [ ] [Test-driving Clojure in Light Table](https://www.youtube.com/watch?v=H_teKHH_Rk0)
 - [x] [Understanding Clojure's thread macros](https://www.youtube.com/watch?v=qxE5wDbt964) [:memo:](./avulsos/understanding-clojure's-thread-macros.clj)
+  > * `[2013]`
 - [x] [Understanding list comprehension in Clojure](https://www.youtube.com/watch?v=5lvV9ICwaMo) [:memo:](./avulsos/understanding-list-comprehension-in-clojure.clj)
-- [ ] [Generative testing in Clojure](https://www.youtube.com/watch?v=u0TkAw8QqrQ)
-- [ ] [The case for Clojure](https://www.youtube.com/watch?v=NvxyTKyXSRg)
+  > * `[2013]`
 - [x] [Understanding destructuring in Clojure](https://www.youtube.com/watch?v=R-_uNvM6gpE) [:memo:](./avulsos/understanding-destructuring-in-clojure.clj)
-- [ ] [Understanding pattern matching in Clojure with core.match](https://www.youtube.com/watch?v=mi3OtBc73-k)
-- [ ] [ClojureScript vs JavaScript (ES5 & ES6) - Oliver Mooney](https://www.youtube.com/watch?v=yQSbFlcIDUQ)
-- [ ] [Building Tic Tac Toe in ClojureScript (Reagent/Figwheel)](https://www.youtube.com/watch?v=pIiOgTwjbes)
-- [ ] [Meetup Clojure BR - 01 - Introdução a Linguagem](https://www.youtube.com/watch?v=u7O785o9Bvo)
-- [ ] [Clojure/ClojureScript: One Language to Rule the Web](https://www.youtube.com/watch?v=EpcNDd8nuYY)
+  > * `[2014]`
+- [ ] [The case for Clojure](https://www.youtube.com/watch?v=NvxyTKyXSRg)
+  > * breve explicação para tentar convencer a escolha do Clojure em um projeto `[2014]`
 - [ ] [A arte da simplicidade com Clojure por Maurício Szabo](https://www.youtube.com/watch?v=_kGwRVuH6mU)
-- [ ] [Sean Johnson - Pattern Matching in Clojure](https://www.youtube.com/watch?v=n7aE6k8o_BU)
-- [ ] [Clojure Enemy of the State](https://www.youtube.com/watch?v=qe60zwUAOqE)
-- [ ] [Intro to ClojureScript (CLJS) - Julio Barros](https://www.youtube.com/watch?v=C2JmQ1gSqjk)
-- [ ] ["Literate interactive coding: Devcards" by Bruce Hauman](https://www.youtube.com/watch?v=G7Z_g2fnEDg)
+  > * (apresentado no 38º encontro do Guru-SP) `[2015]`
+- [ ] [ClojureScript vs JavaScript (ES5 & ES6) - Oliver Mooney](https://www.youtube.com/watch?v=yQSbFlcIDUQ)
+  > * `[2015]`
 - [ ] [From JavaScript to ClojureScript](https://www.youtube.com/watch?v=8UYa8PV3CXQ)
+  > * `[2015]`
+- [ ] [Clojure/ClojureScript: One Language to Rule the Web](https://www.youtube.com/watch?v=EpcNDd8nuYY)
+  > * `[2013]`
+- [ ] [Meetup Clojure BR - 01 - Introdução a Linguagem](https://www.youtube.com/watch?v=u7O785o9Bvo)
+  > * (primeiro encontro do Meetup CLJ-BR) `[2016]`
+- [ ] [Intro to ClojureScript (CLJS) - Julio Barros](https://www.youtube.com/watch?v=C2JmQ1gSqjk)
+  > * `[2017]`
+- [ ] [Clojure Enemy of the State](https://www.youtube.com/watch?v=qe60zwUAOqE)
+  > * `[2013]`
+- [ ] [Test-driving Clojure in Light Table](https://www.youtube.com/watch?v=H_teKHH_Rk0)
+  > * `[2013]`
+- [ ] [Sean Johnson - Pattern Matching in Clojure](https://www.youtube.com/watch?v=n7aE6k8o_BU)
+  > * `[2015]`
+- [ ] [Generative testing in Clojure](https://www.youtube.com/watch?v=u0TkAw8QqrQ)
+  > * `[2014]`
+- [ ] [Understanding pattern matching in Clojure with core.match](https://www.youtube.com/watch?v=mi3OtBc73-k)
+  > * `[2015]`
+- [ ] ["Literate interactive coding: Devcards" by Bruce Hauman](https://www.youtube.com/watch?v=G7Z_g2fnEDg)
+  > * `[2015]`
+- [ ] [Building Tic Tac Toe in ClojureScript (Reagent/Figwheel)](https://www.youtube.com/watch?v=pIiOgTwjbes)
+  > * `[2015]`
 - [ ] [Native mobile apps with ClojureScript - Viktor Eriksson](https://www.youtube.com/watch?v=6IYm34nDL64)
+  > * `[2016]`
 
 ### playlists
 
@@ -67,6 +85,8 @@
   > * artigo de introdução à linguagem e configuração de uma IDE `[2009]`
 - [ ] [Clojure with Carin Meier](http://howistart.org/posts/clojure/1)
   > * explorando Clojure e Emacs na prática `[2015]`
+- [ ] [The complete guide to Clojure destructuring](http://blog.brunobonacci.com/2014/11/16/clojure-complete-guide-to-destructuring)
+  > * guia completo sobre desestruturação `[2017]`
 - [ ] [Function Syntax in Clojure](https://coderwall.com/p/panlza/function-syntax-in-clojure)
   > * breve explicação sobre a sintaxe das funções `[2016]`
 - [ ] [Clojure Design Patterns](http://mishadoff.com/blog/clojure-design-patterns)
@@ -75,6 +95,8 @@
   > * tutorial para criação de uma aplicação para linha de comandos `[2014]`
 - [ ] [Building Command Line Apps with Clojure](https://yobriefca.se/blog/2014/03/02/building-command-line-apps-with-clojure)
   > * breve guia de complemento sobre construção de aplições para linha de comandos com Clojure `[2014]`
+- [ ] [binding-form e associação de valores em Clojure](https://blog.bltavares.com/2015/01/19/binding-forms)
+  > * `[2015]`
 - [ ] [Learning ClojureScript - W. David Jarvis, Rafik Naccache, Allen Rohner](https://www.packtpub.com/web-development/learning-clojurescript)
   > * livro sobre desenvolvimento de páginas web com ClojureScript `[2016]`
 - [ ] [Practical Clojure -  L. VanderHart, Stuart S.](https://www.apress.com/br/book/9781430272311)
@@ -84,9 +106,9 @@
 
 ### programação funcional
 
-- [x] [Programação funcional – parte 1](https://blog.taller.net.br/programacao-funcional-parte1/)
+- [x] [Programação funcional – parte 1](https://blog.taller.net.br/programacao-funcional-parte1)
   > * primeiro artigo da série de artigos sobre Programação Funcional da Taller `[2016]`
-- [x] [Começando com o cálculo lambda e a programação funcional](http://blog.caelum.com.br/comecando-com-o-calculo-lambda-e-a-programacao-funcional-de-verdade/)
+- [x] [Começando com o cálculo lambda e a programação funcional](http://blog.caelum.com.br/comecando-com-o-calculo-lambda-e-a-programacao-funcional-de-verdade)
   > * introdução de formalidades do paradigma funcional `[2011]`
 - [ ] [Functional programming in Javascript is an antipattern And Clojure is actually easier](https://hackernoon.com/functional-programming-in-javascript-is-an-antipattern-58526819f21e)
   > * exposição do uso do JavaScript e Clojure em termos da Programação Funcional `[2017]`
