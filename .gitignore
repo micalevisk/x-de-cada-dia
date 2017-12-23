@@ -280,3 +280,6 @@ $RECYCLE.BIN/
 
 # personal agreement
 __*
+
+# eventually
+node_modules
