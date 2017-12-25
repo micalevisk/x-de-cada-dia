@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/1024px-Clojure_logo.svg.png" width="160">
   <h1><i>Clojure</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-13%25%20(6%20of%2045)-DB5855.svg" width="180">
+  <img src="https://img.shields.io/badge/done-15%25%20(7%20of%2045)-DB5855.svg" width="180">
 </div>
 
 <p align="center">
@@ -46,19 +46,19 @@ status | title | last update | snnipet | notes
 || [Learn Clojure - Clojure Koans Walkthrough](http://www.clojurescreencasts.com) | 2013 | |
 || [ClojureScript - Quick Start](https://clojurescript.org/guides/quick-start) | |
 || [ClojureScript - Differences from Clojure](https://clojurescript.org/about/differences) | |
-|| [Tutorial ClojureScript](https://github.com/victorvoid/tutorial-clojurescript) | 2016 | |
+|| [Tutorial ClojureScript](https://github.com/victorvoid/tutorial-clojurescript) | 2016 | :octocat: |
 || [Himera Translations from JavaScript](http://himera.herokuapp.com/synonym.html) | 2013 | |
 || [Some Practical Clojure Examples](http://www.unexpected-vortices.com/clojure/some-practical-examples/index.html) | 2017 | |
-|| [Modern ClojureScript](https://github.com/magomimmo/modern-cljs) | 2016 | |
+|| [Modern ClojureScript](https://github.com/magomimmo/modern-cljs) | 2016 | :octocat: |
 || [ClojureScript Koans](http://clojurescriptkoans.com) | 2015 | |
 :white_check_mark: | [Programação funcional – parte 1](https://blog.taller.net.br/programacao-funcional-parte1) | 2016 | |
 :white_check_mark: | [Começando com o cálculo lambda e a programação funcional](http://blog.caelum.com.br/comecando-com-o-calculo-lambda-e-a-programacao-funcional-de-verdade) | 2011 | |
 || [Functional programming in Javascript is an antipattern And Clojure is actually easier](https://hackernoon.com/functional-programming-in-javascript-is-an-antipattern-58526819f21e) | 2017 | |
-|| [Clojure, Emacs and Cider](https://mping.github.io/2015/11/17/clojure-emacs-cider.html) | 2015 | |
+|| [Clojure, Emacs and Cider](https://mping.github.io/2015/11/17/clojure-emacs-cider.html) | 2015 | :octocat: |
 || [A linguagem de programação Clojure: Tire proveito do plug-in Clojure do Eclipse - IBM](https://www.ibm.com/developerworks/br/opensource/library/os-eclipse-clojure/index.html) | 2009 | |
 || [Clojure with Carin Meier](http://howistart.org/posts/clojure/1) | 2015 | |
 || [The complete guide to Clojure destructuring](http://blog.brunobonacci.com/2014/11/16/clojure-complete-guide-to-destructuring) | 2017 | |
-|| [Function Syntax in Clojure](https://coderwall.com/p/panlza/function-syntax-in-clojure) | 2016 | |
+:white_check_mark: | [Function Syntax in Clojure](https://coderwall.com/p/panlza/function-syntax-in-clojure) | 2016 | |
 || [Clojure Design Patterns](http://mishadoff.com/blog/clojure-design-patterns) | 2015 | |
 || [Command line applications in Clojure](http://markwoodhall.com/26-06-2014-command-line-applications-in-clojure) | 2014 | |
 || [Building Command Line Apps with Clojure](https://yobriefca.se/blog/2014/03/02/building-command-line-apps-with-clojure) | 2014 | |
@@ -69,7 +69,7 @@ status | title | last update | snnipet | notes
 
 status | title | last update | snnipet | notes
 :-----:|:------|:-----------:|:--------|:----:
-|| [Seven Languages in Seven Weeks - Bruce A. Tate](https://geneticmail.com/scott/library/text/seven-languages-in-seven-weeks_p1_0.pdf) | 2010 | |
+|| [Seven Languages in Seven Weeks - Bruce A. Tate](https://geneticmail.com/scott/library/text/seven-languages-in-seven-weeks_p1_0.pdf) | 2010 | _ver o capítulo 7_ |
 || [Clojure for the brave and true](https://www.braveclojure.com/clojure-for-the-brave-and-true) | 2015 | |
 || [Learning ClojureScript - W. David Jarvis, Rafik Naccache, Allen Rohner](https://www.packtpub.com/web-development/learning-clojurescript) | 2016 | |
 || [Practical Clojure -  L. VanderHart, Stuart S.](https://www.apress.com/br/book/9781430272311) | 2010 | |
