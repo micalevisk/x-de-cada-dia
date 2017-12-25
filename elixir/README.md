@@ -18,7 +18,7 @@
 ## Vídeos
 
 status | title | last update | snnipet | notes
-:-----:|:------|:-----------:|:--------|:----:
+:-----:|:------|:-----------:|:-------:|:----:
 :white_check_mark: | [Introdução a Elixir \| #livecoding - com Leandro Bighetti](https://www.youtube.com/watch?v=sReZI1izRZI) | 2017 | | [:memo:](./avulsos/introducao_a_elixir_livecoding_-_com_leandro_bighetti.exs)
 || [Introdução ao Elixir - Elixir Five Minutes](https://www.youtube.com/watch?v=hAv24yIdyjI) | 2015 | |
 || [Introdução à linguagem de programação Elixir](https://www.youtube.com/watch?v=7eYA8c8yABU) | 2015 | |
@@ -37,7 +37,7 @@ status | title | last update | snnipet | notes
 ## Screencasts e Relacionados
 
 status | title | last update | snnipet | notes
-:-----:|:------|:-----------:|:--------|:----:
+:-----:|:------|:-----------:|:-------:|:----:
 || [Elixir For Beginners](https://www.youtube.com/playlist?list=PLei96ZX_m9sW6hZ1SvCE2dP01jbIxWlM0) | 2017 | |
 || [Elixir Tutorial - Basics](https://www.youtube.com/playlist?list=PLDbt-8dyNTUUQZcX5oVP1c9dABuS8ZsMp) | 2017 | |
 || [1 minute of Elixir](https://www.youtube.com/playlist?list=PLaY7qWIrmqtE0jLlSySWWeG3rqcPLZXXr) | 2017 | |
@@ -49,7 +49,7 @@ status | title | last update | snnipet | notes
 ## Artigos e Relacionados
 
 status | title | last update | snnipet | notes
-:-----:|:------|:-----------:|:--------|:----:
+:-----:|:------|:-----------:|:-------:|:----:
 || [Aprenda Elixir em Y Minutos](https://learnxinyminutes.com/docs/pt-br/elixir-pt) | 2017 | |
 || [Elixir School (PT)](https://elixirschool.com/pt) | 2017 | |
 || [Elixir with José Valim](http://howistart.org/posts/elixir/1/) |  | |
@@ -61,7 +61,7 @@ status | title | last update | snnipet | notes
 ## Livros
 
 status | title | last update | snnipet | notes
-:-----:|:------|:-----------:|:--------|:----:
+:-----:|:------|:-----------:|:-------:|:----:
 || [Learning Elixir - Kenny Ballou](https://www.packtpub.com/application-development/learning-elixir) | 2016 | |
 || [Programming Phoenix - by Chris McCord, Bruce Tate, José Valim](https://pragprog.com/book/phoenix/programming-phoenix) | 2016 | |
 
