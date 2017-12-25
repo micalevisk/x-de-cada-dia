@@ -17,11 +17,11 @@
 
 GIT_MSG="${2:-one done}"
 TASKS_FILE="README.md"
-MISCELLANEOUS_FILENAME="avulsos"
+MISCELLANEOUS_DIRNAME="avulsos"
 TASK_DONE_MARK=":white_check_mark:"
 CURR_DIR="${1%%/}"
 PATH_TO_TASKS_FILE="${CURR_DIR,,}/$TASKS_FILE"
-MISCELLANEOUS_DIR="${CURR_DIR,,}/$MISCELLANEOUS_FILENAME"
+PATH_TO_MISCELLANEOUS_DIRNAME="${CURR_DIR,,}/$MISCELLANEOUS_DIRNAME"
 declare -A COLORS=( [w]=$'\e[37;1m' [y]=$'\e[33;1m' [g]=$'\e[32;1m' [r]=$'\e[31;1m' [p]=$'\e[35;1m' [n]=$'\e[0m' [gr]=$'\e[30;1m' )
 
 
@@ -40,7 +40,7 @@ set_file_and_dir() {
     s_[:?"*<>|\/#]__g
     s_([^[:alnum:]])\1_\1_g' <<< "${task_name,,}")
 
-  file="$MISCELLANEOUS_DIR/${normalized_task_name}.$extension"
+  file="$PATH_TO_MISCELLANEOUS_DIRNAME/${normalized_task_name}.$extension"
   dir="$CURR_DIR/${normalized_task_name}"
 }
 
@@ -78,7 +78,7 @@ then
 
     sed -i "${line_selected_task} s/^||/${TASK_DONE_MARK} |/" "$PATH_TO_TASKS_FILE" && ((nums_tasks_done++))
 
-    [ -n "$extension" -a -e "$file" ] && { task_ref="./$MISCELLANEOUS_FILENAME/${normalized_task_name}.$extension"; emoji="memo"; }
+    [ -n "$extension" -a -e "$file" ] && { task_ref="./$MISCELLANEOUS_DIRNAME/${normalized_task_name}.$extension"; emoji="memo"; }
     [ -d "$dir" ] && { task_ref="./$normalized_task_name"; emoji="file_folder"; }
 
     [ -n "$task_ref" ] && sed -i "${line_selected_task} s%$% [:${emoji}:](${task_ref})%" "$PATH_TO_TASKS_FILE"
