@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://cdn-images-1.medium.com/max/1600/1*yh90bW8jL4f8pOTZTvbzqw.png" width="180">
   <h1><i>Go</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-0%25%20(0%20of%2016)-375EAB.svg" width="180">
+  <img src="https://img.shields.io/badge/done-0%25%20(0%20of%2017)-375EAB.svg" width="180">
 </div>
 
 <p align="center">
@@ -33,7 +33,7 @@ status | title | last update | snnipet | notes
 || [Curso de Introdução a Linguagem Go (Golang)](https://www.youtube.com/playlist?list=PLXFk6ROPeWoAvLMyJ_PPfu8oF0-N_NgEI) | | |
 || [Tour da Linguagem Go](https://www.youtube.com/playlist?list=PLlirAFBMoIJt5YY81q9l4jM9BFLHRdngZ) | | |
 || [Curso de Go - Golang](https://www.youtube.com/playlist?list=PLW1LRX9Hf56LwVAJSgtxFpGDwBLX6y0Av) | | |
-
+|| [Golang (by Tensor Programming)](https://www.youtube.com/playlist?list=PLJbE2Yu2zumCe9cO3SIyragJ8pLmVv0z9) | 2017 | |
 
 ## Artigos e Relacionados
 

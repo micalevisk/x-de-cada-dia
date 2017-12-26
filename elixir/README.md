@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://techsquare.co/wp-content/uploads/2017/08/1481354.png" width="160">
   <h1><i>Elixir</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-3%25%20(1%20of%2028)-6E4A7E.svg" width="180">
+  <img src="https://img.shields.io/badge/done-3%25%20(1%20of%2029)-6E4A7E.svg" width="180">
 </div>
 
 <p align="center">
@@ -44,7 +44,9 @@ status | title | last update | snnipet | notes
 || [Elixir Tutorial](https://www.youtube.com/playlist?list=PLDbt-8dyNTUWRUv0Cutoj2avYUd_lqdqn) | 2017 | |
 || [Zero to Hero in Elixir](https://www.youtube.com/playlist?list=PLaY7qWIrmqtFoZLvOvYRZG5hl367UybRp) | 2017 | |
 || [Awesome Elixir](https://www.youtube.com/playlist?list=PLaY7qWIrmqtHfAfucvVAGxGYuTKT_8OZc) | 2017 | |
+|| [elixir (by Tensor Programming)](https://www.youtube.com/playlist?list=PLJbE2Yu2zumAgKjSPyFtvYjP5LqgzafQq) | 2017 | |
 || [Getting Started with Elixir Tutorial](https://www.youtube.com/playlist?list=PLTgRMOcmRb3Nd4IJDrGWaUhCjeuWLVcdI) | 2017 | |
+
 
 ## Artigos e Relacionados
 
