@@ -1,8 +1,8 @@
 #!/bin/bash
 ##
 ##  [done.sh]
-##  Created by Micael Levi on 12/17/2017
-##  Copyright (c) 2017 mllc@icomp.ufam.edu.br; All rights reserved.
+##  Copyright (c) 2017, Micael Levi <mykael2010@hotmail.com>
+##  All rights reserved.
 ##
 ##  Recebe o nome do diretório raiz que contém do README.md
 ##  para marcar uma tarefa (não feita) como feita,
@@ -15,21 +15,21 @@
 ##  echo, grep, sed, mapfile, awk, read, git
 ##
 
+CURR_DIR="${1%%/}"
 GIT_MSG="${2:-one done}"
 TASKS_FILE="README.md"
 MISCELLANEOUS_DIRNAME="avulsos"
 TASK_DONE_MARK=":white_check_mark:"
-CURR_DIR="${1%%/}"
 PATH_TO_TASKS_FILE="${CURR_DIR,,}/$TASKS_FILE"
 PATH_TO_MISCELLANEOUS_DIRNAME="${CURR_DIR,,}/$MISCELLANEOUS_DIRNAME"
 declare -A COLORS=( [w]=$'\e[37;1m' [y]=$'\e[33;1m' [g]=$'\e[32;1m' [r]=$'\e[31;1m' [p]=$'\e[35;1m' [n]=$'\e[0m' [gr]=$'\e[30;1m' )
 
 
-[ $# -ne 1 ] && { echo -e "usage: \e[36m$0\e[0m \e[35;1m<lang_directory>\e[0m \e[35m[commit_message]\e[0m"; exit 1; }
+[ $# -lt 1 -o $# -gt 2 ] && { echo -e "usage: \e[36m$0\e[0m \e[35;1m<lang_directory>\e[0m \e[35m[commit_message]\e[0m"; exit 1; }
 [ -w "$PATH_TO_TASKS_FILE" ] || exit 2 ## TODO: indiciar que o arquivo não existe para escrita
 
 
-set_file_and_dir() {
+function set_file_and_dir {
   local task_name="${tasks_not_done[$num_task]}"
 
   normalized_task_name=$(sed -r '
@@ -44,7 +44,7 @@ set_file_and_dir() {
   dir="$CURR_DIR/${normalized_task_name}"
 }
 
-confirm() {
+function confirm {
   read -n1 -p "$1? ${COLORS[r]}(y/N)${COLORS[n]} "
   [ "${REPLY,,}" == "y" ]
 }
@@ -52,11 +52,11 @@ confirm() {
 
 list_not_done=$(grep --color=never -o -P '(?<=^\|\| \[).+(?=\])' "$PATH_TO_TASKS_FILE")
 mapfile -t tasks_not_done <<< "$list_not_done"
-nums_tasks=$(grep -c -P '^[:|].+\[.+\]\(.+\).+\|' "$PATH_TO_TASKS_FILE")
+nums_tasks=$(grep -c -P "^[${TASK_DONE_MARK:0:1}|].+\[.+\]\(.+\).+\|" "$PATH_TO_TASKS_FILE")
 nums_tasks_done=$(( nums_tasks - ${#tasks_not_done[@]} ))
 
-
-awk '{ print NR ".\t" $0 } END { print "\n" }' <<< "$list_not_done"
+## display all pending tasks
+awk '{ printf "%3s:\t%s\n", NR, $0 } END { print "" }' <<< "$list_not_done"
 read -a task_metadata -p "[${COLORS[p]}task${COLORS[n]}] [${COLORS[p]}extension${COLORS[n]}] = "
 
 num_task=$((task_metadata[0]-1))
@@ -89,7 +89,7 @@ fi
 percentage=$(( nums_tasks_done*100/nums_tasks ))
 [[ percentage -eq 100 ]] && opt='g'
 
-## altera a primeira ocorrência, ie., atualiza apenas 1 badge
+## update first badge
 sed -i -r "
   0,/(done-)[0-9]+(.+)\([0-9]+(.+of...)[0-9]+\)/ s//\1${percentage}\2(${nums_tasks_done}\3${nums_tasks})/
 " "$PATH_TO_TASKS_FILE" && echo -e "\n${COLORS[w]}Now ${COLORS[${opt:-r}]}${percentage}% ${COLORS[w]}(${nums_tasks_done} of ${nums_tasks}) done!${COLORS[n]}"
