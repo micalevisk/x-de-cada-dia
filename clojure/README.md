@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/1024px-Clojure_logo.svg.png" width="160">
   <h1><i>Clojure</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-15%25%20(7%20of%2045)-DB5855.svg" width="180">
+  <img src="https://img.shields.io/badge/done-17%25%20(8%20of%2045)-DB5855.svg" width="180">
 </div>
 
 <p align="center">
@@ -17,12 +17,12 @@
 ## Vídeos
 
 status | title | last update | snnipet | notes
-:-----:|:------|:-----------:|:--------|:----:
+:-----:|:------|:-----------:|:-------:|:----:
 :white_check_mark: | [Understanding Clojure's thread macros](https://www.youtube.com/watch?v=qxE5wDbt964) | 2013 | | [:memo:](./avulsos/understanding_clojure's_thread_macros.clj)
 :white_check_mark: | [Understanding list comprehension in Clojure](https://www.youtube.com/watch?v=5lvV9ICwaMo) | 2013 | | [:memo:](./avulsos/understanding_list_comprehension_in_clojure.clj)
 :white_check_mark: | [Understanding destructuring in Clojure](https://www.youtube.com/watch?v=R-_uNvM6gpE) | 2014 | | [:memo:](./avulsos/understanding_destructuring_in_clojure.clj)
 || [The case for Clojure](https://www.youtube.com/watch?v=NvxyTKyXSRg) | 2014 | |
-|| [A arte da simplicidade com Clojure por Maurício Szabo](https://www.youtube.com/watch?v=_kGwRVuH6mU) | 2015 | |
+:white_check_mark: | [A arte da simplicidade com Clojure por Maurício Szabo](https://www.youtube.com/watch?v=_kGwRVuH6mU) | 2015 | |
 || [ClojureScript vs JavaScript (ES5 & ES6) - Oliver Mooney](https://www.youtube.com/watch?v=yQSbFlcIDUQ) | 2015 | |
 || [From JavaScript to ClojureScript](https://www.youtube.com/watch?v=8UYa8PV3CXQ) | 2015 | |
 || [Clojure/ClojureScript: One Language to Rule the Web](https://www.youtube.com/watch?v=EpcNDd8nuYY) | 2013 | |
@@ -41,7 +41,7 @@ status | title | last update | snnipet | notes
 ## Artigos e Relacionados
 
 status | title | last update | snnipet | notes
-:-----:|:------|:-----------:|:--------|:----:
+:-----:|:------|:-----------:|:-------:|:----:
 :white_check_mark: | [Learn Clojure in Y Minutes](https://learnxinyminutes.com/docs/clojure) | 2017 | | [:memo:](./avulsos/learn-clojure-in-y-minutes.clj)
 || [Learn Clojure - Clojure Koans Walkthrough](http://www.clojurescreencasts.com) | 2013 | |
 || [ClojureScript - Quick Start](https://clojurescript.org/guides/quick-start) | |
@@ -68,7 +68,7 @@ status | title | last update | snnipet | notes
 ## Livros
 
 status | title | last update | snnipet | notes
-:-----:|:------|:-----------:|:--------|:----:
+:-----:|:------|:-----------:|:-------:|:----:
 || [Seven Languages in Seven Weeks - Bruce A. Tate](https://geneticmail.com/scott/library/text/seven-languages-in-seven-weeks_p1_0.pdf) | 2010 | _ver o capítulo 7_ |
 || [Clojure for the brave and true](https://www.braveclojure.com/clojure-for-the-brave-and-true) | 2015 | |
 || [Learning ClojureScript - W. David Jarvis, Rafik Naccache, Allen Rohner](https://www.packtpub.com/web-development/learning-clojurescript) | 2016 | |
