@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/1024px-Clojure_logo.svg.png" width="160">
   <h1><i>Clojure</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-17%25%20(8%20of%2045)-DB5855.svg" width="180">
+  <img src="https://img.shields.io/badge/done-20%25%20(9%20of%2045)-DB5855.svg" width="180">
 </div>
 
 <p align="center">
@@ -21,7 +21,7 @@ status | title | last update | snnipet | notes
 :white_check_mark: | [Understanding Clojure's thread macros](https://www.youtube.com/watch?v=qxE5wDbt964) | 2013 | | [:memo:](./avulsos/understanding_clojure's_thread_macros.clj)
 :white_check_mark: | [Understanding list comprehension in Clojure](https://www.youtube.com/watch?v=5lvV9ICwaMo) | 2013 | | [:memo:](./avulsos/understanding_list_comprehension_in_clojure.clj)
 :white_check_mark: | [Understanding destructuring in Clojure](https://www.youtube.com/watch?v=R-_uNvM6gpE) | 2014 | | [:memo:](./avulsos/understanding_destructuring_in_clojure.clj)
-|| [The case for Clojure](https://www.youtube.com/watch?v=NvxyTKyXSRg) | 2014 | |
+:white_check_mark: | [The case for Clojure](https://www.youtube.com/watch?v=NvxyTKyXSRg) | 2014 | |
 :white_check_mark: | [A arte da simplicidade com Clojure por Maurício Szabo](https://www.youtube.com/watch?v=_kGwRVuH6mU) | 2015 | |
 || [ClojureScript vs JavaScript (ES5 & ES6) - Oliver Mooney](https://www.youtube.com/watch?v=yQSbFlcIDUQ) | 2015 | |
 || [From JavaScript to ClojureScript](https://www.youtube.com/watch?v=8UYa8PV3CXQ) | 2015 | |
