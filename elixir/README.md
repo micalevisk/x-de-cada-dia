@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://techsquare.co/wp-content/uploads/2017/08/1481354.png" width="160">
   <h1><i>Elixir</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-3%25%20(1%20of%2029)-6E4A7E.svg" width="180">
+  <img src="https://img.shields.io/badge/done-3%25%20(1%20of%2030)-6E4A7E.svg" width="180">
 </div>
 
 <p align="center">
@@ -32,6 +32,7 @@ status | title | last update | snnipet | notes
 || [Intro to OTP in Elixir](https://www.youtube.com/watch?v=CJT8wPnmjTM) | 2016 | |
 || [The ABCs of OTP - Jesse J. Anderson](https://www.youtube.com/watch?v=4SCwubzqsVU) | 2017 | |
 || [Elixir Nativo: e quando já tá pronto em C?](https://www.youtube.com/watch?v=ZrBhuP6OrFI) | 2016 | |
+|| [Elixir and OTP for Node.js Developers](https://www.youtube.com/watch?v=YbTxq4IpLd0) | 2017 | |
 
 
 ## Screencasts e Relacionados
