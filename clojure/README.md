@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/1024px-Clojure_logo.svg.png" width="160">
   <h1><i>Clojure</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-22%25%20(10%20of%2045)-DB5855.svg" width="180">
+  <img src="https://img.shields.io/badge/done-24%25%20(11%20of%2045)-DB5855.svg" width="180">
 </div>
 
 <p align="center">
@@ -47,7 +47,7 @@ status | title | last update | snnipet | notes
 || [ClojureScript - Quick Start](https://clojurescript.org/guides/quick-start) | |
 || [ClojureScript - Differences from Clojure](https://clojurescript.org/about/differences) | |
 || [Tutorial ClojureScript](https://github.com/victorvoid/tutorial-clojurescript) | 2016 | :octocat: |
-|| [Himera Translations from JavaScript](http://himera.herokuapp.com/synonym.html) | 2013 | |
+:white_check_mark: | [Himera Translations from JavaScript](http://himera.herokuapp.com/synonym.html) | 2013 | paralelo entre JavaScript e ClojureScript | [:memo:](./avulsos/himera_translations_from_javascript.clj)
 || [Some Practical Clojure Examples](http://www.unexpected-vortices.com/clojure/some-practical-examples/index.html) | 2017 | |
 || [Modern ClojureScript](https://github.com/magomimmo/modern-cljs) | 2016 | :octocat: |
 || [ClojureScript Koans](http://clojurescriptkoans.com) | 2015 | |
