@@ -32,13 +32,13 @@
 (print-name)
 
 
-;;>> destructing bind
+;;>> destructuring bind
 
 (def obj {:a 1
-          :b 2})
+          :b 2}) ;; // const obj = { a: 1, b: 2 }
 
-(let [{:keys [a b]} obj] ;; // const { a, b } = obj
-  (println (+ a b)))
+(let [{:keys [a b]} obj]) ;; // const { a, b } = obj
+(let [{A :a B :b} obj])   ;; // const { a: A, b: B } = obj
 
 (def color [255 255 100 0.5])
 
