@@ -12,7 +12,7 @@
 ##  serão exibidos, tornando a identificação impossível.
 ##
 ##  using:
-##  echo, grep, sed, mapfile, awk, read, git
+##  echo, grep, sed, mapfile, awk, read, less, git
 ##
 
 CURR_DIR="${1%%/}"
@@ -56,7 +56,8 @@ nums_tasks=$(grep -c -P "^[${TASK_DONE_MARK:0:1}|].+\[.+\]\(.+\).+\|" "$PATH_TO_
 nums_tasks_done=$(( nums_tasks - ${#tasks_not_done[@]} ))
 
 ## display all pending tasks
-awk '{ printf "%3s:\t%s\n", NR, $0 } END { print "" }' <<< "$list_not_done"
+list_not_done=$(awk '{ printf "%3s:\t%s\n", NR, $0 }' <<< "$list_not_done")
+less <<< "$list_not_done" && echo "$list_not_done"
 read -a task_metadata -p "[${COLORS[p]}task${COLORS[n]}] [${COLORS[p]}extension${COLORS[n]}] = "
 
 num_task=$((task_metadata[0]-1))
