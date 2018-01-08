@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://techsquare.co/wp-content/uploads/2017/08/1481354.png" width="160">
   <h1><i>Elixir</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-3%25%20(1%20of%2030)-6E4A7E.svg" width="180">
+  <img src="https://img.shields.io/badge/done-6%25%20(2%20of%2031)-6E4A7E.svg" width="180">
 </div>
 
 <p align="center">
@@ -20,6 +20,7 @@
 status | title | last update | snnipet | notes
 :-----:|:------|:-----------:|:-------:|:----:
 :white_check_mark: | [Introdução a Elixir \| #livecoding - com Leandro Bighetti](https://www.youtube.com/watch?v=sReZI1izRZI) | 2017 | | [:memo:](./avulsos/introducao_a_elixir_livecoding_-_com_leandro_bighetti.exs)
+:white_check_mark: | [Let's Get Functional With Elixir!](https://www.youtube.com/watch?v=wVrnoxNbOts) | 2017 | talk |
 || [Introdução ao Elixir - Elixir Five Minutes](https://www.youtube.com/watch?v=hAv24yIdyjI) | 2015 | |
 || [Introdução à linguagem de programação Elixir](https://www.youtube.com/watch?v=7eYA8c8yABU) | 2015 | |
 || [Elixir Tutorial](https://www.youtube.com/watch?v=pBNOavRoNL0) | 2017 | |
@@ -33,7 +34,6 @@ status | title | last update | snnipet | notes
 || [The ABCs of OTP - Jesse J. Anderson](https://www.youtube.com/watch?v=4SCwubzqsVU) | 2017 | |
 || [Elixir Nativo: e quando já tá pronto em C?](https://www.youtube.com/watch?v=ZrBhuP6OrFI) | 2016 | |
 || [Elixir and OTP for Node.js Developers](https://www.youtube.com/watch?v=YbTxq4IpLd0) | 2017 | |
-
 
 ## Screencasts e Relacionados
 
