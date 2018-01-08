@@ -1,7 +1,7 @@
 #!/bin/bash
 ##
 ##  [done.sh]
-##  Copyright (c) 2017, Micael Levi <mykael2010@hotmail.com>
+##  Copyright (c) 2017-2018, Micael Levi <mykael2010@hotmail.com>
 ##  All rights reserved.
 ##
 ##  Recebe o nome do diretório raiz que contém do README.md
@@ -22,6 +22,7 @@ MISCELLANEOUS_DIRNAME="avulsos"
 TASK_DONE_MARK=":white_check_mark:"
 PATH_TO_TASKS_FILE="${CURR_DIR,,}/$TASKS_FILE"
 PATH_TO_MISCELLANEOUS_DIRNAME="${CURR_DIR,,}/$MISCELLANEOUS_DIRNAME"
+SPECIAL_LIST="[|\`_*]"
 declare -A COLORS=( [w]=$'\e[37;1m' [y]=$'\e[33;1m' [g]=$'\e[32;1m' [r]=$'\e[31;1m' [p]=$'\e[35;1m' [n]=$'\e[0m' [gr]=$'\e[30;1m' )
 
 
@@ -50,27 +51,26 @@ function confirm {
 }
 
 
-list_not_done=$(grep --color=never -o -P '(?<=^\|\| \[).+(?=\])' "$PATH_TO_TASKS_FILE")
+list_not_done=$(grep --color=never -n -o -P '(?<=^\|\| \[).+(?=\])' "$PATH_TO_TASKS_FILE" | sed "s@\\\\\(${special_list}\)@\1@g") # <line>:<title>
 mapfile -t tasks_not_done <<< "$list_not_done"
 nums_tasks=$(grep -c -P "^[${TASK_DONE_MARK:0:1}|].+\[.+\]\(.+\).+\|" "$PATH_TO_TASKS_FILE")
 nums_tasks_done=$(( nums_tasks - ${#tasks_not_done[@]} ))
 
 ## display all pending tasks
-list_not_done=$(awk '{ printf "%3s:\t%s\n", NR, $0 }' <<< "$list_not_done")
+list_not_done=$(awk '{ printf "%3s:\t%s\n", NR, gensub(/[0-9]+:/, "", 1) }' <<< "$list_not_done")
 less <<< "$list_not_done" && echo "$list_not_done"
 read -a task_metadata -p "[${COLORS[p]}task${COLORS[n]}] [${COLORS[p]}extension${COLORS[n]}] = "
 
 num_task=$((task_metadata[0]-1))
-extension=${task_metadata[1]}
-task_name=${tasks_not_done[num_task]}
-
 ## TODO: retornar para o 'read' se o número dado for inválido
 [ $num_task -lt ${#tasks_not_done[*]} ] || exit 3
 
+extension=${task_metadata[1]}
+task_name=${tasks_not_done[num_task]#*:}
+
 if [ -n "${task_metadata[0]}" ]
 then
-  _line_selected_task=$(grep --color=never -n -m1 -F "$task_name" "$PATH_TO_TASKS_FILE")
-  line_selected_task="${_line_selected_task%%:*}"
+  line_selected_task="${tasks_not_done[num_task]%:*}"
 
   ## TODO: retornar para o 'read' se a resposta for N
   if confirm "${COLORS[w]}Task ${COLORS[y]}${task_name}${COLORS[w]} was done"
