@@ -54,9 +54,9 @@ status | title | last update | snnipet | notes
 || [ClojureScript - Differences from Clojure](https://clojurescript.org/about/differences) | |
 || [Tutorial ClojureScript](https://github.com/victorvoid/tutorial-clojurescript) | 2016 | :octocat: |
 :white_check_mark: | [Himera Translations from JavaScript](http://himera.herokuapp.com/synonym.html) | 2013 | paralelo entre JavaScript e ClojureScript | [:memo:](./avulsos/himera_translations_from_javascript.clj)
-|| [Some Practical Clojure Examples](http://www.unexpected-vortices.com/clojure/some-practical-examples/index.html) | 2017 | |
+|| [Some Practical Clojure Examples](http://www.unexpected-vortices.com/clojure/some-practical-examples/index.html) | 2017 | Inlein |
 || [Modern ClojureScript](https://github.com/magomimmo/modern-cljs) | 2016 | :octocat: |
-|| [ClojureScript Koans](http://clojurescriptkoans.com) | 2015 | |
+|| [ClojureScript Koans](http://clojurescriptkoans.com) | 2015 | pequenos exercícios para praticar; dividido em 17 assuntos |
 :white_check_mark: | [Programação funcional – parte 1](https://blog.taller.net.br/programacao-funcional-parte1) | 2016 | |
 :white_check_mark: | [Começando com o cálculo lambda e a programação funcional](http://blog.caelum.com.br/comecando-com-o-calculo-lambda-e-a-programacao-funcional-de-verdade) | 2011 | |
 || [Functional programming in Javascript is an antipattern And Clojure is actually easier](https://hackernoon.com/functional-programming-in-javascript-is-an-antipattern-58526819f21e) | 2017 | |
