@@ -27,7 +27,7 @@ status | title | last update | snnipet | notes
 :white_check_mark: | [From JavaScript to ClojureScript](https://www.youtube.com/watch?v=8UYa8PV3CXQ) | 2015 | |
 || [Clojure/ClojureScript: One Language to Rule the Web](https://www.youtube.com/watch?v=EpcNDd8nuYY) | 2013 | |
 || [Meetup Clojure BR - 01 - Introdução a Linguagem](https://www.youtube.com/watch?v=u7O785o9Bvo) | 2016 | |
-|| [Intro to ClojureScript (CLJS) - Julio Barros](https://www.youtube.com/watch?v=C2JmQ1gSqjk) | 2017 | |
+:white_check_mark: | [Intro to ClojureScript (CLJS) - Julio Barros](https://www.youtube.com/watch?v=C2JmQ1gSqjk) | 2017 | |
 || [Clojure Enemy of the State](https://www.youtube.com/watch?v=qe60zwUAOqE) | 2013 | |
 || [Test-driving Clojure in Light Table](https://www.youtube.com/watch?v=H_teKHH_Rk0) | 2013 | |
 || [Sean Johnson - Pattern Matching in Clojure](https://www.youtube.com/watch?v=n7aE6k8o_BU) | 2015 | |
