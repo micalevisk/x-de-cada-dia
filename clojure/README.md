@@ -6,6 +6,7 @@
 
 <p align="center">
   <a href="#vídeos">:video_camera:</a>&nbsp;
+  <a href="#screencasts-e-relacionados">:floppy_disk:</a>&nbsp;
   <a href="#artigos-e-relacionados">:newspaper:</a>&nbsp;
   <a href="#livros">:books:</a>&nbsp;
 </p>
@@ -37,13 +38,18 @@ status | title | last update | snnipet | notes
 || [Building Tic Tac Toe in ClojureScript (Reagent/Figwheel)](https://www.youtube.com/watch?v=pIiOgTwjbes) | 2015 | |
 || [Native mobile apps with ClojureScript - Viktor Eriksson](https://www.youtube.com/watch?v=6IYm34nDL64) | 2016 | |
 
+## Screencasts e Relacionados
+
+status | title | last update | snnipet | notes
+:-----:|:------|:-----------:|:-------:|:----:
+|| [Learn Clojure - Clojure Koans Walkthrough](http://www.clojurescreencasts.com) | 2013 | |
+
 
 ## Artigos e Relacionados
 
 status | title | last update | snnipet | notes
 :-----:|:------|:-----------:|:-------:|:----:
 :white_check_mark: | [Learn Clojure in Y Minutes](https://learnxinyminutes.com/docs/clojure) | 2017 | | [:memo:](./avulsos/learn-clojure-in-y-minutes.clj)
-|| [Learn Clojure - Clojure Koans Walkthrough](http://www.clojurescreencasts.com) | 2013 | |
 || [ClojureScript - Quick Start](https://clojurescript.org/guides/quick-start) | |
 || [ClojureScript - Differences from Clojure](https://clojurescript.org/about/differences) | |
 || [Tutorial ClojureScript](https://github.com/victorvoid/tutorial-clojurescript) | 2016 | :octocat: |
