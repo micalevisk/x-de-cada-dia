@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/1024px-Clojure_logo.svg.png" width="160">
   <h1><i>Clojure</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-24%25%20(11%20of%2045)-DB5855.svg" width="180">
+  <img src="https://img.shields.io/badge/done-26%25%20(12%20of%2045)-DB5855.svg" width="180">
 </div>
 
 <p align="center">
