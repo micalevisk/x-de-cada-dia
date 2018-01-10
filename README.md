@@ -1,5 +1,3 @@
-<!-- TODO: reformular/melhorar -->
-
 # `X` de Cada Dia
 
 Projeto levemente inspirado na série **Aprenda X** mas com o objetivo de registrar os meus estudos "de cada dia" sobre algumas linguagens de programação que foram escolhidas por mim. Reunindo um vasto conteúdo de informações didaticamentes bem formuladas sobre cada linguagem e os conceitos que as cercam.
@@ -79,25 +77,10 @@ Como visto anteriormente, a tabela de cada seção deve ter as seguintes colunas
 
 No arquivo, uma tarefa dita **pendente** deve estar mais ou menos assim:
 > ```
-> || [nome-da-tarefa](link-para-a-tarefa) | data | |
+> ^|| [nome-da-tarefa](link-para-a-tarefa) | data | |$
 > ```
 
 Ao passo que uma dita **concluída** deve estar assim:
 > ```
-> :white_check_mark: | [nome-da-tarefa](link-para-a-tarefa) | data | |
+> ^:white_check_mark: | [nome-da-tarefa](link-para-a-tarefa) | data | |$
 > ```
-
-
-
-
-<!--
-
-1. **onde** [**X =** Clojure(Script)](./clojure/README.md)
-2. **onde** [**X =** Ruby](./ruby/README.md)
-3. **onde** [**X =** Elixir](./elixir/README.md)
-4. **onde** [**X =** Go](./go/README.md)
-
-## Formatação para Uso
-
-
--->
