@@ -66,7 +66,7 @@ sections: [{ name: String, emoji: String }];
 Como visto anteriormente, a tabela de cada seção deve ter as seguintes colunas:
 
 - `status`
-  + Se não tiver valor, então a tarefa está pendente. Deve ser preenchido com o emoji de nome **:white_check_mark:**
+  + Se não tiver valor, então a tarefa está pendente. Deve ser preenchido com o emoji de nome _white_check_mark_
 - `title`*
   + Nome _único_ que identificará a tarefa
 - `last update`
