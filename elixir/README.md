@@ -1,47 +1,72 @@
-<img src="https://techsquare.co/wp-content/uploads/2017/08/1481354.png" width="160" align="right">
-<br>
-<br>
-<br>
-<br>
+<div align="center">
+  <img src="https://techsquare.co/wp-content/uploads/2017/08/1481354.png" width="160">
+  <h1><i>Elixir</i> de Cada Dia</h1>
+  <img src="https://img.shields.io/badge/done-6%25%20(2%20of%2031)-6E4A7E.svg" width="180">
+</div>
 
-# _Elixir_ de Cada Dia
-<img src="https://img.shields.io/badge/done-4%25%20(1%20of%2025)-6E4A7E.svg" width="200" align="right">
-<br>
+<p align="center">
+  <a href="#vídeos">:video_camera:</a>&nbsp;
+  <a href="#screencasts-e-relacionados">:floppy_disk:</a>&nbsp;
+  <a href="#artigos-e-relacionados">:newspaper:</a>&nbsp;
+  <a href="#livros">:books:</a>&nbsp;
+</p>
 
-## Youtube
+---
 
-- [ ] [Introdução ao Elixir - Elixir Five Minutes](https://www.youtube.com/watch?v=hAv24yIdyjI)
-- [ ] [Elixir Nativo: e quando já tá pronto em C?](https://www.youtube.com/watch?v=ZrBhuP6OrFI)
-- [ ] [Introdução à linguagem de programação Elixir](https://www.youtube.com/watch?v=7eYA8c8yABU)
-- [ ] [Elixir Tutorial](https://www.youtube.com/watch?v=pBNOavRoNL0)
-- [ ] [Intro to Elixir](https://www.youtube.com/watch?v=lly-1UYmnFI)
-- [ ] [Kevin Rockwood | A Practical Guide to Elixir Protocols](https://www.youtube.com/watch?v=sJvfCE6PFxY)
-- [ ] [Elixir, quem é esse pokemon? - Bruno Volcov](https://www.youtube.com/watch?v=aA-XHI-EYcM)
-- [ ] [Basic Design in Functional Programming Languages - Tomasz Kowal | ElixirLive 2016](https://www.youtube.com/watch?v=arYOSYrjC8s)
-- [ ] [Elixir - Easy fun for busy developers by David Schmitz](https://www.youtube.com/watch?v=naNN_gJas2A)
-- [ ] [WTF is Elixir?](https://www.youtube.com/watch?v=ZDwygVf_LJM)
-- [ ] [Intro to OTP in Elixir](https://www.youtube.com/watch?v=CJT8wPnmjTM)
-- [x] [Introdução a Elixir | #livecoding - com Leandro Bighetti](https://www.youtube.com/watch?v=sReZI1izRZI) [:memo:](./avulsos/introducao-a-elixir-livecoding---com-leandro-bighetti.exs)
+<div align="center">
 
-### playlists
+## Vídeos
 
-- [ ] [1 minute of Elixir](https://www.youtube.com/playlist?list=PLaY7qWIrmqtE0jLlSySWWeG3rqcPLZXXr)
-- [ ] [Zero to Hero in Elixir](https://www.youtube.com/playlist?list=PLaY7qWIrmqtFoZLvOvYRZG5hl367UybRp)
-- [ ] [Awesome Elixir](https://www.youtube.com/playlist?list=PLaY7qWIrmqtHfAfucvVAGxGYuTKT_8OZc)
-- [ ] [Elixir For Beginners](https://www.youtube.com/playlist?list=PLei96ZX_m9sW6hZ1SvCE2dP01jbIxWlM0)
-- [ ] [Elixir Tutorial](https://www.youtube.com/playlist?list=PLDbt-8dyNTUWRUv0Cutoj2avYUd_lqdqn)
-- [ ] [Elixir Tutorial - Basics](https://www.youtube.com/playlist?list=PLDbt-8dyNTUUQZcX5oVP1c9dABuS8ZsMp)
-- [ ] [Getting Started with Elixir Tutorial](https://www.youtube.com/playlist?list=PLTgRMOcmRb3Nd4IJDrGWaUhCjeuWLVcdI)
+status | title | last update | snnipet | notes
+:-----:|:------|:-----------:|:-------:|:----:
+:white_check_mark: | [Introdução a Elixir \| #livecoding - com Leandro Bighetti](https://www.youtube.com/watch?v=sReZI1izRZI) | 2017 | | [:memo:](./avulsos/introducao_a_elixir_livecoding_-_com_leandro_bighetti.exs)
+:white_check_mark: | [Let's Get Functional With Elixir!](https://www.youtube.com/watch?v=wVrnoxNbOts) | 2017 | talk |
+|| [Introdução ao Elixir - Elixir Five Minutes](https://www.youtube.com/watch?v=hAv24yIdyjI) | 2015 | |
+|| [Introdução à linguagem de programação Elixir](https://www.youtube.com/watch?v=7eYA8c8yABU) | 2015 | |
+|| [Elixir Tutorial](https://www.youtube.com/watch?v=pBNOavRoNL0) | 2017 | |
+|| [Intro to Elixir](https://www.youtube.com/watch?v=lly-1UYmnFI) | 2014 | |
+|| [Elixir, quem é esse pokemon? - Bruno Volcov](https://www.youtube.com/watch?v=aA-XHI-EYcM) | 2016 | |
+|| [WTF is Elixir?](https://www.youtube.com/watch?v=ZDwygVf_LJM) | 2016 | |
+|| [Basic Design in Functional Programming Languages - Tomasz Kowal \| ElixirLive 2016](https://www.youtube.com/watch?v=arYOSYrjC8s) | 2017 | |
+|| [Elixir - Easy fun for busy developers by David Schmitz](https://www.youtube.com/watch?v=naNN_gJas2A) | 2016 | |
+|| [Kevin Rockwood \| A Practical Guide to Elixir Protocols](https://www.youtube.com/watch?v=sJvfCE6PFxY) | 2017 | |
+|| [Intro to OTP in Elixir](https://www.youtube.com/watch?v=CJT8wPnmjTM) | 2016 | |
+|| [The ABCs of OTP - Jesse J. Anderson](https://www.youtube.com/watch?v=4SCwubzqsVU) | 2017 | |
+|| [Elixir Nativo: e quando já tá pronto em C?](https://www.youtube.com/watch?v=ZrBhuP6OrFI) | 2016 | |
+|| [Elixir and OTP for Node.js Developers](https://www.youtube.com/watch?v=YbTxq4IpLd0) | 2017 | |
 
-## outros
+## Screencasts e Relacionados
 
-- [ ] [Aprenda Elixir em Y Minutos](https://learnxinyminutes.com/docs/pt-br/elixir-pt)
-- [ ] [Elixir School](https://elixirschool.com/pt)
+status | title | last update | snnipet | notes
+:-----:|:------|:-----------:|:-------:|:----:
+|| [Elixir For Beginners](https://www.youtube.com/playlist?list=PLei96ZX_m9sW6hZ1SvCE2dP01jbIxWlM0) | 2017 | |
+|| [Elixir Tutorial - Basics](https://www.youtube.com/playlist?list=PLDbt-8dyNTUUQZcX5oVP1c9dABuS8ZsMp) | 2017 | |
+|| [1 minute of Elixir](https://www.youtube.com/playlist?list=PLaY7qWIrmqtE0jLlSySWWeG3rqcPLZXXr) | 2017 | |
+|| [Elixir Tutorial](https://www.youtube.com/playlist?list=PLDbt-8dyNTUWRUv0Cutoj2avYUd_lqdqn) | 2017 | |
+|| [Zero to Hero in Elixir](https://www.youtube.com/playlist?list=PLaY7qWIrmqtFoZLvOvYRZG5hl367UybRp) | 2017 | |
+|| [Awesome Elixir](https://www.youtube.com/playlist?list=PLaY7qWIrmqtHfAfucvVAGxGYuTKT_8OZc) | 2017 | |
+|| [elixir (by Tensor Programming)](https://www.youtube.com/playlist?list=PLJbE2Yu2zumAgKjSPyFtvYjP5LqgzafQq) | 2017 | |
+|| [Getting Started with Elixir Tutorial](https://www.youtube.com/playlist?list=PLTgRMOcmRb3Nd4IJDrGWaUhCjeuWLVcdI) | 2017 | |
 
 
-## livros/artigos
+## Artigos e Relacionados
 
-- [ ] [Quick & Easy Elixir Refactorings — Part 1](https://medium.com/@efexen/quick-easy-elixir-refactorings-part-1-17376e9c455a)
-- [ ] [Elixir for Java Developers, Episode I](https://medium.com/skyhub-labs/elixir-for-java-developers-episode-i-66b65c862652)
-- [ ] [Intro to Elixir for non Ruby programmers](https://ryanwinchester.ca/posts/intro-to-elixir-for-non-ruby-programmers)
-- [ ] [Elixir with José Valim](http://howistart.org/posts/elixir/1/)
+status | title | last update | snnipet | notes
+:-----:|:------|:-----------:|:-------:|:----:
+|| [Aprenda Elixir em Y Minutos](https://learnxinyminutes.com/docs/pt-br/elixir-pt) | 2017 | |
+|| [Elixir School (PT)](https://elixirschool.com/pt) | 2017 | |
+|| [Elixir with José Valim](http://howistart.org/posts/elixir/1/) |  | |
+|| [Intro to Elixir for non Ruby programmers](https://ryanwinchester.ca/posts/intro-to-elixir-for-non-ruby-programmers) | 2017 | |
+|| [Elixir for Java Developers, Episode I](https://medium.com/skyhub-labs/elixir-for-java-developers-episode-i-66b65c862652) | 2017 | |
+|| [Quick & Easy Elixir Refactorings — Part 1](https://medium.com/@efexen/quick-easy-elixir-refactorings-part-1-17376e9c455a) | 2017 | |
+
+
+## Livros
+
+status | title | last update | snnipet | notes
+:-----:|:------|:-----------:|:-------:|:----:
+|| [Learning Elixir - Kenny Ballou](https://www.packtpub.com/application-development/learning-elixir) | 2016 | |
+|| [Programming Phoenix - by Chris McCord, Bruce Tate, José Valim](https://pragprog.com/book/phoenix/programming-phoenix) | 2016 | |
+
+
+</div>
