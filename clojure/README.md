@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/1024px-Clojure_logo.svg.png" width="160">
   <h1><i>Clojure</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-26%25%20(12%20of%2045)-DB5855.svg" width="180">
+  <img src="https://img.shields.io/badge/done-26%25%20(12%20of%2046)-DB5855.svg" width="180">
 </div>
 
 <p align="center">
@@ -49,6 +49,7 @@ status | title | last update | snnipet | notes
 
 status | title | last update | snnipet | notes
 :-----:|:------|:-----------:|:-------:|:----:
+|| [Fast String Interpolation in Clojure](http://blog.wjlr.org.uk/2015/01/15/string-interpolation-clojure.html) | 2015 | de Will Roe’s blog |
 :white_check_mark: | [Learn Clojure in Y Minutes](https://learnxinyminutes.com/docs/clojure) | 2017 | | [:memo:](./avulsos/learn-clojure-in-y-minutes.clj)
 || [ClojureScript - Quick Start](https://clojurescript.org/guides/quick-start) | |
 || [ClojureScript - Differences from Clojure](https://clojurescript.org/about/differences) | |
