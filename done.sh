@@ -31,8 +31,6 @@ declare -A COLORS=( [w]=$'\e[37;1m' [y]=$'\e[33;1m' [g]=$'\e[32;1m' [r]=$'\e[31;
 
 
 function set_file_and_dir {
-  local task_name="${tasks_not_done[$num_task]}"
-
   normalized_task_name=$(sed -r '
     y/àáâãäåèéêëìíîïòóôõöùúûü/aaaaaaeeeeiiiiooooouuuu/
     y/ÀÁÂÃÄÅÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜ/AAAAAAEEEEIIIIOOOOOUUUU/
@@ -65,8 +63,8 @@ num_task=$((task_metadata[0]-1))
 ## TODO: retornar para o 'read' se o número dado for inválido
 [ $num_task -lt ${#tasks_not_done[*]} ] || exit 3
 
-extension=${task_metadata[1]}
-task_name=${tasks_not_done[num_task]#*:}
+extension="${task_metadata[1]}"
+task_name="${tasks_not_done[num_task]#*:}"
 
 if [ -n "${task_metadata[0]}" ]
 then
