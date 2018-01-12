@@ -19,30 +19,30 @@
 
 status | title | last update | snnipet | notes
 :-----:|:------|:-----------:|:-------:|:----:
-:white_check_mark: | [Understanding Clojure's thread macros](https://www.youtube.com/watch?v=qxE5wDbt964) | 2013 | | [:memo:](./avulsos/understanding_clojure's_thread_macros.clj)
-:white_check_mark: | [Understanding list comprehension in Clojure](https://www.youtube.com/watch?v=5lvV9ICwaMo) | 2013 | | [:memo:](./avulsos/understanding_list_comprehension_in_clojure.clj)
-:white_check_mark: | [Understanding destructuring in Clojure](https://www.youtube.com/watch?v=R-_uNvM6gpE) | 2014 | | [:memo:](./avulsos/understanding_destructuring_in_clojure.clj)
-:white_check_mark: | [The case for Clojure](https://www.youtube.com/watch?v=NvxyTKyXSRg) | 2014 | |
-:white_check_mark: | [A arte da simplicidade com Clojure por Maurício Szabo](https://www.youtube.com/watch?v=_kGwRVuH6mU) | 2015 | |
-:white_check_mark: | [ClojureScript vs JavaScript (ES5 & ES6) - Oliver Mooney](https://www.youtube.com/watch?v=yQSbFlcIDUQ) | 2015 | |
-:white_check_mark: | [From JavaScript to ClojureScript](https://www.youtube.com/watch?v=8UYa8PV3CXQ) | 2015 | |
-|| [Clojure/ClojureScript: One Language to Rule the Web](https://www.youtube.com/watch?v=EpcNDd8nuYY) | 2013 | |
-|| [Meetup Clojure BR - 01 - Introdução a Linguagem](https://www.youtube.com/watch?v=u7O785o9Bvo) | 2016 | |
-:white_check_mark: | [Intro to ClojureScript (CLJS) - Julio Barros](https://www.youtube.com/watch?v=C2JmQ1gSqjk) | 2017 | |
-|| [Clojure Enemy of the State](https://www.youtube.com/watch?v=qe60zwUAOqE) | 2013 | |
-|| [Test-driving Clojure in Light Table](https://www.youtube.com/watch?v=H_teKHH_Rk0) | 2013 | |
-|| [Sean Johnson - Pattern Matching in Clojure](https://www.youtube.com/watch?v=n7aE6k8o_BU) | 2015 | |
-|| [Generative testing in Clojure](https://www.youtube.com/watch?v=u0TkAw8QqrQ) | 2014 | |
-|| [Understanding pattern matching in Clojure with core.match](https://www.youtube.com/watch?v=mi3OtBc73-k) | 2015 | |
-|| ["Literate interactive coding: Devcards" by Bruce Hauman](https://www.youtube.com/watch?v=G7Z_g2fnEDg) | 2015 | |
-|| [Building Tic Tac Toe in ClojureScript (Reagent/Figwheel)](https://www.youtube.com/watch?v=pIiOgTwjbes) | 2015 | |
-|| [Native mobile apps with ClojureScript - Viktor Eriksson](https://www.youtube.com/watch?v=6IYm34nDL64) | 2016 | |
+:white_check_mark: | [Understanding Clojure's thread macros](https://www.youtube.com/watch?v=qxE5wDbt964) | 2013 | de _Misophistful_ | [:memo:](./avulsos/understanding_clojure's_thread_macros.clj)
+:white_check_mark: | [Understanding list comprehension in Clojure](https://www.youtube.com/watch?v=5lvV9ICwaMo) | 2013 | de _Misophistful_ | [:memo:](./avulsos/understanding_list_comprehension_in_clojure.clj)
+:white_check_mark: | [Understanding destructuring in Clojure](https://www.youtube.com/watch?v=R-_uNvM6gpE) | 2014 | de _Misophistful_ | [:memo:](./avulsos/understanding_destructuring_in_clojure.clj)
+:white_check_mark: | [The case for Clojure](https://www.youtube.com/watch?v=NvxyTKyXSRg) | 2014 | de _Misophistful_ |
+:white_check_mark: | [A arte da simplicidade com Clojure por Maurício Szabo](https://www.youtube.com/watch?v=_kGwRVuH6mU) | 2015 | de _GURU SP talks_ |
+:white_check_mark: | [ClojureScript vs JavaScript (ES5 & ES6) - Oliver Mooney](https://www.youtube.com/watch?v=yQSbFlcIDUQ) | 2015 | de _DublinJS_ |
+:white_check_mark: | [From JavaScript to ClojureScript](https://www.youtube.com/watch?v=8UYa8PV3CXQ) | 2015 | de _Doing Computers_ |
+|| [Clojure/ClojureScript: One Language to Rule the Web](https://www.youtube.com/watch?v=EpcNDd8nuYY) | 2013 | de _Oracle Learning Library_ |
+|| [Meetup Clojure BR - 01 - Introdução a Linguagem](https://www.youtube.com/watch?v=u7O785o9Bvo) | 2016 | de _clj-br_ |
+:white_check_mark: | [Intro to ClojureScript (CLJS) - Julio Barros](https://www.youtube.com/watch?v=C2JmQ1gSqjk) | 2017 | de _PDX Node_ |
+|| [Clojure Enemy of the State](https://www.youtube.com/watch?v=qe60zwUAOqE) | 2013 | de _ChariotSolutions_ |
+|| [Test-driving Clojure in Light Table](https://www.youtube.com/watch?v=H_teKHH_Rk0) | 2013 | de _Misophistful_ |
+|| [Sean Johnson - Pattern Matching in Clojure](https://www.youtube.com/watch?v=n7aE6k8o_BU) | 2015 | de _ClojureTV_ |
+|| [Generative testing in Clojure](https://www.youtube.com/watch?v=u0TkAw8QqrQ) | 2014 | de _Misophistful_ |
+|| [Understanding pattern matching in Clojure with core.match](https://www.youtube.com/watch?v=mi3OtBc73-k) | 2015 | de _Misophistful_ |
+|| ["Literate interactive coding: Devcards" by Bruce Hauman](https://www.youtube.com/watch?v=G7Z_g2fnEDg) | 2015 | de _Strange Loop_ |
+|| [Building Tic Tac Toe in ClojureScript (Reagent/Figwheel)](https://www.youtube.com/watch?v=pIiOgTwjbes) | 2015 | de _Timothy Pratley_ |
+|| [Native mobile apps with ClojureScript - Viktor Eriksson](https://www.youtube.com/watch?v=6IYm34nDL64) | 2016 | de _Metosin_ |
 
 ## Screencasts e Relacionados
 
 status | title | last update | snnipet | notes
 :-----:|:------|:-----------:|:-------:|:----:
-|| [Learn Clojure - Clojure Koans Walkthrough](http://www.clojurescreencasts.com) | 2013 | |
+|| [Learn Clojure - Clojure Koans Walkthrough](http://www.clojurescreencasts.com) | 2013 | de _slatterypod_ |
 
 
 ## Artigos e Relacionados
