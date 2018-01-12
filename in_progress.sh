@@ -9,7 +9,7 @@
 ##  arquivos relativos a uma tarefa não feita.
 ##
 ##  using:
-##  echo, grep, sed, mapfile, awk, read, mkdir, touch
+##  echo, grep, sed, mapfile, awk, read, less, mkdir, touch
 ##
 
 TASKS_FILE="README.md"
@@ -17,6 +17,7 @@ MISCELLANEOUS_DIRNAME="avulsos"
 CURR_DIR="${1%%/}"
 PATH_TO_TASKS_FILE="${CURR_DIR,,}/$TASKS_FILE"
 MISCELLANEOUS_DIR="${CURR_DIR,,}/$MISCELLANEOUS_DIRNAME"
+SPECIAL_LIST="[|\`_*]"
 declare -A COLORS=( [w]=$'\e[37;1m' [y]=$'\e[33;1m' [g]=$'\e[32;1m' [r]=$'\e[31;1m' [p]=$'\e[35;1m' [n]=$'\e[0m' [gr]=$'\e[30;1m' )
 
 
@@ -25,7 +26,7 @@ declare -A COLORS=( [w]=$'\e[37;1m' [y]=$'\e[33;1m' [g]=$'\e[32;1m' [r]=$'\e[31;
 
 
 function set_file_and_dir {
-  local task_name="${tasks_not_done[$num_task]}"
+  local task_name="${tasks_not_done[$num_task]#*:}"
 
   local normalized=$(sed -r '
     y/àáâãäåèéêëìíîïòóôõöùúûü/aaaaaaeeeeiiiiooooouuuu/
@@ -44,17 +45,19 @@ function confirm {
   [[ "${REPLY,,}" == "y" ]] || exit 3
 }
 
-
-list_not_done=$(grep --color=never -o -P '(?<=^\|\| \[).+(?=\])' "$PATH_TO_TASKS_FILE")
+## display all pending tasks
+list_not_done=$(grep --color=never -n -o -P '(?<=^\|\| \[).+(?=\])' "$PATH_TO_TASKS_FILE" | sed "s@\\\\\(${special_list}\)@\1@g") # <line>:<title>
 mapfile -t tasks_not_done <<< "$list_not_done"
 nums_tasks=$(grep -c -P "^[${TASK_DONE_MARK:0:1}|].+\[.+\]\(.+\).+\|" "$PATH_TO_TASKS_FILE")
 
 ## display all pending tasks
-awk '{ printf "%3s:\t%s\n", NR, $0 } END { print "" }' <<< "$list_not_done"
+list_not_done=$(awk '{ printf "%3s:\t%s\n", NR, gensub(/[0-9]+:/, "", 1) }' <<< "$list_not_done")
+less <<< "$list_not_done" && echo "$list_not_done"
 read -a task_metadata -p "<${COLORS[r]}task${COLORS[n]}> [${COLORS[p]}extension${COLORS[n]}] = "
 
 num_task=$((task_metadata[0]-1))
-extension=${task_metadata[1]}
+extension="${task_metadata[1]}"
+extension="${extension/#./}"
 
 ## TODO: retornar para o 'read' se o número dado for inválido
 [ $num_task -lt ${#tasks_not_done[*]} -a -n ${task_metadata[0]} ] || exit 4
