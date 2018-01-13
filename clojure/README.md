@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/1024px-Clojure_logo.svg.png" width="160">
   <h1><i>Clojure</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-30%25%20(14%20of%2046)-DB5855.svg" width="180">
+  <img src="https://img.shields.io/badge/done-29%25%20(14%20of%2047)-DB5855.svg" width="180">
 </div>
 
 <p align="center">
@@ -29,6 +29,7 @@ status | title | last update | snnipet | notes
 || [Clojure/ClojureScript: One Language to Rule the Web](https://www.youtube.com/watch?v=EpcNDd8nuYY) | 2013 | de _Oracle Learning Library_ |
 || [Meetup Clojure BR - 01 - Introdução a Linguagem](https://www.youtube.com/watch?v=u7O785o9Bvo) | 2016 | de _clj-br_ |
 :white_check_mark: | [Intro to ClojureScript (CLJS) - Julio Barros](https://www.youtube.com/watch?v=C2JmQ1gSqjk) | 2017 | de _PDX Node_ |
+|| [ClojureScript "Quick Start" (Actually Pretty In-Depth)](https://www.youtube.com/watch?v=TGHPYMbgOUM) | 2016 | de _Florian Klampfer_ |
 || [Clojure Enemy of the State](https://www.youtube.com/watch?v=qe60zwUAOqE) | 2013 | de _ChariotSolutions_ |
 || [Test-driving Clojure in Light Table](https://www.youtube.com/watch?v=H_teKHH_Rk0) | 2013 | de _Misophistful_ |
 || [Sean Johnson - Pattern Matching in Clojure](https://www.youtube.com/watch?v=n7aE6k8o_BU) | 2015 | de _ClojureTV_ |
