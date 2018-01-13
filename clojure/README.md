@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/1024px-Clojure_logo.svg.png" width="160">
   <h1><i>Clojure</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-29%25%20(14%20of%2047)-DB5855.svg" width="180">
+  <img src="https://img.shields.io/badge/done-29%25%20(14%20of%2048)-DB5855.svg" width="180">
 </div>
 
 <p align="center">
@@ -54,6 +54,7 @@ status | title | last update | snnipet | notes
 :white_check_mark: | [Learn Clojure in Y Minutes](https://learnxinyminutes.com/docs/clojure) | 2017 | | [:memo:](./avulsos/learn-clojure-in-y-minutes.clj)
 || [ClojureScript - Quick Start](https://clojurescript.org/guides/quick-start) | |
 || [ClojureScript - Differences from Clojure](https://clojurescript.org/about/differences) | |
+|| [Setting up a ClojureScript project](https://coderwall.com/p/02idja/setting-up-a-clojurescript-project) | 2016 |
 || [Tutorial ClojureScript](https://github.com/victorvoid/tutorial-clojurescript) | 2016 | :octocat: |
 :white_check_mark: | [Himera Translations from JavaScript](http://himera.herokuapp.com/synonym.html) | 2013 | paralelo entre JavaScript e ClojureScript | [:memo:](./avulsos/himera_translations_from_javascript.clj)
 || [Some Practical Clojure Examples](http://www.unexpected-vortices.com/clojure/some-practical-examples/index.html) | 2017 | Inlein |
