@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://bgasparotto.com/wp-content/uploads/2016/03/ruby-logo.png" width="160">
   <h1><i>Ruby</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-0%25%20(0%20of%2019)-701516.svg" width="180">
+  <img src="https://img.shields.io/badge/done-5%25%20(1%20of%2019)-701516.svg" width="180">
 </div>
 
 <p align="center">
@@ -40,7 +40,7 @@ status | title | last update | snnipet | notes
 status | title | last update | snnipet | notes
 :-----:|:------|:-----------:|:-------:|:----:
 || [Ruby em Vinte Minutos](https://www.ruby-lang.org/pt/documentation/quickstart) | | (oficial) |
-|| [Aprenda Ruby em Y Minutos](https://learnxinyminutes.com/docs/pt-br/ruby-pt) | 2016 | |
+:white_check_mark: | [Aprenda Ruby em Y Minutos](https://learnxinyminutes.com/docs/pt-br/ruby-pt) | 2016 | | [:memo:](./avulsos/aprenda_ruby_em_y_minutos.rb)
 || [Iniciando com Ruby - School of Net](https://www.schoolofnet.com/curso-iniciando-com-ruby) | 2017 | 136 minutos em 14 aulas |
 || [21 Ruby Tricks You Should Be Using In Your Own Code](http://www.rubyinside.com/21-ruby-tricks-902.html) | 2008 | |
 || [Learn Ruby](https://github.com/alexch/learn_ruby) | 2014 | :octocat: |
