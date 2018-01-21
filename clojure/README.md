@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/1024px-Clojure_logo.svg.png" width="160">
   <h1><i>Clojure</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-33%25%20(16%20of%2048)-DB5855.svg" width="180">
+  <img src="https://img.shields.io/badge/done-32%25%20(16%20of%2049)-DB5855.svg" width="180">
 </div>
 
 <p align="center">
@@ -53,7 +53,8 @@ status | title | last update | snnipet | notes
 :white_check_mark: | [Fast String Interpolation in Clojure](http://blog.wjlr.org.uk/2015/01/15/string-interpolation-clojure.html) | 2015 | de Will Roe’s blog |
 :white_check_mark: | [Learn Clojure in Y Minutes](https://learnxinyminutes.com/docs/clojure) | 2017 | | [:memo:](./avulsos/learn-clojure-in-y-minutes.clj)
 :white_check_mark: | [ClojureScript - Quick Start](https://clojurescript.org/guides/quick-start) | | | [:file_folder:](./clojurescript_-_quick_start)
-|| [ClojureScript - Differences from Clojure](https://clojurescript.org/about/differences) | |
+|| [ClojureScript - Differences from Clojure](https://clojurescript.org/about/differences) | | |
+|| [Clojure - The Reader](https://clojure.org/reference) |  | referência oficial |
 || [Setting up a ClojureScript project](https://coderwall.com/p/02idja/setting-up-a-clojurescript-project) | 2016 |
 || [Tutorial ClojureScript](https://github.com/victorvoid/tutorial-clojurescript) | 2016 | :octocat: |
 :white_check_mark: | [Himera Translations from JavaScript](http://himera.herokuapp.com/synonym.html) | 2013 | paralelo entre JavaScript e ClojureScript | [:memo:](./avulsos/himera_translations_from_javascript.clj)
