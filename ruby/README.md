@@ -39,7 +39,7 @@ status | title | last update | snnipet | notes
 
 status | title | last update | snnipet | notes
 :-----:|:------|:-----------:|:-------:|:----:
-:white_check_mark: | [Ruby em Vinte Minutos](https://www.ruby-lang.org/pt/documentation/quickstart) | | (oficial) | [:file_folder:](./)
+:white_check_mark: | [Ruby em Vinte Minutos](https://www.ruby-lang.org/pt/documentation/quickstart) | | (oficial) |
 :white_check_mark: | [Aprenda Ruby em Y Minutos](https://learnxinyminutes.com/docs/pt-br/ruby-pt) | 2016 | | [:memo:](./avulsos/aprenda_ruby_em_y_minutos.rb)
 || [Iniciando com Ruby - School of Net](https://www.schoolofnet.com/curso-iniciando-com-ruby) | 2017 | 136 minutos em 14 aulas |
 || [Ruby a Partir de Outras Linguagens (ver notas)](https://www.ruby-lang.org/pt/documentation/ruby-from-other-languages) | | (oficial) |
