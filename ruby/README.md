@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://bgasparotto.com/wp-content/uploads/2016/03/ruby-logo.png" width="160">
   <h1><i>Ruby</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-14%25%20(3%20of%2021)-701516.svg" width="180">
+  <img src="https://img.shields.io/badge/done-13%25%20(3%20of%2022)-701516.svg" width="180">
 </div>
 
 <p align="center">
@@ -46,6 +46,7 @@ status | title | last update | snnipet | notes
 || [Para Ruby a partir de C e C++](https://www.ruby-lang.org/pt/documentation/ruby-from-other-languages/to-ruby-from-c-and-cpp) | | (oficial) |
 || [21 Ruby Tricks You Should Be Using In Your Own Code](http://www.rubyinside.com/21-ruby-tricks-902.html) | 2008 | |
 || [Learn Ruby](https://github.com/alexch/learn_ruby) | 2014 | :octocat: |
+|| [Ruby Tutorial with Code Samples](http://www.fincher.org/tips/Languages/Ruby) | | |
 || [Try Ruby - Code School](https://www.codeschool.com/courses/try-ruby) | | learn the basic building blocks of Ruby, all in the browser |
 || [Ruby with Steve Klabnik](http://howistart.org/posts/ruby/1) | | |
 
