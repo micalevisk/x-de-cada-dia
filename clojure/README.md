@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/1024px-Clojure_logo.svg.png" width="160">
   <h1><i>Clojure</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-32%25%20(16%20of%2049)-DB5855.svg" width="180">
+  <img src="https://img.shields.io/badge/done-34%25%20(17%20of%2049)-DB5855.svg" width="180">
 </div>
 
 <p align="center">
@@ -79,7 +79,7 @@ status | title | last update | snnipet | notes
 
 status | title | last update | snnipet | notes
 :-----:|:------|:-----------:|:-------:|:----:
-|| [Seven Languages in Seven Weeks - Bruce A. Tate](https://geneticmail.com/scott/library/text/seven-languages-in-seven-weeks_p1_0.pdf) | 2010 | _ver o capítulo 7_ |
+:white_check_mark: | [Seven Languages in Seven Weeks - Bruce A. Tate (capítulo 7)](https://geneticmail.com/scott/library/text/seven-languages-in-seven-weeks_p1_0.pdf) | 2010 | |
 || [Clojure for the brave and true](https://www.braveclojure.com/clojure-for-the-brave-and-true) | 2015 | |
 || [Learning ClojureScript - W. David Jarvis, Rafik Naccache, Allen Rohner](https://www.packtpub.com/web-development/learning-clojurescript) | 2016 | |
 || [Practical Clojure -  L. VanderHart, Stuart S.](https://www.apress.com/br/book/9781430272311) | 2010 | |
