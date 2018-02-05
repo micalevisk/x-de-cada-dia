@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/1024px-Clojure_logo.svg.png" width="160">
   <h1><i>Clojure</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-34%25%20(17%20of%2049)-DB5855.svg" width="180">
+  <img src="https://img.shields.io/badge/done-36%25%20(18%20of%2049)-DB5855.svg" width="180">
 </div>
 
 <p align="center">
@@ -70,7 +70,7 @@ status | title | last update | snnipet | notes
 || [The complete guide to Clojure destructuring](http://blog.brunobonacci.com/2014/11/16/clojure-complete-guide-to-destructuring) | 2017 | |
 :white_check_mark: | [Function Syntax in Clojure](https://coderwall.com/p/panlza/function-syntax-in-clojure) | 2016 | |
 || [Clojure Design Patterns](http://mishadoff.com/blog/clojure-design-patterns) | 2015 | |
-|| [Mark Woodhall: Command line applications in Clojure](http://markwoodhall.com/26-06-2014-command-line-applications-in-clojure) | 2014 | |
+:white_check_mark: | [Mark Woodhall: Command line applications in Clojure](http://markwoodhall.com/26-06-2014-command-line-applications-in-clojure) | 2014 | | [:file_folder:](./mark_woodhall_command_line_applications_in_clojure)
 || [Building Command Line Apps with Clojure](https://yobriefca.se/blog/2014/03/02/building-command-line-apps-with-clojure) | 2014 | |
 || [binding-form e associação de valores em Clojure](https://blog.bltavares.com/2015/01/19/binding-forms) | 2015 | |
 
