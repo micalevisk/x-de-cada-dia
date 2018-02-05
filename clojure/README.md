@@ -70,7 +70,7 @@ status | title | last update | snnipet | notes
 || [The complete guide to Clojure destructuring](http://blog.brunobonacci.com/2014/11/16/clojure-complete-guide-to-destructuring) | 2017 | |
 :white_check_mark: | [Function Syntax in Clojure](https://coderwall.com/p/panlza/function-syntax-in-clojure) | 2016 | |
 || [Clojure Design Patterns](http://mishadoff.com/blog/clojure-design-patterns) | 2015 | |
-|| [Command line applications in Clojure](http://markwoodhall.com/26-06-2014-command-line-applications-in-clojure) | 2014 | |
+|| [Mark Woodhall: Command line applications in Clojure](http://markwoodhall.com/26-06-2014-command-line-applications-in-clojure) | 2014 | |
 || [Building Command Line Apps with Clojure](https://yobriefca.se/blog/2014/03/02/building-command-line-apps-with-clojure) | 2014 | |
 || [binding-form e associação de valores em Clojure](https://blog.bltavares.com/2015/01/19/binding-forms) | 2015 | |
 
