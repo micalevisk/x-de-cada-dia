@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://bgasparotto.com/wp-content/uploads/2016/03/ruby-logo.png" width="160">
   <h1><i>Ruby</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-18%25%20(4%20of%2022)-701516.svg" width="180">
+  <img src="https://img.shields.io/badge/done-22%25%20(5%20of%2022)-701516.svg" width="180">
 </div>
 
 <p align="center">
@@ -43,7 +43,7 @@ status | title | last update | snnipet | notes
 :white_check_mark: | [Aprenda Ruby em Y Minutos](https://learnxinyminutes.com/docs/pt-br/ruby-pt) | 2016 | | [:memo:](./avulsos/aprenda_ruby_em_y_minutos.rb)
 || [Iniciando com Ruby - School of Net](https://www.schoolofnet.com/curso-iniciando-com-ruby) | 2017 | 136 minutos em 14 aulas |
 :white_check_mark: | [Ruby a Partir de Outras Linguagens (ver notas)](https://www.ruby-lang.org/pt/documentation/ruby-from-other-languages) | | (oficial) |
-|| [Para Ruby a partir de C e C++](https://www.ruby-lang.org/pt/documentation/ruby-from-other-languages/to-ruby-from-c-and-cpp) | | (oficial) |
+:white_check_mark: | [Para Ruby a partir de C e C++](https://www.ruby-lang.org/pt/documentation/ruby-from-other-languages/to-ruby-from-c-and-cpp) | | (oficial) |
 :white_check_mark: | [21 Ruby Tricks You Should Be Using In Your Own Code](http://www.rubyinside.com/21-ruby-tricks-902.html) | 2008 | | [:memo:](./avulsos/21_ruby_tricks_you_should_be_using_in_your_own_code.rb)
 || [Learn Ruby](https://github.com/alexch/learn_ruby) | 2014 | :octocat: |
 || [Ruby Tutorial with Code Samples](http://www.fincher.org/tips/Languages/Ruby) | | |
