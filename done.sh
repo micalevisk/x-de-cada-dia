@@ -68,7 +68,7 @@ task_name="${tasks_not_done[num_task]#*:}"
 
 if [ -n "${task_metadata[0]}" ]
 then
-  line_selected_task="${tasks_not_done[num_task]%:*}"
+  line_selected_task="${tasks_not_done[num_task]%%:*}"
 
   ## TODO: retornar para o 'read' se a resposta for N
   if confirm "${COLORS[w]}Task ${COLORS[y]}${task_name}${COLORS[w]} was done"
