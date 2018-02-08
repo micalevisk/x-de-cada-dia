@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/1024px-Clojure_logo.svg.png" width="160">
   <h1><i>Clojure</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-36%25%20(18%20of%2049)-DB5855.svg" width="180">
+  <img src="https://img.shields.io/badge/done-38%25%20(19%20of%2049)-DB5855.svg" width="180">
 </div>
 
 <p align="center">
@@ -60,7 +60,7 @@ status | title | last update | snnipet | notes
 :white_check_mark: | [Himera Translations from JavaScript](http://himera.herokuapp.com/synonym.html) | 2013 | paralelo entre JavaScript e ClojureScript | [:memo:](./avulsos/himera_translations_from_javascript.clj)
 || [Some Practical Clojure Examples](http://www.unexpected-vortices.com/clojure/some-practical-examples/index.html) | 2017 | Inlein |
 || [Modern ClojureScript](https://github.com/magomimmo/modern-cljs) | 2016 | :octocat: |
-|| [ClojureScript Koans](http://clojurescriptkoans.com) | 2015 | pequenos exercícios para praticar; dividido em 17 assuntos |
+:white_check_mark: | [ClojureScript Koans](http://clojurescriptkoans.com) | 2015 | pequenos exercícios para praticar; dividido em 17 assuntos | [:memo:](./avulsos/clojurescript_koans.clj)
 :white_check_mark: | [Programação funcional – parte 1](https://blog.taller.net.br/programacao-funcional-parte1) | 2016 | |
 :white_check_mark: | [Começando com o cálculo lambda e a programação funcional](http://blog.caelum.com.br/comecando-com-o-calculo-lambda-e-a-programacao-funcional-de-verdade) | 2011 | |
 || [Functional programming in Javascript is an antipattern And Clojure is actually easier](https://hackernoon.com/functional-programming-in-javascript-is-an-antipattern-58526819f21e) | 2017 | |
