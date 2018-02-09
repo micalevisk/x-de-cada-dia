@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/1024px-Clojure_logo.svg.png" width="160">
   <h1><i>Clojure</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-42%25%20(21%20of%2049)-DB5855.svg" width="180">
+  <img src="https://img.shields.io/badge/done-44%25%20(22%20of%2049)-DB5855.svg" width="180">
 </div>
 
 <p align="center">
@@ -72,7 +72,7 @@ status | title | last update | snnipet | notes
 || [Clojure Design Patterns](http://mishadoff.com/blog/clojure-design-patterns) | 2015 | |
 :white_check_mark: | [Mark Woodhall: Command line applications in Clojure](http://markwoodhall.com/26-06-2014-command-line-applications-in-clojure) | 2014 | | [:file_folder:](./mark_woodhall_command_line_applications_in_clojure)
 :white_check_mark: | [Building Command Line Apps with Clojure](https://yobriefca.se/blog/2014/03/02/building-command-line-apps-with-clojure) | 2014 | | [:file_folder:](./building_command_line_apps_with_clojure)
-|| [binding-form e associação de valores em Clojure](https://blog.bltavares.com/2015/01/19/binding-forms) | 2015 | |
+:white_check_mark: | [binding-form e associação de valores em Clojure](https://blog.bltavares.com/2015/01/19/binding-forms) | 2015 | | [:memo:](./avulsos/binding-form_e_associacao_de_valores_em_clojure.clj)
 
 
 ## Livros
