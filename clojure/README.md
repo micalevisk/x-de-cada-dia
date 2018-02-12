@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/1024px-Clojure_logo.svg.png" width="160">
   <h1><i>Clojure</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-44%25%20(22%20of%2049)-DB5855.svg" width="180">
+  <img src="https://img.shields.io/badge/done-44%25%20(22%20of%2050)-DB5855.svg" width="180">
 </div>
 
 <p align="center">
@@ -44,6 +44,7 @@ status | title | last update | snnipet | notes
 status | title | last update | snnipet | notes
 :-----:|:------|:-----------:|:-------:|:----:
 || [Learn Clojure - Clojure Koans Walkthrough](http://www.clojurescreencasts.com) | 2013 | de _slatterypod_ |
+|| [Clojure spec Screencast Series](https://www.youtube.com/playlist?list=PLZdCLR02grLrju9ntDh3RGPpWSWBvjwXg) | 2016 | de _ClojureTV_; sobre a lib 'spec' do Clojure 1.9 |
 
 
 ## Artigos e Relacionados
