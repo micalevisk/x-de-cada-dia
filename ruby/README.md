@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://bgasparotto.com/wp-content/uploads/2016/03/ruby-logo.png" width="160">
   <h1><i>Ruby</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-22%25%20(5%20of%2022)-701516.svg" width="180">
+  <img src="https://img.shields.io/badge/done-27%25%20(6%20of%2022)-701516.svg" width="180">
 </div>
 
 <p align="center">
@@ -31,7 +31,7 @@ status | title | last update | snnipet | notes
 
 status | title | last update | snnipet | notes
 :-----:|:------|:-----------:|:-------:|:----:
-|| [Tutoriais Ruby](https://www.youtube.com/playlist?list=PLIPUpvW8kY_Mk6akPkQ9EkuZvyawSO-rq) | 2016 | de _Sérgio Toledo_; 8 vídeos |
+:white_check_mark: | [Tutoriais Ruby](https://www.youtube.com/playlist?list=PLIPUpvW8kY_Mk6akPkQ9EkuZvyawSO-rq) | 2016 | de _Sérgio Toledo_; 8 vídeos | [:file_folder:](./tutoriais_ruby)
 || [Curso de Ruby on Rails para Iniciantes](https://www.youtube.com/playlist?list=PLe3LRfCs4go-mkvHRMSXEOG-HDbzesyaP) | 2016 | de _Jackson Pires_; 50 vídeos |
 
 
