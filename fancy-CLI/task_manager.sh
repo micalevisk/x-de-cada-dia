@@ -46,7 +46,7 @@ declare -r NAVI_COLUMN=0
 declare -r SEPARATOR='.'
 
 declare -i CURR_LINE # conta a linha corrente, começando em 1
-declare -r special_list="[|\`_*]"
+declare -r special_list="[|\`_*\[\]]"
 declare -r CURR_DIR="${1%%/}"
 declare -r TASKS_FILE="README.md"
 # declare -r PATH_TO_TASKS_FILE="${CURR_DIR,,}/$TASKS_FILE"
