@@ -232,7 +232,7 @@ bind_d() { printf "(create)\033[36m [d]irectory\033[0m\n"; }
 
 bind_e() {
   local curr_task_line=${list_tasks_not_done[curr_task_index]%%:*}
-  local temp_file=$(mktemp "${TMPDIR:-/tmp/}edit-$curr_task_line.XXXXXXXXXXXX.md")
+  local temp_file=$(mktemp -q "__edit-$curr_task_line.XXXXXXXXXXXX.md")
 
   [ -w "$temp_file" ] || return 1 ## ERROR
   __debug.log "$temp_file"
