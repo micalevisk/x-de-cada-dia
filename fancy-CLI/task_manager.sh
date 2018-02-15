@@ -40,7 +40,7 @@ __debug.cursor() { echo -en "\E[6n"; read -sdR CURPOS; CURPOS=${CURPOS#*[}; __de
 __debug.loop() { while :; do :; done; }
 
 # ------------------------------------------------------------------------------------------------------------------------------- #
-declare -A COLORS=( [w]=$'\e[37;1m' [y]=$'\e[33m' [g]=$'\e[32m' [r]=$'\e[31;1m' [p]=$'\e[35;1m' [n]=$'\e[0m' [gr]=$'\e[30;1m' ) ## associative array
+declare -A COLORS=( [w]=$'\e[37;1m' [y]=$'\e[33m' [g]=$'\e[32m' [r]=$'\e[31m' [p]=$'\e[35;1m' [n]=$'\e[0m' [gr]=$'\e[30;1m' ) ## associative array
 declare -A TASK_REF_EMOJIS=( [d]="file_folder" [f]="memo")
 declare -A tasks_done=() ## chave é o seu index (no array de tarefas) e o valor é a sua linha real
 declare -A tasks_to_remove=() ## chave é o seu index (no array de tarefas) e o valor é a sua linha real
