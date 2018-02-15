@@ -22,6 +22,10 @@
 ##  [d] criar diretório para a tarefa (se não existir)
 ##
 
+
+declare VI="vim"
+command -v $VI >/dev/null 2>&1 || VI="vi"
+
 ## Safer shell scripting: https://sipb.mit.edu/doc/safe-shell
 # set -euf -o pipefail
 # set -e ## if a command fails (that is, it returns a non-zero exit status), the script exits (unless it is part of a iteration, &&, || command).
@@ -31,13 +35,17 @@
 
 
 PATH_TO_TASKS_FILE="tests/texto_pos_grep.${1:-1}"
-__debug.log() { sed -i "1i$(date +'[%M:%S]') $*" "__.logfile"; }
+__debug.log() { echo -e "$(date +'[%M:%S]') $*" >> "__.logfile"; }
+__debug.cursor() { echo -en "\E[6n"; read -sdR CURPOS; CURPOS=${CURPOS#*[}; __debug.log "${CURPOS}"; } ## (c) https://unix.stackexchange.com/questions/88296
 __debug.loop() { while :; do :; done; }
 
 # ------------------------------------------------------------------------------------------------------------------------------- #
 declare -A COLORS=( [w]=$'\e[37;1m' [y]=$'\e[33m' [g]=$'\e[32m' [r]=$'\e[31;1m' [p]=$'\e[35;1m' [n]=$'\e[0m' [gr]=$'\e[30;1m' ) ## associative array
+declare -A TASK_REF_EMOJIS=( [d]="file_folder" [f]="memo")
 declare -A tasks_done=() ## chave é o seu index (no array de tarefas) e o valor é a sua linha real
 declare -A tasks_to_remove=() ## chave é o seu index (no array de tarefas) e o valor é a sua linha real
+
+declare -a HEADERS_E=("<!-- title -->\n" "<!-- last update -->\n" "<!-- snippet -->\n" "<!-- notes -->\n")
 
 # declare -r NAVI_SYMBOL='\xC3\x97' #aka '×'
 declare -r NAVI_SYMBOL='>'
@@ -57,6 +65,11 @@ declare -i nums_tasks
 declare -i offset
 declare -i column_sep
 declare -i screen_width
+declare -l normalized_task_name
+declare -l file
+declare -l dir
+declare -l task_ref ## file or directory to task notes (auto lower-case)
+declare -l task_ref_emoji=""
 # ------------------------------------------------------------------------------------------------------------------------------- #
 
 trap update_screen_width WINCH ## user has resized the window
@@ -184,6 +197,19 @@ __comment__() {
 }
 
 
+function set_file_and_dir {
+  normalized_task_name=$(sed -r '
+    y/àáâãäåèéêëìíîïòóôõöùúûü/aaaaaaeeeeiiiiooooouuuu/
+    y/ÀÁÂÃÄÅÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜ/AAAAAAEEEEIIIIOOOOOUUUU/
+    y/çÇñÑß¢Ðð£Øø§µÝý¥¹²³ªº/cCnNBcDdLOoSuYyY123ao/
+    y/ /_/
+    s_[:?"*<>|\/#]__g
+    s_([^[:alnum:]])\1_\1_g' <<< "${1,,}")
+
+  file="$PATH_TO_MISCELLANEOUS_DIRNAME/${normalized_task_name}.$extension"
+  dir="$CURR_DIR/${normalized_task_name}"
+}
+
 # --------------------------------------------------------- #
 
 bind_arrow_up() { previous_task; }
@@ -203,8 +229,27 @@ bind_delete() {
 
 ## [8]TODO: criar um diretório (se não existir) para a tarefa sob o cursor, visando o "<lang>/<task_dir>/"
 bind_d() { printf "(create)\033[36m [d]irectory\033[0m\n"; }
-## [7]TODO: abrir o editor de texto que contém todas os campos passíveis de edição da tarefa corrente; (se for salvo) refletir alterações na listagem atual e registradores
-bind_e() { printf "\033[36m [e]dit\033[0m\n"; }
+
+bind_e() {
+  local curr_task_line=${list_tasks_not_done[curr_task_index]%%:*}
+  local temp_file=$(mktemp "${TMPDIR:-/tmp/}edit-$curr_task_line.XXXXXXXXXXXX.md")
+
+  [ -w "$temp_file" ] || return 1 ## ERROR
+  __debug.log "$temp_file"
+
+    # s/^\|\|\s*(.+)\|\s*(.*)\|\s*(.*)\|\s*(.*)/${HEADERS_E[0]}\1\n\n${HEADERS_E[1]}\2\n\n${HEADERS_E[2]}\3\n\n${HEADERS_E[3]}\4/" "$PATH_TO_TASKS_FILE" 1> "$temp_file"
+  sed -rn "$curr_task_line\
+    s/^\|\|\s*(.+)\|\s*(.*)\|\s*(.*)\|\s*(.*)/${HEADERS_E[0]}\1\n\n${HEADERS_E[1]}\2\n\n${HEADERS_E[2]}\3\n\n${HEADERS_E[3]}\4/p"\
+    "tests/texto_base.1" 1> "$temp_file"
+
+  [ $? -eq 0 ] || return 2 ## ERROR
+  $VI -c "set number" +2 "$temp_file"
+  ## [7]TODO: extrair dados atualizados do arquivo salvo & atualizar os arrays locais
+
+
+  rm -f "$temp_file"
+}
+
 ## [9]TODO: criar um arquivo de texto (se não existir) para a tarefa sob o cursor, visando o "<lang>/<task_filename>.<ext>"
 bind_f() { printf "(create)\033[36m [f]ile\033[0m\n"; }
 ## [10]TODO: abrir o link que foi definido na listagem == ir para linha real da tarefa e acessar a coluna correta, se for link, usar o comando "open" para abri-lo
@@ -347,12 +392,14 @@ clear_screen_exit() { ## [12]TODO: apagar apenas o que foi printado por esse pro
   ## TODO: exibir status das alteracoes efetivadas; tarefas editadas, abertas, dones, in progress...
   show_cursor
   clear ## TODO: trocar esse 'clear' pra ir para a última linha
-  echo "---------- tasks done ----------"
-  echo "k:> ${!tasks_done[@]}"
-  echo "v:> ${tasks_done[@]}"
-  echo "------- tasks to remove --------"
-  echo "k:> ${!tasks_to_remove[@]}"
-  echo "v:> ${tasks_to_remove[@]}"
+  __debug.log "\n---------- tasks done [${#tasks_done[@]}] ----------\
+              \nk:> ${!tasks_done[@]}\
+              \nv:> ${tasks_done[@]}\
+              \n------- tasks to remove [${#tasks_to_remove[@]}] --------\
+              \nk:> ${!tasks_to_remove[@]}\
+              \nv:> ${tasks_to_remove[@]}"
+
+  clear
   exit 0
 }
 
