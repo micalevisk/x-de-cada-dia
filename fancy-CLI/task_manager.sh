@@ -227,8 +227,19 @@ bind_delete() {
   [ -n "${tasks_to_remove[$curr_task_index]+_}" ] && remove_delete_mark || mark_delete_task
 }
 
-## [8]TODO: criar um diretório (se não existir) para a tarefa sob o cursor, visando o "<lang>/<task_dir>/"
-bind_d() { printf "(create)\033[36m [d]irectory\033[0m\n"; }
+bind_d() {
+  set_file_and_dir "${list_tasks_not_done[curr_task_index]#*:}"
+  # dir="$CURR_DIR/$normalized_task_name"
+  dir="./$normalized_task_name"
+
+  if [ ! -d "$dir" ]; then
+    task_ref="./$normalized_task_name"
+    task_ref_emoji="${TASK_REF_EMOJIS[d]}"
+
+    mkdir -p "$dir"   && __debug.log "dir-criado::$task_ref|$task_ref_emoji"
+    [ $? -eq 0 ] && printf "\007" || return 1 ## ERROR
+  fi
+}
 
 bind_e() {
   local curr_task_line=${list_tasks_not_done[curr_task_index]%%:*}
