@@ -24,7 +24,9 @@
 
 
 declare VI="vim"
+declare OPEN="open"
 command -v $VI >/dev/null 2>&1 || VI="vi"
+command -v $OPEN >/dev/null 2>&1 || OPEN="cygstart"
 
 ## Safer shell scripting: https://sipb.mit.edu/doc/safe-shell
 # set -euf -o pipefail
@@ -182,7 +184,6 @@ bind_e() {
   local temp_file=$(mktemp -q "__edit-$curr_task_line.XXXXXXXXXXXX.md")
 
   [ -w "$temp_file" ] || return 1 ## ERROR
-  __debug.log "$temp_file"
 
     # s/^\|\|\s*(.+)\|\s*(.*)\|\s*(.*)\|\s*(.*)/${HEADERS_E[0]}\1\n\n${HEADERS_E[1]}\2\n\n${HEADERS_E[2]}\3\n\n${HEADERS_E[3]}\4/" "$PATH_TO_TASKS_FILE" 1> "$temp_file"
   sed -rn "$curr_task_line\
@@ -190,7 +191,9 @@ bind_e() {
     "tests/texto_base.1" 1> "$temp_file"
 
   [ $? -eq 0 ] || return 2 ## ERROR
+  save_cursor ## solução não compatível com terminal 'fish' e 'GitBash'
   $VI -c "set number" +2 "$temp_file"
+  restore_cursor
   ## [7]TODO: extrair dados atualizados do arquivo salvo & atualizar os arrays locais
 
 
@@ -199,8 +202,19 @@ bind_e() {
 
 ## [9]TODO: criar um arquivo de texto (se não existir) para a tarefa sob o cursor, visando o "<lang>/<task_filename>.<ext>"
 bind_f() { printf "(create)\033[36m [f]ile\033[0m\n"; }
-## [10]TODO: abrir o link que foi definido na listagem == ir para linha real da tarefa e acessar a coluna correta, se for link, usar o comando "open" para abri-lo
-bind_o() { printf "\033[36m [o]pen\033[0m\n"; }
+bind_o() {
+  [ -n "$OPEN" ] || return 1
+
+  local curr_task_line=${list_tasks_not_done[curr_task_index]%%:*}
+  # local task_title=$(sed -rn "$curr_task_line s/(http[^\)]+).+$/\1/p" "$PATH_TO_TASKS_FILE")
+  local task_title=$(sed -rn "$curr_task_line s/(http[^\)]+).+$/\1/p" tests/texto_base.1)
+  local link_without_http="${task_title#*\(http}"
+
+  if [ -n "$link_without_http" ]; then
+    emmitt_alert
+    $OPEN "http$link_without_http"
+  fi
+}
 
 # --------------------------------------------------------- #
 
