@@ -218,7 +218,8 @@ bind_f() {
   if [ -n "$extension" ]; then
     set_file_and_dir "${list_tasks_not_done[curr_task_index]#*:}" "$extension"
 
-    touch "$file" && emmitt_alert
+    touch "$file"
+    [ $? -eq 0 ] && emmitt_alert || return 1 ## ERROR
   fi
 }
 
