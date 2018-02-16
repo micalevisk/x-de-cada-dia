@@ -76,47 +76,6 @@ trap update_screen_width WINCH ## user has resized the window
 trap clear_screen_exit SIGINT  ## user press Ctrl-C
 # trap clear_screen_exit EXIT
 
-__comment__() {
-  ## listar seções para escolher
-  sections="$(grep --color=never -Pon '(?<=^## ).+' 'test/texto_base.1')"
-  mapfile -t list_sections <<< "$sections"
-
-  nums_sections=${#list_sections[@]}
-  offset=$(( ${#nums_sections} + ${#NAVI_SYMBOL} ))
-  column_sep=$(( $offset + 1 ))
-
-  save_cursor
-  awk -v offset=$offset -v sep="$SEPARATOR" '{ printf "%*d%s %s\n", offset, NR, sep, gensub(/[0-9]+:/, "", 1) }' <<< "$sections"
-  restore_cursor
-  move_to_column $column_sep
-  print_navi
-
-  while read -rsn1 ui; do
-    case "$ui" in
-      $'\x1b') ## Handle ESC sequence.
-        read -rsn2 -t 0.1 key
-        # od -tx1 <<< "$key"
-        [ "${key:0:1}" != '[' ] && bind_esc || {
-          case "${key:1:1}" in
-            'A') bind_arrow_up ;;
-            'B') bind_arrow_down ;;
-            'C') bind_arrow_right ;;
-            'D') bind_arrow_left ;;
-            '2') bind_insert ;;
-            '3') bind_delete ;;
-          esac
-        }
-        # Flush "stdin" with 0.1  sec timeout.
-        read -rsn5 -t 0.1 ;;
-
-      $'') bind_blank ;;
-
-      *) #printf "other... quiting\n"; break;;
-        od -tx1 <<< "$ui"; break;;
-    esac
-  done
-}
-
 
 main() {
 
@@ -170,30 +129,6 @@ main() {
       *) ;; # do nothing
     esac
   done
-}
-
-__comment__() {
-
-  # tasks_not_done=$(cut -d: -f2- "$PATH_TO_TASKS_FILE" | sed "s@\\\\\(${special_list}\)@\1@g")
-  tasks_not_done=$(sed "s@\\\\\(${special_list}\)@\1@g" "$PATH_TO_TASKS_FILE")
-
-  # mapfile -t lines_list_tasks_not_done < <(cut -d: -f1 "$PATH_TO_TASKS_FILE")
-  mapfile -t list_tasks_not_done <<< "$tasks_not_done"
-
-  nums_tasks=${#list_tasks_not_done[@]} # quantidade de linhas obtidas da extração das tarefas
-  offset=$(( ${#nums_tasks} + 1 ))
-  column_sep=$(( $offset + 1 ))
-  # count_column_width=$(( $offset * 2 + 2 ))
-
-  update_screen_width
-
-  save_cursor
-  # awk -v offset=$offset -v sep="$SEPARATOR" '{ printf "%*d%s %s\n", offset, NR, sep, $0 }' <<< "$tasks_not_done"
-  awk -v offset=$offset -v sep="$SEPARATOR" '{ printf "%*d%s %s\n", offset, NR, sep, gensub(/[0-9]+:/, "", 1) }' <<< "$tasks_not_done"
-  ## TODO: salvar posição do cursor
-  restore_cursor
-  # hide_cursor
-
 }
 
 
