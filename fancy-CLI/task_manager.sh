@@ -148,7 +148,7 @@ function set_file_and_dir {
     s_[:?"*<>|\/#]__g
     s_([^[:alnum:]])\1_\1_g' <<< "${1,,}")
 
-  file="$PATH_TO_MISCELLANEOUS_DIRNAME/${normalized_task_name}.$extension"
+  file="$PATH_TO_MISCELLANEOUS_DIRNAME/${normalized_task_name}.$2"
   dir="$CURR_DIR/${normalized_task_name}"
 }
 
