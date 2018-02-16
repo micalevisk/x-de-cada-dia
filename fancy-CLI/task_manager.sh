@@ -83,8 +83,9 @@ main() {
   tasks_not_done=$(sed "s@\\\\\(${special_list}\)@\1@g" "$PATH_TO_TASKS_FILE")
   mapfile -t list_tasks_not_done <<< "$tasks_not_done"
 
-  nums_tasks=${#list_tasks_not_done[@]} # quantidade de linhas obtidas da extração das tarefas
-  offset=$(( ${#nums_tasks} + ${#NAVI_SYMBOL} ))
+  nums_tasks=${#list_tasks_not_done[@]} ## quantidade de linhas obtidas da extração das tarefas
+  offset=$(( ${#nums_tasks} + ${#NAVI_SYMBOL} )) ## quantidade de colunas antes do 'SEPARATOR'
+  __debug.log $offset
   column_sep=$(( $offset + 1 ))
 
   update_screen_width
