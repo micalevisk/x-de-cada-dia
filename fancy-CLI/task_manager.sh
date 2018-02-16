@@ -324,6 +324,9 @@ previous_task() {
 
 # ----------------------------------------------------- #
 
+emmitt_alert() {
+  printf "\007"
+}
 
 hide_cursor() {
   printf "\x1B[?25l"
