@@ -172,8 +172,8 @@ bind_d() {
     task_ref="./$normalized_task_name"
     task_ref_emoji="${TASK_REF_EMOJIS[d]}"
 
-    mkdir -p "$dir"   && __debug.log "dir-criado::$task_ref|$task_ref_emoji"
-    [ $? -eq 0 ] && printf "\007" || return 1 ## ERROR
+    mkdir -p "$dir"
+    [ $? -eq 0 ] && emmitt_alert || return 1 ## ERROR
   fi
 }
 
