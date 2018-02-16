@@ -18,8 +18,8 @@
 ##  [e] abre o editor Vi para editar alguns atributos da tarefa (sobre o cursor)
 ##  [o] abrir o link da tarefa no navegador padrão
 ##  [enter/space] lista as alterações e espera a confirmação
-##  [f] criar arquivo para a tarefa (se não existir)
-##  [d] criar diretório para a tarefa (se não existir)
+##  [f] criar arquivo para a tarefa (se não existir) ~ a extensão do arquivo deve ser digitada logo após o beep, seguido de ENTER para finalizar
+##  [d] criar diretório para a tarefa (se não existir) ~ o beep será emitido se for criado
 ##
 
 
@@ -59,7 +59,9 @@ declare -i CURR_LINE # conta a linha corrente, começando em 1
 declare -r special_list="[|\`_*\[\]]"
 declare -r CURR_DIR="${1%%/}"
 declare -r TASKS_FILE="README.md"
+declare -r MISCELLANEOUS_DIRNAME="avulsos"
 # declare -r PATH_TO_TASKS_FILE="${CURR_DIR,,}/$TASKS_FILE"
+declare -r PATH_TO_MISCELLANEOUS_DIRNAME="${CURR_DIR,,}/$MISCELLANEOUS_DIRNAME"
 declare -a tasks_not_done
 declare -a list_tasks_not_done
 declare -i index
@@ -200,8 +202,24 @@ bind_e() {
   rm -f "$temp_file"
 }
 
-## [9]TODO: criar um arquivo de texto (se não existir) para a tarefa sob o cursor, visando o "<lang>/<task_filename>.<ext>"
-bind_f() { printf "(create)\033[36m [f]ile\033[0m\n"; }
+bind_f() {
+  local extension=""
+
+  emmitt_alert
+  read -rs extension
+
+  ## remover possíveis movimentos inválidos (uso das setas)
+  extension="${extension//[[:cntrl:]]\[[[:alnum:]][[:punct:]]/}"
+  extension="${extension//[[:cntrl:]]\[[[:alnum:]]/}"
+  extension="${extension#.}" ## remover o ponto se iniciar na 'extension'
+
+  if [ -n "$extension" ]; then
+    set_file_and_dir "${list_tasks_not_done[curr_task_index]#*:}" "$extension"
+
+    touch "$file" && emmitt_alert
+  fi
+}
+
 bind_o() {
   [ -n "$OPEN" ] || return 1
 
