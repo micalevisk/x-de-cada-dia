@@ -41,7 +41,7 @@ exec 2>/dev/null ## não exibir mostrar na STDOUT
 
 PATH_TO_TASKS_FILE="tests/texto_pos_grep.${1:-1}"
 __debug.log() { echo -e "$(date +'[%M:%S]') $*" >> "__.logfile"; }
-__debug.cursor() { echo -en "\E[6n"; read -sdR CURPOS; CURPOS=${CURPOS#*[}; __debug.log "${CURPOS}"; } ## (c) https://unix.stackexchange.com/questions/88296
+__debug.cursor() { echo -en "\E[6n"; read -sdR CURPOS; __debug.log "${CURPOS#*[}"; } ## (c) https://unix.stackexchange.com/questions/88296
 __debug.loop() { while :; do :; done; }
 
 # ------------------------------------------------------------------------------------------------------------------------------- #
@@ -85,7 +85,6 @@ trap clear_screen_exit SIGINT  ## user press Ctrl-C
 
 
 main() {
-
   # tasks_not_done=$(grep --color=never -n -o -P '(?<=^\|\| \[).+(?=\])' "$PATH_TO_TASKS_FILE" | sed "s@\\\\\(${special_list}\)@\1@g" "$PATH_TO_TASKS_FILE")
   tasks_not_done=$(sed "s@\\\\\(${special_list}\)@\1@g" "$PATH_TO_TASKS_FILE")
   mapfile -t list_tasks_not_done <<< "$tasks_not_done"
