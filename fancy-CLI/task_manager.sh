@@ -174,8 +174,18 @@ bind_m() { mark_done_task; }
 bind_u() { remove_done_mark; }
 
 bind_esc() { clear_screen_exit; }
-## [11]TODO: chamar função que lista as alterações e esperar confirmação do usuário
-bind_blank() { printf "\033[35m Enter or Space \033[0m\n"; }
+
+bind_blank() {
+  move_to_sof
+  printf "\x1B[0J" ## apagar até o fim da tela
+  # printf "\x1B[1G\x1B[0J" ## move cursor para a primeira linha e coluna do CLI e apaga até o fim da tela
+
+  ## [11]TODO: chamar função que lista as alterações e esperar confirmação do usuário
+  update_eof_cursor_pos
+
+  exit 0
+}
+
 bind_delete() {
   ## verificando se já está marcado para remoção
   [ -n "${tasks_to_remove[$curr_task_index]+_}" ] && remove_delete_mark || mark_delete_task
