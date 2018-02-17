@@ -6,6 +6,7 @@
 ##
 ##  $0 [COMANDOS]
 ##  COMANDOS:
+##  edit                      -> Selecionar tarefas listadas (todas) para editar suas informações pelo vim/vi.
 ##  new                       -> Selecionar uma das seções listadas e abrir o editor de texto para inserir uma nova tarefa.
 ##  section [NAME]            -> Listar apenas as tarefas pendentes de uma seção. (Se NAME não for definido, lista as seções para a escolha pelas setas).
 ##  newsec <SECTION> <EMOJI>  -> Adicionar uma nova seção.
