@@ -348,12 +348,10 @@ show_cursor() {
   printf "\x1B[?12l\e[?25h"
 }
 
-clear_screen_exit() { ## [12]TODO: apagar apenas o que foi printado por esse programa, i.e., as N linhas
-  # printf "\033c"
-  # printf "\x1B[H" # go to origin
-  ## TODO: exibir status das alteracoes efetivadas; tarefas editadas, abertas, dones, in progress...
+clear_screen_exit() {
+  printf "\n\x1B[0J" ## limpar até o fim da tela (representando a "parada" do programa)
   show_cursor
-  clear ## TODO: trocar esse 'clear' pra ir para a última linha
+
   __debug.log "\n---------- tasks done [${#tasks_done[@]}] ----------\
               \nk:> ${!tasks_done[@]}\
               \nv:> ${tasks_done[@]}\
@@ -361,7 +359,6 @@ clear_screen_exit() { ## [12]TODO: apagar apenas o que foi printado por esse pro
               \nk:> ${!tasks_to_remove[@]}\
               \nv:> ${tasks_to_remove[@]}"
 
-  clear
   exit 0
 }
 
