@@ -54,6 +54,7 @@ declare -a HEADERS_E=("<!-- title -->\n" "<!-- last update -->\n" "<!-- snippet 
 
 # declare -r NAVI_SYMBOL='\xC3\x97' #aka '×'
 declare -r NAVI_SYMBOL='>'
+declare -r NAVI_LENGTH=${#NAVI_SYMBOL} ## forçar tamanho aqui se for usar símbolo hexadecimal (UTF-8 literal)
 declare -r NAVI_COLOR=${COLORS[y]}
 declare -r NAVI_COLUMN=0
 declare -r SEPARATOR='.'
@@ -98,7 +99,7 @@ main() {
   mapfile -t list_tasks_not_done <<< "$tasks_not_done"
 
   nums_tasks=${#list_tasks_not_done[@]} ## quantidade de linhas obtidas da extração das tarefas
-  offset=$(( ${#nums_tasks} + ${#NAVI_SYMBOL} )) ## quantidade de colunas antes do 'SEPARATOR'
+  offset=$(( ${#nums_tasks} + ${NAVI_LENGTH} )) ## quantidade de colunas antes do 'SEPARATOR'
   column_sep=$(( $offset + 1 ))
 
   update_screen_width
@@ -236,7 +237,7 @@ print_navi() {
 
 erase_navi() {
   move_to_navi
-  printf "\x1B[${#NAVI_SYMBOL}X" ## escreve N brancos à direita
+  printf "\x1B[${NAVI_LENGTH}X" ## escreve N brancos à direita
   # printf "\x1B[1P" ## apaga caractere à direita
   move_to_navi
 }
