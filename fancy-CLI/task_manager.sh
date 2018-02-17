@@ -21,6 +21,10 @@
 ##  [f] criar arquivo para a tarefa (se não existir) ~ a extensão do arquivo deve ser digitada logo após o beep, seguido de ENTER para finalizar
 ##  [d] criar diretório para a tarefa (se não existir) ~ o beep será emitido se for criado
 ##
+##  known issues:
+##  1- O prompt não é mostrado corretamente se a linha do comando que executou o script não for a primeira da janela do terminal;
+##  2- Ao fechar o editor de texto (após a ação 'edit task') o prompt pode voltar com algumas linhas apagadas;
+##
 
 
 declare VI="vim"
