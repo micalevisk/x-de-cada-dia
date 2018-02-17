@@ -15,7 +15,6 @@
 ##  [right-arrow/m] marca a tarefa (sobre o cursor) como "done"
 ##  [left-arrow/u] desmarca a tarefa (sobre o cursor)
 ##  [delete] (toggle) marcar tarefa (sobre o cursor) para remoção
-##  [e] abre o editor Vi para editar alguns atributos da tarefa (sobre o cursor)
 ##  [o] abrir o link da tarefa no navegador padrão
 ##  [enter/space] lista as alterações e espera a confirmação
 ##  [f] criar arquivo para a tarefa (se não existir) ~ a extensão do arquivo deve ser digitada logo após o beep, seguido de ENTER para finalizar
@@ -126,7 +125,6 @@ main() {
 
       ## Handle especial alpha chars.
       $'\x64') bind_d ;;
-      $'\x65') bind_e ;;
       $'\x66') bind_f ;;
       $'\x6d') bind_m ;;
       $'\x6f') bind_o ;;
@@ -180,27 +178,6 @@ bind_d() {
     mkdir -p "$dir"
     [ $? -eq 0 ] && emmitt_alert || return 1 ## ERROR
   fi
-}
-
-bind_e() {
-  local curr_task_line=${list_tasks_not_done[curr_task_index]%%:*}
-  local temp_file=$(mktemp -q "__edit-$curr_task_line.XXXXXXXXXXXX.md")
-
-  [ -w "$temp_file" ] || return 1 ## ERROR
-
-    # s/^\|\|\s*(.+)\|\s*(.*)\|\s*(.*)\|\s*(.*)/${HEADERS_E[0]}\1\n\n${HEADERS_E[1]}\2\n\n${HEADERS_E[2]}\3\n\n${HEADERS_E[3]}\4/" "$PATH_TO_TASKS_FILE" 1> "$temp_file"
-  sed -rn "$curr_task_line\
-    s/^\|\|\s*(.+)\|\s*(.*)\|\s*(.*)\|\s*(.*)/${HEADERS_E[0]}\1\n\n${HEADERS_E[1]}\2\n\n${HEADERS_E[2]}\3\n\n${HEADERS_E[3]}\4/p"\
-    "tests/texto_base.1" 1> "$temp_file"
-
-  [ $? -eq 0 ] || return 2 ## ERROR
-  save_cursor ## solução não compatível com terminal 'fish' e 'GitBash'
-  $VI -c "set number" +2 "$temp_file"
-  restore_cursor
-  ## [7]TODO: extrair dados atualizados do arquivo salvo & atualizar os arrays locais
-
-
-  rm -f "$temp_file"
 }
 
 bind_f() {
