@@ -57,6 +57,8 @@ declare -r NAVI_SYMBOL='>'
 declare -r NAVI_COLOR=${COLORS[y]}
 declare -r NAVI_COLUMN=0
 declare -r SEPARATOR='.'
+declare -r KERNEL_NAME=$(uname -s)
+declare -r NOT_MINGW_TERM="${KERNEL_NAME/#MINGW[[:digit:]]*}"
 
 declare -i CURR_LINE # conta a linha corrente, começando em 1
 declare -r special_list="[|\`_*\[\]]"
@@ -77,6 +79,8 @@ declare -l file
 declare -l dir
 declare -l task_ref ## file or directory to task notes (auto lower-case)
 declare -l task_ref_emoji=""
+declare SOF_CURSOR_POS
+declare eof_cursor_pos
 # ------------------------------------------------------------------------------------------------------------------------------- #
 
 trap update_screen_width WINCH ## user has resized the window
@@ -85,7 +89,11 @@ trap clear_screen_exit SIGINT  ## user press Ctrl-C
 
 
 main() {
-  # tasks_not_done=$(grep --color=never -n -o -P '(?<=^\|\| \[).+(?=\])' "$PATH_TO_TASKS_FILE" | sed "s@\\\\\(${special_list}\)@\1@g" "$PATH_TO_TASKS_FILE")
+  printf "\x1B[2J" ## apagar tela para previnir a issue#1
+  # printf "\x1B[6n"; read -sdR SOF_CURSOR_POS
+  SOF_CURSOR_POS="1;1"
+
+  # tasks_not_done=$(grep --color=never -n -o -P '(?<=^\|\| \[).+(?=\])' "$PATH_TO_TASKS_FILE" | sed "s@\\\\\(${special_list}\)@\1@g" "$PATH_TO_TASKS_FILE") ## lista tarefas pendentes
   tasks_not_done=$(sed "s@\\\\\(${special_list}\)@\1@g" "$PATH_TO_TASKS_FILE")
   mapfile -t list_tasks_not_done <<< "$tasks_not_done"
 
@@ -97,6 +105,7 @@ main() {
 
   save_cursor
   awk -v offset=$offset -v sep="$SEPARATOR" '{ printf "%*d%s %s\n", offset, NR, sep, gensub(/[0-9]+:/, "", 1) }' <<< "$tasks_not_done"
+  update_eof_cursor_pos
   restore_cursor
 
   curr_task_index=0
@@ -389,8 +398,34 @@ move_down_lines() {
   printf "\x1B[%dB" $lines
 }
 
+move_to_sof() {
+  printf "\x1B[${SOF_CURSOR_POS:-1}f"
+}
+
+move_to_eof() {
+  [[ -n "$NOT_MINGW_TERM" ]] || return 1 ## ERROR (não compatível com o MINGW)
+
+  printf "\x1B[${eof_cursor_pos%;*};1f"
+
+  : '
+  ## DEBUG things
+  printf "12345"
+  printf "\x1B[1G" ## vai pra coluna 1
+  # printf "\x1B[3X" ## insere 3 espaços à direita
+  printf "\x1B[3P" ## apaga 3 caracteres à direita
+  '
+}
+
 erase_to_eol() {
   printf "\x1B[K"
+}
+
+update_eof_cursor_pos() {
+  [[ -n "$NOT_MINGW_TERM" ]] || return 1 ## ERROR (não compatível com o MINGW)
+
+  printf "\x1B[6n"
+  read -sdR eof_cursor_pos
+  eof_cursor_pos="${eof_cursor_pos#*[}"
 }
 
 update_screen_width() {
