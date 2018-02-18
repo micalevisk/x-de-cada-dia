@@ -23,7 +23,7 @@ status | title | last update | snnipet | notes
 :white_check_mark: | [Let's Get Functional With Elixir!](https://www.youtube.com/watch?v=wVrnoxNbOts) | 2017 | talk de _Nate Taylor_ |
 || [Introdução ao Elixir - Elixir Five Minutes](https://www.youtube.com/watch?v=hAv24yIdyjI) | 2015 | de _Tiago Davi_ |
 || [Introdução à linguagem de programação Elixir](https://www.youtube.com/watch?v=7eYA8c8yABU) | 2015 | de _CBK Software_ |
-|| [Intro to Elixir](https://www.youtube.com/watch?v=lly-1UYmnFI) | 2014 | de_Solution Street_ |
+|| [Intro to Elixir](https://www.youtube.com/watch?v=lly-1UYmnFI) | 2014 | de _Solution Street_ |
 || [Elixir, quem é esse pokemon? - Bruno Volcov](https://www.youtube.com/watch?v=aA-XHI-EYcM) | 2016 | de _Locaweb_ |
 || [Elixir Tutorial](https://www.youtube.com/watch?v=pBNOavRoNL0) | 2017 | de _CBK Software_ |
 || [WTF is Elixir?](https://www.youtube.com/watch?v=ZDwygVf_LJM) | 2016 | de _On-Site Scrum_ |
