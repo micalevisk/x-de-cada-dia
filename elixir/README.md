@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://techsquare.co/wp-content/uploads/2017/08/1481354.png" width="160">
   <h1><i>Elixir</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-6%25%20(2%20of%2031)-6E4A7E.svg" width="180">
+  <img src="https://img.shields.io/badge/done-6%25%20(2%20of%2032)-6E4A7E.svg" width="180">
 </div>
 
 <p align="center">
@@ -58,7 +58,8 @@ status | title | last update | snnipet | notes
 || [Elixir for Java Developers, Episode I](https://medium.com/skyhub-labs/elixir-for-java-developers-episode-i-66b65c862652) | 2017 | |
 || [Aprenda Elixir em Y Minutos](https://learnxinyminutes.com/docs/pt-br/elixir-pt) | 2017 | |
 || [Intro to Elixir for non Ruby programmers](https://ryanwinchester.ca/posts/intro-to-elixir-for-non-ruby-programmers) | 2017 | |
-|| [Elixir with José Valim](http://howistart.org/posts/elixir/1/) | | |
+|| [Elixir with José Valim](http://howistart.org/posts/elixir/1) | | de _How I Start._ |
+|| [Elixir and IO Lists, Part 1: Building Output Efficiently](https://www.bignerdranch.com/blog/elixir-and-io-lists-part-1-building-output-efficiently) | 2016 | |
 
 
 ## Livros
