@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://bgasparotto.com/wp-content/uploads/2016/03/ruby-logo.png" width="160">
   <h1><i>Ruby</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-27%25%20(6%20of%2022)-701516.svg" width="180">
+  <img src="https://img.shields.io/badge/done-30%25%20(6%20of%2020)-701516.svg" width="180">
 </div>
 
 <p align="center">
@@ -45,10 +45,9 @@ status | title | last update | snnipet | notes
 :white_check_mark: | [Ruby a Partir de Outras Linguagens (ver notas)](https://www.ruby-lang.org/pt/documentation/ruby-from-other-languages) | | (oficial) |
 :white_check_mark: | [Para Ruby a partir de C e C++](https://www.ruby-lang.org/pt/documentation/ruby-from-other-languages/to-ruby-from-c-and-cpp) | | (oficial) |
 :white_check_mark: | [21 Ruby Tricks You Should Be Using In Your Own Code](http://www.rubyinside.com/21-ruby-tricks-902.html) | 2008 | | [:memo:](./avulsos/21_ruby_tricks_you_should_be_using_in_your_own_code.rb)
-|| [Learn Ruby](https://github.com/alexch/learn_ruby) | 2014 | :octocat: |
 || [Ruby Tutorial with Code Samples](http://www.fincher.org/tips/Languages/Ruby) | | |
-|| [Try Ruby - Code School](https://www.codeschool.com/courses/try-ruby) | | learn the basic building blocks of Ruby, all in the browser |
-|| [Ruby with Steve Klabnik](http://howistart.org/posts/ruby/1) | | |
+|| [Try Ruby - Code School](https://www.codeschool.com/courses/try-ruby) | | aprender o básico do Ruby, no navegador |
+|| [Ruby with Steve Klabnik](http://howistart.org/posts/ruby/1) | | de _How I Start._  |
 
 
 ## Livros
@@ -57,9 +56,8 @@ status | title | last update | snnipet | notes
 :-----:|:------|:-----------:|:-------:|:----:
 || [Seven Languages in Seven Weeks - Bruce A. Tate](https://geneticmail.com/scott/library/text/seven-languages-in-seven-weeks_p1_0.pdf) | 2010 | _ver o capítulo 2_ |
 || [Apostila Desenv. Ágil para Web com Ruby on Rails - Caelum](https://www.caelum.com.br/apostila-ruby-on-rails) | | versão web; 20 capítulos |
-|| [Ruby: Aprenda a programar na linguagem mais divertida - Lucas Souza](https://www.casadocodigo.com.br/products/livro-ruby) | | |
+|| [Ruby: Aprenda a programar na linguagem mais divertida - Lucas Souza](https://www.casadocodigo.com.br/products/livro-ruby) | 2012 | |
 || [Ruby on Rails: coloque sua aplicação web nos trilhos - Vinícius Baggio Fuentes](https://www.casadocodigo.com.br/products/livro-ruby-on-rails) | | |
-|| [Livro de Ruby - Eustaquio Rangel](http://eustaquiorangel.com/livro-ruby) | | |
 
 
 </div>
