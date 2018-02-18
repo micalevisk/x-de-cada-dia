@@ -67,7 +67,7 @@ status | title | last update | snnipet | notes
 || [Functional programming in Javascript is an antipattern And Clojure is actually easier](https://hackernoon.com/functional-programming-in-javascript-is-an-antipattern-58526819f21e) | 2017 | |
 || [Clojure, Emacs and Cider](https://mping.github.io/2015/11/17/clojure-emacs-cider.html) | 2015 | :octocat: |
 || [A linguagem de programação Clojure: Tire proveito do plug-in Clojure do Eclipse - IBM](https://www.ibm.com/developerworks/br/opensource/library/os-eclipse-clojure/index.html) | 2009 | |
-|| [Clojure with Carin Meier](http://howistart.org/posts/clojure/1) | 2015 | |
+|| [Clojure with Carin Meier](http://howistart.org/posts/clojure/1) | 2015 | de _How I Start._ |
 :white_check_mark: | [The complete guide to Clojure destructuring](http://blog.brunobonacci.com/2014/11/16/clojure-complete-guide-to-destructuring) | 2018 | | [:memo:](./avulsos/the_complete_guide_to_clojure_destructuring.clj)
 :white_check_mark: | [Function Syntax in Clojure](https://coderwall.com/p/panlza/function-syntax-in-clojure) | 2016 | |
 || [Clojure Design Patterns](http://mishadoff.com/blog/clojure-design-patterns) | 2015 | |
