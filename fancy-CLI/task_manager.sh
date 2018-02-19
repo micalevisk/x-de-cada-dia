@@ -32,7 +32,7 @@ declare OPEN="open"
 command -v $VI >/dev/null 2>&1 || VI="vi"
 command -v $OPEN >/dev/null 2>&1 || OPEN="cygstart"
 
-# exec 2>/dev/null ## não exibir mostrar na STDOUT
+[ "$DEBUG" ] ||  exec 2>/dev/null ## não exibir mostrar na STDOUT
 
 
 ## Safer shell scripting: https://sipb.mit.edu/doc/safe-shell
