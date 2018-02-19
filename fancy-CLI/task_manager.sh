@@ -93,7 +93,7 @@ trap clear_screen_exit SIGINT  ## user press Ctrl-C
 
 
 main() {
-  printf "\x1B[2J" ## apagar tela para previnir a issue#1
+  clear ## apagar tela para previnir a issue#1
   # printf "\x1B[6n"; read -sdR SOF_CURSOR_POS
   SOF_CURSOR_POS="1;1"
 
