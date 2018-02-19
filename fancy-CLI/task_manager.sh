@@ -32,7 +32,7 @@ declare OPEN="open"
 command -v $VI >/dev/null 2>&1 || VI="vi"
 command -v $OPEN >/dev/null 2>&1 || OPEN="cygstart"
 
-exec 2>/dev/null ## não exibir mostrar na STDOUT
+# exec 2>/dev/null ## não exibir mostrar na STDOUT
 
 
 ## Safer shell scripting: https://sipb.mit.edu/doc/safe-shell
@@ -65,7 +65,6 @@ declare -r SEPARATOR='.'
 declare -r KERNEL_NAME=$(uname -s)
 declare -r NOT_MINGW_TERM="${KERNEL_NAME/#MINGW[[:digit:]]*}"
 
-declare -i CURR_LINE # conta a linha corrente, começando em 1
 declare -r special_list="[|\`_*\[\]]"
 declare -r CURR_DIR="${1%%/}"
 declare -r TASKS_FILE="README.md"
@@ -114,7 +113,6 @@ main() {
   restore_cursor
 
   curr_task_index=0
-  CURR_LINE=1
 
   move_to_column $column_sep
   print_navi
@@ -403,13 +401,11 @@ move_to_column() {
 
 move_up_lines() {
   local lines=${1:-0}
-  CURR_LINE=$(( CURR_LINE - lines )) ## FIXME: atualizar corretamente visando o número de linhas no display
   printf "\x1B[%dA" $lines
 }
 
 move_down_lines() {
   local lines=${1:-0}
-  CURR_LINE=$(( CURR_LINE + lines )) ## FIXME: atualizar corretamente visando o número de linhas no display
   printf "\x1B[%dB" $lines
 }
 
