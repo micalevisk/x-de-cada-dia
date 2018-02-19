@@ -1,6 +1,14 @@
 #!/bin/bash
 ##
 ##  v1.31-2
+##  resources for cursor movements with ANSI escape sequences:
+##  - http://shellscript.com.br
+##  - https://www.tldp.org/HOWTO/Bash-Prompt-HOWTO/x361.html
+##  - https://www.youtube.com/watch?v=K_6peGEsq0U
+##  - https://github.com/piotrmurach/tty-cursor/tree/master/spec/unit
+##  - https://unix.stackexchange.com/questions/88296
+##  - https://docs.microsoft.com/en-us/windows/console/console-virtual-terminal-sequences
+##
 ##  Programa pensado na seguinte ordem de prioridade das operações:
 ##    marcar como feita - adicionar nova tarefa - remover tarefa - editar tarefa
 ##
