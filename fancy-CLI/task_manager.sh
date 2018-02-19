@@ -367,7 +367,7 @@ hide_cursor() {
 }
 
 show_cursor() {
-  printf "\x1B[?12l\e[?25h"
+  printf "\x1B[?25h"
 }
 
 clear_screen_exit() {
