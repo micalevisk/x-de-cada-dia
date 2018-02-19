@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://techsquare.co/wp-content/uploads/2017/08/1481354.png" width="160">
   <h1><i>Elixir</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-6%25%20(2%20of%2032)-6E4A7E.svg" width="180">
+  <img src="https://img.shields.io/badge/done-6%25%20(2%20of%2031)-6E4A7E.svg" width="180">
 </div>
 
 <p align="center">
@@ -21,7 +21,6 @@ status | title | last update | snnipet | notes
 :-----:|:------|:-----------:|:-------:|:----:
 :white_check_mark: | [Introdução a Elixir \| #livecoding - com Leandro Bighetti](https://www.youtube.com/watch?v=sReZI1izRZI) | 2017 | de _Training Center_ | [:memo:](./avulsos/introducao_a_elixir_livecoding_-_com_leandro_bighetti.exs)
 :white_check_mark: | [Let's Get Functional With Elixir!](https://www.youtube.com/watch?v=wVrnoxNbOts) | 2017 | talk de _Nate Taylor_ |
-|| [Introdução ao Elixir - Elixir Five Minutes](https://www.youtube.com/watch?v=hAv24yIdyjI) | 2015 | de _Tiago Davi_ |
 || [Introdução à linguagem de programação Elixir](https://www.youtube.com/watch?v=7eYA8c8yABU) | 2015 | de _CBK Software_ |
 || [Intro to Elixir](https://www.youtube.com/watch?v=lly-1UYmnFI) | 2014 | de _Solution Street_ |
 || [Elixir, quem é esse pokemon? - Bruno Volcov](https://www.youtube.com/watch?v=aA-XHI-EYcM) | 2016 | de _Locaweb_ |
