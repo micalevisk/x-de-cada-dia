@@ -215,6 +215,7 @@ bind_f() {
   local extension=""
 
   emmitt_alert
+  printf "\x1B[?5h" ## turn on reverse video
   read -rs extension
 
   ## remover possíveis movimentos inválidos (uso das setas)
