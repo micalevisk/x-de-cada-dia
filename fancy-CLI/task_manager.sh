@@ -219,6 +219,7 @@ bind_f() {
   emmitt_alert
   printf "\x1B[?5h" ## turn on reverse video
   read -rs extension
+  printf "\x1B[?5l" ## turn on normal video
 
   ## remover possíveis movimentos inválidos (uso das setas)
   extension="${extension//[[:cntrl:]]\[[[:alnum:]][[:punct:]]/}"
