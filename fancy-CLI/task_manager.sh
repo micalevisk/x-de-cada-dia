@@ -160,7 +160,7 @@ main() {
 # --------------------------------------------------------- #
 
 function confirm {
-  read -n1 -p "$1? ${COLORS[r]}[y/N]${COLORS[n]} "
+  read -n1 -p "$1? ${COLORS[r]}[y/N]${COLORS[n]} " 2>&1
   [ "${REPLY,,}" == "y" ]
 }
 
