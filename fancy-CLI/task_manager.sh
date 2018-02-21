@@ -191,7 +191,7 @@ bind_esc() { clear_screen_exit; }
 bind_blank() {
   move_to_eof || {
     move_to_sof ## para a versão no MinGW
-  printf "\x1B[0J" ## apagar até o fim da tela
+    printf "\x1B[0J" ## apagar até o fim da tela
   }
 
   # local nums_tasks=$(grep -c -P "^\s*(${TASK_DONE_MARK}|\|\|)" "$PATH_TO_TASKS_FILE")
