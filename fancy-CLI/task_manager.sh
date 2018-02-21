@@ -235,7 +235,7 @@ bind_blank() {
 
   # sed -i -r "0,/(done-)[0-9]+(.+)\([0-9]+(.+of...)[0-9]+\)/ s//\1${percentage}\2(${nums_tasks_done}\3${nums_tasks})/" "$PATH_TO_TASKS_FILE" \
   sed -i -r "0,/(done-)[0-9]+(.+)\([0-9]+(.+of...)[0-9]+\)/ s//\1${percentage}\2(${nums_tasks_done}\3${nums_tasks})/" "tests/texto_base.1" \
-    && printf "${COLORS[w]}Now ${COLORS[$color_key]}${percentage}%% ${COLORS[w]}(${nums_tasks_done} of ${nums_tasks}) done!${COLORS[n]}"
+    && printf "${COLORS[w]}Now ${COLORS[$color_key]}${percentage}%% ${COLORS[w]}(${nums_tasks_done} of ${nums_tasks}) done!${COLORS[n]}\n"
 
   exit 0 ## para sair do loop (na função main) e fechar o programa
 }
