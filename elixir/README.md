@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://techsquare.co/wp-content/uploads/2017/08/1481354.png" width="160">
   <h1><i>Elixir</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-6%25%20(2%20of%2031)-6E4A7E.svg" width="180">
+  <img src="https://img.shields.io/badge/done-12%25%20(4%20of%2031)-6E4A7E.svg" width="180">
 </div>
 
 <p align="center">
@@ -23,7 +23,7 @@ status | title | last update | snnipet | notes
 :white_check_mark: | [Let's Get Functional With Elixir!](https://www.youtube.com/watch?v=wVrnoxNbOts) | 2017 | talk de _Nate Taylor_ |
 || [Introdução à linguagem de programação Elixir](https://www.youtube.com/watch?v=7eYA8c8yABU) | 2015 | de _CBK Software_ |
 || [Intro to Elixir](https://www.youtube.com/watch?v=lly-1UYmnFI) | 2014 | de _Solution Street_ |
-|| [Elixir, quem é esse pokemon? - Bruno Volcov](https://www.youtube.com/watch?v=aA-XHI-EYcM) | 2016 | de _Locaweb_ |
+:white_check_mark: | [Elixir, quem é esse pokemon? - Bruno Volcov](https://www.youtube.com/watch?v=aA-XHI-EYcM) | 2016 | de _Locaweb_ |
 || [Elixir Tutorial](https://www.youtube.com/watch?v=pBNOavRoNL0) | 2017 | de _CBK Software_ |
 || [WTF is Elixir?](https://www.youtube.com/watch?v=ZDwygVf_LJM) | 2016 | de _On-Site Scrum_ |
 || [Basic Design in Functional Programming Languages - Tomasz Kowal \| ElixirLive 2016](https://www.youtube.com/watch?v=arYOSYrjC8s) | 2017 | de _EL Passion_ |
@@ -39,7 +39,7 @@ status | title | last update | snnipet | notes
 status | title | last update | snnipet | notes
 :-----:|:------|:-----------:|:-------:|:----:
 || [Elixir Tutorial - Basics](https://www.youtube.com/playlist?list=PLDbt-8dyNTUUQZcX5oVP1c9dABuS8ZsMp) | 2017 | de _SysAdmin Cat_ |
-|| [Elixir For Beginners](https://www.youtube.com/playlist?list=PLei96ZX_m9sW6hZ1SvCE2dP01jbIxWlM0) | 2017 | de _Chris Hawkes_ |
+:white_check_mark: | [Elixir For Beginners](https://www.youtube.com/playlist?list=PLei96ZX_m9sW6hZ1SvCE2dP01jbIxWlM0) | 2017 | de _Chris Hawkes_; versão reduzida |
 || [1 minute of Elixir](https://www.youtube.com/playlist?list=PLaY7qWIrmqtE0jLlSySWWeG3rqcPLZXXr) | 2017 | de _LittleAlchemist.io_ |
 || [Zero to Hero in Elixir](https://www.youtube.com/playlist?list=PLaY7qWIrmqtFoZLvOvYRZG5hl367UybRp) | 2017 | de _LittleAlchemist.io_ |
 || [Awesome Elixir](https://www.youtube.com/playlist?list=PLaY7qWIrmqtHfAfucvVAGxGYuTKT_8OZc) | 2017 | de _LittleAlchemist.io_ |
