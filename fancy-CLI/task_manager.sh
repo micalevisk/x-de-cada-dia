@@ -8,6 +8,8 @@
 ##  - https://github.com/piotrmurach/tty-cursor/tree/master/spec/unit
 ##  - https://unix.stackexchange.com/questions/88296
 ##  - https://docs.microsoft.com/en-us/windows/console/console-virtual-terminal-sequences
+##  - https://stackoverflow.com/questions/32009787
+##  - https://developer.apple.com/library/content/documentation/OpenSource/Conceptual/ShellScripting/AdvancedTechniques/AdvancedTechniques.html
 ##
 ##  Programa pensado na seguinte ordem de prioridade das operações:
 ##    marcar como feita - adicionar nova tarefa - remover tarefa - editar tarefa
