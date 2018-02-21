@@ -42,15 +42,7 @@ declare OPEN="open"
 command -v $VI >/dev/null 2>&1 || VI="vi"
 command -v $OPEN >/dev/null 2>&1 || OPEN="cygstart"
 
-[ "$DEBUG" ] ||  exec 2>/dev/null ## não exibir mostrar na STDOUT
-
-
-## Safer shell scripting: https://sipb.mit.edu/doc/safe-shell
-# set -euf -o pipefail
-# set -e ## if a command fails (that is, it returns a non-zero exit status), the script exits (unless it is part of a iteration, &&, || command).
-
-## prefer printf: https://askubuntu.com/questions/467747/which-is-better-printf-or-echo
-## http://www.tldp.org/HOWTO/Bash-Prompt-HOWTO/x405.html
+exec 2>/dev/null ## não mostrar erros na saída padrão
 
 
 PATH_TO_TASKS_FILE="tests/texto_pos_grep.${1:-1}"
@@ -61,10 +53,12 @@ __debug.loop() { while :; do :; done; }
 # ------------------------------------------------------------------------------------------------------------------------------- #
 declare -A COLORS=( [w]=$'\e[37;1m' [y]=$'\e[33m' [g]=$'\e[32m' [r]=$'\e[31m' [p]=$'\e[35;1m' [n]=$'\e[0m' [gr]=$'\e[30;1m' ) ## associative array
 declare -A TASK_REF_EMOJIS=( [d]="file_folder" [f]="memo")
-declare -A tasks_done=() ## chave é o seu index (no array de tarefas) e o valor é a sua linha real
-declare -A tasks_to_remove=() ## chave é o seu index (no array de tarefas) e o valor é a sua linha real
+declare -A tasks_done ## chave é o seu index (no array de tarefas) e o valor é a sua linha real
+declare -A tasks_to_remove ## chave é o seu index (no array de tarefas) e o valor é a sua linha real
 
 declare -a HEADERS_E=("<!-- title -->\n" "<!-- last update -->\n" "<!-- snippet -->\n" "<!-- notes -->\n")
+declare -a created_files
+declare -a created_dirs
 
 # declare -r NAVI_SYMBOL='\xC3\x97' #aka '×'
 declare -r NAVI_SYMBOL='>'
@@ -79,12 +73,13 @@ declare -r special_list="[|\`_*\[\]]"
 declare -r CURR_DIR="${1%%/}"
 declare -r TASKS_FILE="README.md"
 declare -r MISCELLANEOUS_DIRNAME="avulsos"
+declare -r TASK_DONE_MARK=":white_check_mark:"
 # declare -r PATH_TO_TASKS_FILE="${CURR_DIR,,}/$TASKS_FILE"
 declare -r PATH_TO_MISCELLANEOUS_DIRNAME="${CURR_DIR,,}/$MISCELLANEOUS_DIRNAME"
 declare -a tasks_not_done
 declare -a list_tasks_not_done
 declare -i index
-declare -i nums_tasks
+declare -i nums_tasks_not_done
 declare -i offset
 declare -i column_sep
 declare -i screen_width
@@ -97,9 +92,11 @@ declare SOF_CURSOR_POS
 declare eof_cursor_pos
 # ------------------------------------------------------------------------------------------------------------------------------- #
 
+## http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_12_01.html
+## https://www.gnu.org/software/bash/manual/html_node/Job-Control.html
 trap update_screen_width WINCH ## user has resized the window
 trap clear_screen_exit SIGINT  ## user press Ctrl-C
-# trap clear_screen_exit EXIT
+trap clear_screen_exit SIGTSTP SIGHUP SIGKILL SIGQUIT SIGTERM ## user press Ctrl-Z or quit this process
 
 
 main() {
@@ -107,12 +104,14 @@ main() {
   # printf "\x1B[6n"; read -sdR SOF_CURSOR_POS
   SOF_CURSOR_POS="1;1"
 
-  # tasks_not_done=$(grep --color=never -n -o -P '(?<=^\|\| \[).+(?=\])' "$PATH_TO_TASKS_FILE" | sed "s@\\\\\(${special_list}\)@\1@g" "$PATH_TO_TASKS_FILE") ## lista tarefas pendentes
+  # tasks_not_done=$(grep --color=never -n -o -P '(?<=^\|\| \[).+(?=\])' "$PATH_TO_TASKS_FILE" | sed "s@\\\\\(${special_list}\)@\1@g") ## lista tarefas pendentes
   tasks_not_done=$(sed "s@\\\\\(${special_list}\)@\1@g" "$PATH_TO_TASKS_FILE")
   mapfile -t list_tasks_not_done <<< "$tasks_not_done"
 
-  nums_tasks=${#list_tasks_not_done[@]} ## quantidade de linhas obtidas da extração das tarefas
-  offset=$(( ${#nums_tasks} + ${NAVI_LENGTH} )) ## quantidade de colunas antes do 'SEPARATOR'
+  [ -n "${list_tasks_not_done[0]//[[:blank:]]/}" ] || bind_blank
+
+  nums_tasks_not_done=${#list_tasks_not_done[@]} ## quantidade de linhas obtidas da extração das tarefas
+  offset=$(( ${#nums_tasks_not_done} + ${NAVI_LENGTH} )) ## quantidade de colunas antes do 'SEPARATOR'
   column_sep=$(( $offset + 1 ))
 
   update_screen_width
@@ -159,6 +158,13 @@ main() {
 }
 
 
+# --------------------------------------------------------- #
+
+function confirm {
+  read -n1 -p "$1? ${COLORS[r]}[y/N]${COLORS[n]} "
+  [ "${REPLY,,}" == "y" ]
+}
+
 function set_file_and_dir {
   normalized_task_name=$(sed -r '
     y/àáâãäåèéêëìíîïòóôõöùúûü/aaaaaaeeeeiiiiooooouuuu/
@@ -184,14 +190,55 @@ bind_u() { remove_done_mark; }
 bind_esc() { clear_screen_exit; }
 
 bind_blank() {
-  move_to_sof
+  move_to_eof || {
+    move_to_sof ## para a versão no MinGW
   printf "\x1B[0J" ## apagar até o fim da tela
-  # printf "\x1B[1G\x1B[0J" ## move cursor para a primeira linha e coluna do CLI e apaga até o fim da tela
+  }
 
-  ## [11]TODO: chamar função que lista as alterações e esperar confirmação do usuário
-  update_eof_cursor_pos
+  # local nums_tasks=$(grep -c -P "^\s*(${TASK_DONE_MARK}|\|\|)" "$PATH_TO_TASKS_FILE")
+  local nums_tasks=$(grep -c -P "^\s*(${TASK_DONE_MARK}|\|\|)" "tests/texto_base.1")
+  local nums_tasks_done=$(( nums_tasks - nums_tasks_not_done ))
 
-  exit 0
+  [ ${#created_dirs[@]} -ne 0 ] && {
+    printf "~ Diretórios Criados (${#created_dirs[@]}):\n"
+    printf "%s\n" "${created_dirs[@]}"
+  }
+
+  [ ${#created_files[@]} -ne 0 ] && {
+    printf "~ Arquivos Criados   (${#created_files[@]}):\n"
+    printf "%s\n" "${created_files[@]}"
+  }
+
+  [ ${#tasks_done[@]} -ne 0 ] && {
+    confirm "~ ${#tasks_done[@]} Tarefa(s) Feita(s)" && {
+      for real_line in "${tasks_done[@]}"; do
+        # sed -i "${real_line} s/^||/${TASK_DONE_MARK} |/" "$PATH_TO_TASKS_FILE" && ((nums_tasks_done++))
+        sed -i "${real_line} s/^\s*||/${TASK_DONE_MARK} |/" "tests/texto_base.1" && ((nums_tasks_done++))
+      done
+    }
+
+    printf "\n"
+  }
+
+  [ ${#tasks_to_remove[@]} -ne 0 ] && {
+    confirm "~ ${#tasks_to_remove[@]} Tarefa(s) Removidas(s)" && {
+      local lines_to_delete="${tasks_to_remove[@]/%/d;}"
+      # sed -i "$lines_to_delete" "$PATH_TO_TASKS_FILE"
+      sed -i "$lines_to_delete" "tests/texto_base.1" && ((nums_tasks--))
+    }
+
+    printf "\n"
+  }
+
+  local color_key="r"
+  local percentage=$(( nums_tasks_done*100/nums_tasks ))
+  [ "$percentage" -eq 100 ] && color_key="g" ## se todas as tarefas foram concluídas
+
+  # sed -i -r "0,/(done-)[0-9]+(.+)\([0-9]+(.+of...)[0-9]+\)/ s//\1${percentage}\2(${nums_tasks_done}\3${nums_tasks})/" "$PATH_TO_TASKS_FILE" \
+  sed -i -r "0,/(done-)[0-9]+(.+)\([0-9]+(.+of...)[0-9]+\)/ s//\1${percentage}\2(${nums_tasks_done}\3${nums_tasks})/" "tests/texto_base.1" \
+    && printf "${COLORS[w]}Now ${COLORS[$color_key]}${percentage}%% ${COLORS[w]}(${nums_tasks_done} of ${nums_tasks}) done!${COLORS[n]}"
+
+  exit 0 ## para sair do loop (na função main) e fechar o programa
 }
 
 bind_delete() {
@@ -208,8 +255,9 @@ bind_d() {
     task_ref="./$normalized_task_name"
     task_ref_emoji="${TASK_REF_EMOJIS[d]}"
 
-    mkdir -p "$dir"
-    [ $? -eq 0 ] && emmitt_alert || return 1 ## ERROR
+    mkdir -p "$dir" || return 1 ## ERROR
+    created_dirs+=( "$dir" )
+    emmitt_alert
   fi
 }
 
@@ -229,8 +277,9 @@ bind_f() {
   if [ -n "$extension" ]; then
     set_file_and_dir "${list_tasks_not_done[curr_task_index]#*:}" "$extension"
 
-    touch "$file"
-    [ $? -eq 0 ] && emmitt_alert || return 1 ## ERROR
+    touch "$file" || return 1 ## ERROR
+    created_files+=("$file")
+    emmitt_alert
   fi
 }
 
@@ -341,9 +390,8 @@ remove_delete_mark() {
   print_navi $voffset
 }
 
-
 next_task() {
-  [ $(( curr_task_index + 1 )) -lt $nums_tasks ] || return
+  [ $(( curr_task_index + 1 )) -lt $nums_tasks_not_done ] || return
   erase_navi
 
   local curr_task="${list_tasks_not_done[curr_task_index]}"
@@ -385,14 +433,6 @@ show_cursor() {
 clear_screen_exit() {
   printf "\n\x1B[0J" ## limpar até o fim da tela (representando a "parada" do programa)
   show_cursor
-
-  __debug.log "\n---------- tasks done [${#tasks_done[@]}] ----------\
-              \nk:> ${!tasks_done[@]}\
-              \nv:> ${tasks_done[@]}\
-              \n------- tasks to remove [${#tasks_to_remove[@]}] --------\
-              \nk:> ${!tasks_to_remove[@]}\
-              \nv:> ${tasks_to_remove[@]}"
-
   exit 0
 }
 
@@ -426,17 +466,9 @@ move_to_sof() {
 }
 
 move_to_eof() {
-  [[ -n "$NOT_MINGW_TERM" ]] || return 1 ## ERROR (não compatível com o MINGW)
+  [ -n "$NOT_MINGW_TERM" ] || return 1 ## ERROR (não compatível com o MINGW)
 
   printf "\x1B[${eof_cursor_pos%;*};1f"
-
-  : '
-  ## DEBUG things
-  printf "12345"
-  printf "\x1B[1G" ## vai pra coluna 1
-  # printf "\x1B[3X" ## insere 3 espaços à direita
-  printf "\x1B[3P" ## apaga 3 caracteres à direita
-  '
 }
 
 erase_to_eol() {
@@ -444,9 +476,9 @@ erase_to_eol() {
 }
 
 update_eof_cursor_pos() {
-  [[ -n "$NOT_MINGW_TERM" ]] || return 1 ## ERROR (não compatível com o MINGW)
+  [ -n "$NOT_MINGW_TERM" ] || return 1 ## ERROR
 
-  printf "\x1B[6n"
+  printf "\x1B[6n" ## no MinGW não funciona como o esperado
   read -sdR eof_cursor_pos
   eof_cursor_pos="${eof_cursor_pos#*[}"
 }
