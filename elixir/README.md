@@ -40,8 +40,9 @@ status | title | last update | snnipet | notes
 :-----:|:------|:-----------:|:-------:|:----:
 || [Elixir Tutorial - Basics](https://www.youtube.com/playlist?list=PLDbt-8dyNTUUQZcX5oVP1c9dABuS8ZsMp) | 2017 | de _SysAdmin Cat_ |
 :white_check_mark: | [Elixir For Beginners](https://www.youtube.com/playlist?list=PLei96ZX_m9sW6hZ1SvCE2dP01jbIxWlM0) | 2017 | de _Chris Hawkes_; versão reduzida |
-|| [1 minute of Elixir](https://www.youtube.com/playlist?list=PLaY7qWIrmqtE0jLlSySWWeG3rqcPLZXXr) | 2017 | de _LittleAlchemist.io_ |
 || [Zero to Hero in Elixir](https://www.youtube.com/playlist?list=PLaY7qWIrmqtFoZLvOvYRZG5hl367UybRp) | 2017 | de _LittleAlchemist.io_ |
+|| [Try Elixir](https://www.codeschool.com/courses/try-elixir) | | em _Code School_; 3 aulas com challenges; 90 min |
+|| [1 minute of Elixir](https://www.youtube.com/playlist?list=PLaY7qWIrmqtE0jLlSySWWeG3rqcPLZXXr) | 2017 | de _LittleAlchemist.io_ |
 || [Awesome Elixir](https://www.youtube.com/playlist?list=PLaY7qWIrmqtHfAfucvVAGxGYuTKT_8OZc) | 2017 | de _LittleAlchemist.io_ |
 || [Elixir Tutorial](https://www.youtube.com/playlist?list=PLDbt-8dyNTUWRUv0Cutoj2avYUd_lqdqn) | 2017 | de _SysAdmin Cat_ |
 || [elixir](https://www.youtube.com/playlist?list=PLJbE2Yu2zumAgKjSPyFtvYjP5LqgzafQq) | 2017 | de _Tensor Programming_ |
