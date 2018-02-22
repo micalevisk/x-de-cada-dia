@@ -33,6 +33,7 @@
 ##  known issues:
 ##  1- O prompt não é mostrado corretamente se a linha do comando que executou o script não for a primeira da janela do terminal;
 ##  2- Ao fechar o editor de texto (após a ação 'edit task') o prompt pode voltar com algumas linhas apagadas;
+##  3- Não apaga o diretório/arquivo criado (antes) para uma tarefa caso o usuário deseja (agora) removê-la;
 ##
 
 
