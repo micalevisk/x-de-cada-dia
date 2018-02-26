@@ -1,6 +1,6 @@
 #!/bin/bash
 ##
-##  v1.31-2
+##  v0.26-2
 ##  resources for cursor movements with ANSI escape sequences and other stuffs:
 ##  - http://shellscript.com.br
 ##  - https://www.tldp.org/HOWTO/Bash-Prompt-HOWTO/x361.html
@@ -9,61 +9,47 @@
 ##  - https://unix.stackexchange.com/questions/88296
 ##  - https://docs.microsoft.com/en-us/windows/console/console-virtual-terminal-sequences
 ##  - https://stackoverflow.com/questions/32009787
+##  - http://tldp.org/LDP/GNU-Linux-Tools-Summary/html/x11655.htm
 ##  - https://developer.apple.com/library/content/documentation/OpenSource/Conceptual/ShellScripting/AdvancedTechniques/AdvancedTechniques.html
 ##  - https://www.gnu.org/software/bash/manual/html_node/Job-Control.html
+##  - http://aurelio.net/sed/sed-howto/#fluxo-texto
 ##
 ##  Programa pensado na seguinte ordem de prioridade das operações:
 ##    marcar como feita - adicionar nova tarefa - remover tarefa - editar tarefa
-##
-##  $0 [COMANDOS]
-##  COMANDOS:
-##  edit                      -> Selecionar tarefas listadas (todas) para editar suas informações pelo vim/vi.
-##  new                       -> Selecionar uma das seções listadas e abrir o editor de texto para inserir uma nova tarefa.
-##  section [NAME]            -> Listar apenas as tarefas pendentes de uma seção. (Se NAME não for definido, lista as seções para a escolha pelas setas).
-##
-##  Ações diponíveis:
-##  [ESC] cancelar tudo e fechar
-##  [right-arrow/m] marca a tarefa (sobre o cursor) como "done"
-##  [left-arrow/u] desmarca a tarefa (sobre o cursor)
-##  [delete] (toggle) marcar tarefa (sobre o cursor) para remoção
-##  [o] abrir o link da tarefa no navegador padrão
-##  [enter/space] lista as alterações e espera a confirmação
-##  [f] criar arquivo para a tarefa (se não existir) ~ a extensão do arquivo deve ser digitada logo após o beep, seguido de ENTER para finalizar
-##  [d] criar diretório para a tarefa (se não existir) ~ o beep será emitido se for criado
 ##
 ##  known issues:
 ##  1- O prompt não é mostrado corretamente se a linha do comando que executou o script não for a primeira da janela do terminal;
 ##  2- Ao fechar o editor de texto (após a ação 'edit task') o prompt pode voltar com algumas linhas apagadas;
 ##  3- Não apaga o diretório/arquivo criado (antes) para uma tarefa caso o usuário deseja (agora) removê-la;
+##  4- Não considera (corretamente) o redimensionamento da janela;
 ##
 
+# shopt -s extglob
 
-declare VI="vim"
+declare EDITOR="vim"
 declare OPEN="open"
-command -v $VI >/dev/null 2>&1 || VI="vi"
+command -v $EDITOR >/dev/null 2>&1 || EDITOR="vi" ## ou 'open -e'
 command -v $OPEN >/dev/null 2>&1 || OPEN="cygstart"
 
 exec 2>/dev/null ## não mostrar erros na saída padrão
 
 
-PATH_TO_TASKS_FILE="tests/texto_pos_grep.${1:-1}"
-__debug.log() { echo -e "$(date +'[%M:%S]') $*" >> "__.logfile"; }
-__debug.cursor() { echo -en "\E[6n"; read -sdR CURPOS; __debug.log "${CURPOS#*[}"; } ## (c) https://unix.stackexchange.com/questions/88296
-__debug.loop() { while :; do :; done; }
+PATH_TO_TASKS_FILE="tests/texto_pos_grep.1"
+# __debug.log() { echo -e "$(date +'[%M:%S]') $*" >> "__.logfile"; }
+# __debug.cursor() { echo -en "\E[6n"; read -sdR CURPOS; __debug.log "${CURPOS#*[}"; } ## (c) https://unix.stackexchange.com/questions/88296
+# __debug.loop() { while :; do :; done; }
 
 # ------------------------------------------------------------------------------------------------------------------------------- #
 declare -A COLORS=( [w]=$'\e[37;1m' [y]=$'\e[33m' [g]=$'\e[32m' [r]=$'\e[31m' [p]=$'\e[35;1m' [n]=$'\e[0m' [gr]=$'\e[30;1m' )
+declare -a HEADERS_E=("<!-- title* -->\n" "<!-- last update -->\n" "<!-- snippet -->\n" "<!-- notes -->\n")
 declare -A TASK_REF_EMOJIS=( [d]="file_folder" [f]="memo")
 declare -A tasks_done ## a chave é o seu index (no array de tarefas) e o valor é a sua linha real
 declare -A tasks_to_remove ## a chave é o seu index (no array de tarefas) e o valor é a sua linha real
+declare -A tasks_edit ## a chave é o seu index (no array de tarefas) e o valor é a sua linha real
 declare -A created_files ## a chave é a linha real da tarefa e o valor é o caminho para o arquivo
 declare -A created_dirs ## a chave é a linha real da tarefa e o valor é o caminho para o diretório
+declare -a list_items ## cada elemento é um item na lista que será exibida
 
-declare -a HEADERS_E=("<!-- title -->\n" "<!-- last update -->\n" "<!-- snippet -->\n" "<!-- notes -->\n")
-declare -a tasks_not_done
-declare -a list_tasks_not_done
-
-# declare -r NAVI_SYMBOL='\xC3\x97' #aka '×'
 declare -r NAVI_SYMBOL='>'
 declare -r NAVI_LENGTH=${#NAVI_SYMBOL} ## forçar tamanho aqui se for usar símbolo hexadecimal (UTF-8 literal)
 declare -r NAVI_COLOR=${COLORS[y]}
@@ -71,7 +57,7 @@ declare -r NAVI_COLUMN=0
 declare -r SEPARATOR='.'
 declare -r KERNEL_NAME="$(uname -s)"
 declare -r NOT_MINGW_TERM="${KERNEL_NAME/#MINGW[[:digit:]]*}"
-declare -r special_list="[|\`_*\[\]]"
+declare -r special_list="[]\[|\`_*]" ## lista regex dos caracteres que foram escapados no title para evitar a interpretação do MD
 declare -r CURR_DIR="${1%%/}"
 declare -r TASKS_FILE="README.md"
 declare -r MISCELLANEOUS_DIRNAME="avulsos"
@@ -80,10 +66,11 @@ declare -r TASK_DONE_MARK=":white_check_mark:"
 declare -r PATH_TO_MISCELLANEOUS_DIRNAME="${CURR_DIR,,}/$MISCELLANEOUS_DIRNAME"
 
 declare -i index
-declare -i nums_tasks_not_done
+declare -i num_items
 declare -i offset
 declare -i column_sep
 declare -i screen_width
+declare -i curr_item_index
 
 declare -l normalized_task_name
 declare -l file
@@ -91,6 +78,10 @@ declare -l dir
 
 declare SOF_CURSOR_POS
 declare eof_cursor_pos
+declare all_tasks
+declare MODE_EDIT
+declare MODE_NEW
+declare command_end_action
 # ------------------------------------------------------------------------------------------------------------------------------- #
 
 trap update_screen_width! WINCH ## user has resized the window
@@ -99,32 +90,59 @@ trap clear_screen_exit SIGTSTP SIGHUP SIGKILL SIGQUIT SIGTERM ## user press Ctrl
 
 # ===================================================== #
 # ===================== begin ========================= #
-# @use: gwak                                            #
+# @use: grep sed gawk read mapfile                      #
 # ===================================================== #
-main() {
+main!() {
+  local items_to_show
+  local bind_arrow_right bind_arrow_left bind_delete bind_d bind_f bind_o
+
+  commands_switcher! "$@"
+
   clear ## apagar tela para previnir a issue#1 ~ movee o cursor para (1,1)
   SOF_CURSOR_POS="1;1"
   # printf "\\e[6n"; read -sdR SOF_CURSOR_POS
 
-  # tasks_not_done=$(grep --color=never -n -o -P '(?<=^\|\| \[).+(?=\])' "$PATH_TO_TASKS_FILE" | sed "s@\\\\\(${special_list}\)@\1@g") ## lista tarefas pendentes
-  tasks_not_done=$(sed "s@\\\\\(${special_list}\)@\1@g" "$PATH_TO_TASKS_FILE")
-  mapfile -t list_tasks_not_done <<< "$tasks_not_done"
+  ## definindo bindings padrões
+  bind_delete=toggle_delete_task
+  bind_d=create_dir
+  bind_f=create_file
+  bind_o=open_title_link
 
-  [ -n "${list_tasks_not_done[0]//[[:blank:]]/}" ] || bind_blank
+  if [ -n "$MODE_EDIT" ]; then ## items as all tasks
+    set_all_tasks!
+    items_to_show="$(printf "$all_tasks" | sort -n | sed -E "s~\\\(${special_list})~\1~g")" ## lista de tarefas encontradas
 
-  nums_tasks_not_done=${#list_tasks_not_done[@]} ## quantidade de linhas obtidas da extração das tarefas
-  offset=$(( ${#nums_tasks_not_done} + ${NAVI_LENGTH} )) ## quantidade de colunas antes do 'SEPARATOR'
-  column_sep=$(( $offset + 1 ))
+    bind_arrow_right=mark_edit_task
+    bind_arrow_left=remove_edit_mark
+  elif [ -n "$MODE_NEW" ]; then ## items as all sections
+    items_to_show="$(sed -En '/^##\s*(.+)/=; s//\1/p' tests/texto_base.1 | sed 'N; s/\n/:/')" ## lista das seções econtradas
+
+    bind_arrow_right=bind_blank
+    bind_delete=; bind_d=; bind_f=; bind_o=; ## desativando bindings padrões
+  else ## items as tasks not done
+    items_to_show="$(grep --color=never -n -o -P '(?<=^\|\| \[).+(?=\])' "tests/texto_base.1" | sed -E "s~\\\(${special_list})~\1~g")" ## lista de tarefas pendentes
+
+    bind_arrow_right=mark_done_task
+    bind_arrow_left=remove_done_mark
+  fi
+
+
+  mapfile -t list_items <<< "$items_to_show" ## array com elementos no formato `<real_line>:<task_tittle>`
+  [ -n "${list_items[0]//[[[:cntrl:]][[:blank:]]]/}" ] || bind_blank ## verifica se existe algo para listar
+
+  num_items=${#list_items[@]} ## quantidade de linhas obtidas da extração das tarefas
+  offset=$(( NAVI_LENGTH + ${#num_items} )) ## quantidade de colunas antes do 'SEPARATOR'
+  column_sep=$(( offset + 1 ))
 
   update_screen_width!
 
   save_cursor
-  gawk -v offset=$offset -v sep="$SEPARATOR" '{ printf "%*d%s %s\n", offset, NR, sep, gensub(/[0-9]+:/, "", 1) }' <<< "$tasks_not_done"
+  gawk -v offset=$offset -v sep="$SEPARATOR" '{ printf "%*d%s %s\n", offset, NR, sep, gensub(/^[0-9]+:?/, "", 1) }' <<< "$items_to_show"
   update_eof_cursor_pos!
   restore_cursor
   hide_cursor
 
-  curr_task_index=0
+  curr_item_index=0
   move_to_column $column_sep
   print_navi
 
@@ -136,9 +154,9 @@ main() {
           case "${key:1:1}" in
             'A') bind_arrow_up ;;
             'B') bind_arrow_down ;;
-            'C') bind_arrow_right ;;
-            'D') bind_arrow_left ;;
-            '3') bind_delete ;;
+            'C') $bind_arrow_right ;;
+            'D') $bind_arrow_left ;;
+            '3') $bind_delete ;;
           esac
         }
         ## flush "stdin" with 0.1  sec timeout.
@@ -147,11 +165,9 @@ main() {
       $'') bind_blank ;;
 
       ## handle especial alpha chars.
-      $'\x64') bind_d ;;
-      $'\x66') bind_f ;;
-      $'\x6d') bind_m ;;
-      $'\x6f') bind_o ;;
-      $'\x75') bind_u ;;
+      $'\x64') $bind_d ;;
+      $'\x66') $bind_f ;;
+      $'\x6f') $bind_o ;;
 
       *) ;; ## do nothing
     esac
@@ -161,9 +177,10 @@ main() {
 
 # ====================================================== #
 # ====================== util ========================== #
+# @use: read sed                                         #
 # ====================================================== #
 
-## Exibe um mensagem que espera a tecla 'y' (1 caractere) da stdin.
+## Exibe um mensagem que espera a tecla 'y' (1 caractere) via stdin.
 ## @args: <pergunta que será feita>
 ## @use: read
 confirm() {
@@ -171,12 +188,13 @@ confirm() {
   [ "${REPLY,,}" == "y" ]
 }
 
-## Definie as variáveis 'file' e 'dir' que são caminhos para o
+## Define as variáveis 'file' e 'dir' que são caminhos para o
 ## arquivo ou diretório da tarefa. Além da variável
 ## 'normalized_task_name' que guarda o nome tratado da tarefa.
 ## @args: <nome da tarefa> [extensão para o arquivo]
 ## @use: sed
 set_file_and_dir!() {
+  ## XXX: talvez não precise remover a acentuação pois o file system as permite.
   normalized_task_name=$(sed -E '
     y/àáâãäåèéêëìíîïòóôõöùúûü/aaaaaaeeeeiiiiooooouuuu/
     y/ÀÁÂÃÄÅÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜ/AAAAAAEEEEIIIIOOOOOUUUU/
@@ -189,25 +207,192 @@ set_file_and_dir!() {
   dir="$CURR_DIR/${normalized_task_name}"
 }
 
+## Define a variável 'all_tasks' que é uma string com todos os `title`
+## recuperados do arquivo das tarefas.
+## @use: grep
+set_all_tasks!() {
+  ## OPTIMIZE: evitar o uso de dois grep (talvez com sed -En e o comando '='; para casar tudo e apagar lixos).
+  all_tasks="$(grep --color=never -n -o -P "(?<=${TASK_DONE_MARK} \| \[).+(?=\])" "tests/texto_base.1")"
+  all_tasks="${all_tasks:+${all_tasks}\n}$(grep --color=never -n -o -P '(?<=^\|\| \[).+(?=\])' "tests/texto_base.1")"
+  ## HACK:    ^^^^^^^^^^^^^^^^^^^^^^ a verificação lá em baixo dará false se o primeiro elemento do array for nulo.
+}
+
+show_help_exit() {
+  cat <<EOF
+  "Fancy" CLI Tool para gerenciar as tarefas de \`X de Cada Dia\`.
+
+  Usage:
+    $0 [COMMANDS] <path/to/lang/dir>
+
+  A ausência de um comando implicará na listagem das tarefas pendentes
+  que poderão sofrer as seguintes ações:
+    .____._________________._____________________________________________________________________.
+    | n. | key             |                             description                             |
+    +----+-----------------+---------------------------------------------------------------------+
+    | 1  | ESC             | cancel actions and exit                                             |
+    | 2  | down arrow key  | next task                                                           |
+    | 3  | up arrow key    | previous task                                                       |
+    | 4  | right arrow key | mark as done                                                        |
+    | 5  | left arrow key  | unmark as done                                                      |
+    | 6  | delete          | mark/unmark to remove                                               |
+    | 7  | d               | create a [d]irectory to current task (emit 'beep' if it was created)|
+    | 8  | f               | create a [f] to current task (waiting for an extension after 'beep')|
+    | 9  | o               | [o]pen task \`title\` link                                            |
+    | 10 | space/ENTER     | go to next step (and update the progress)                           |
+    +----+-----------------+---------------------------------------------------------------------+
+
+  COMMANDS:
+    new    - Select the section to create a new task. (off: 4..9)
+    edit   - Select tasks to edit.
+EOF
+  exit 0
+}
+
+
+# ===================================================== #
+# ==================== command ======================== #
+# @use: mktemp sed rm mapfile less                      #
+# ===================================================== #
+
+## Verifica se existe uma tarefa com o title passado.
+## @args: <title da tarefa>
+task_exists() {
+  ## FIXME: procura apenas a ocorrência do título em qualquer sequência
+  [ $(grep -c -m1 -F "$1" "tests/texto_base.1") -gt 0 ]
+}
+
+## Abre um editor de texto com as informações da tarefa
+## passa por parâmetro a serem editadas e persiste.
+## @args: <linha real da tarefa>
+edit_file() {
+  local new_values task_title
+  local temp_file="$(mktemp -q ".edit-task-L${1}.XXXXXXXXXXXX.md")"
+  [ -w "$temp_file" ] || return 1 ## ERROR
+
+  ##<%e
+  set_all_tasks!
+  less < <(printf "Todas as Tarefas:\\n${all_tasks}" | sort -n | sed -E "s~\\\(${special_list})~\1~g") ## lista todas as tarefas
+  ##e%>
+
+  sed -En "${1}\
+    s/^(\|\||${TASK_DONE_MARK}\s*\|)\s*(.+)\|\s*(.*)\|\s*(.*)\|\s*(.*)/${HEADERS_E[0]}\2\n\n${HEADERS_E[1]}\3\n\n${HEADERS_E[2]}\4\n\n${HEADERS_E[3]}\5/p"\
+    "tests/texto_base.1" > "$temp_file" || return 2 ## ERROR
+
+  ##<%d
+  $EDITOR -c 'set nu' +2 "$temp_file" ## abrir arquivo para edição e posicionar na segunda linha
+
+  ## Admite que o padrão do arquivo aberto não será alterado e todos os valores
+  ## estão 1 linha abaixo do campo indicado e não ocupam mais de 1 linha.
+  mapfile -t new_values < <(sed -n '2p; 5p; 8p; 11p' "$temp_file") ## XXX: versão "bruta" mas rápida
+  rm -f "$temp_file"
+  task_title="${new_values[0]##*( )}" ## trim leading whitespaces
+  [ -n "$task_title" ] || return 3 ## ERROR 'title' (obrigatório) está vazio
+
+  ## formatando como colunas
+  new_values="${new_values[@]/%/\|}"
+  new_values="${new_values%\|}"
+  new_values="${new_values%%*( )}" ## trim trailing whitespaces
+  new_values="$(sed -E "s~(\\\)(${special_list})~\1\1\2~g" <<< "$new_values")"
+
+  task_exists "${task_title}" && return 4
+  ##d%>
+
+  sed -Ei "${1} s~^(\|\||${TASK_DONE_MARK}\s*\|)(\s*).+~\1\2${new_values}~" "tests/texto_base.1" && emit_beep
+}
+
+## Itera sobre as tarefas marcadas para edição
+## executando a ação de editar arquivo.
+command_edit() {
+  for i in "${!tasks_edit[@]}"; do
+    edit_file "${tasks_edit[$i]}" && printf "Tarefa ${COLORS[y]}$(( i + 1 ))${COLORS[n]} editada!\n"
+  done
+}
+
+## Abre um editor de texto com as informações necessárias
+## para a inserção de uma nova tarefa em uma seção específica.
+## @args: <linha real de seção>
+create_new_task() {
+  local new_task_values task_title real_line
+  local temp_file="$(mktemp -q ".new-task-L${1}.XXXXXXXXXXXX.md")"
+  [ -w "$temp_file" ] || return 1 ## ERROR
+
+  ##<%e
+  set_all_tasks!
+  less < <(printf "Todas as Tarefas:\\n${all_tasks}" | sort -n | sed -E "s~\\\(${special_list})~\1~g") ## lista todas as tarefas
+  ##e%>
+
+  real_line="$(
+    sed -En "$(( $1 + 2 )),\
+    /\s*(${TASK_DONE_MARK}|\|\|)/{
+      h;
+      /\s*(${TASK_DONE_MARK}|\|\|)/{x; =;}
+    }" "tests/texto_base.1")"
+
+  printf "%s\\n\\n\\n" "${HEADERS_E[@]//\\n}" > "$temp_file" || return 2 ## ERROR
+
+  ##<%d
+  $EDITOR -c 'set nu' +2 "$temp_file" ## abrir arquivo para edição e posicionar na segunda linha
+
+  ## Admite que o padrão do arquivo aberto não será alterado e todos os valores
+  ## estão 1 linha abaixo do campo indicado e não ocupam mais de 1 linha.
+  mapfile -t new_task_values < <(sed -n '2p; 5p; 8p; 11p' "$temp_file") ## XXX: versão "bruta" mas rápida
+  rm -f "$temp_file"
+  task_title="${new_task_values[0]##*( )}" ## trim leading whitespaces
+  [ -n "$task_title" ] || return 3 ## ERROR 'title' (obrigatório) está vazio
+
+  ## formatando como colunas
+  new_task_values="${new_task_values[@]/%/ \|}"
+  new_task_values="${new_task_values%\|}"
+  new_task_values="${new_task_values%%*( )}" ## trim trailing whitespaces
+  new_task_values="$(sed -E "s~(\\\)(${special_list})~\1\1\2~g" <<< "$new_task_values")"
+
+  task_exists "${task_title}" && return 4
+  ##d%>
+
+  sed -i "${real_line}i\\|| ${new_task_values}" "tests/texto_base.1"
+}
+
+## Trata a seção corrente como a alvo para a nova tarefa.
+## Chama a ação de criar tarefa.
+command_new() {
+  ## A tarefa será inserida no início, i.e., primeira item da seção escolhida
+  if create_new_task "${list_items[$curr_item_index]%%:*}"; then
+    printf "Tarefa Inserida em %s${list_items[$curr_item_index]#*:}%s!\n" "${COLORS[y]}" "${COLORS[n]}"
+  else
+    printf "Não foi possível inserir essa tarefa...\n"
+  fi
+}
+
+
+## Controla o uso dos comandos. Aceita um comando por
+## execução. Trata apenas o primeiro, caso mais de
+## um forem fornecidos.
+commands_switcher!() {
+  [ $# -eq 0 ] && return 1 ## ERROR ~ nenhum comando encontrado, ignorar
+  case "${1,,}" in
+    edit) MODE_EDIT=1 ;;
+    new ) MODE_NEW=1  ;;
+    * ) show_help_exit;;
+  esac
+}
+
 
 # ===================================================== #
 # ==================== binding ======================== #
+# @use: sed printf mkdir read touch open                #
 # ===================================================== #
 
-bind_arrow_up() { previous_task; }
-bind_arrow_down() { next_task; }
-bind_arrow_right() { mark_done_task; }
-bind_arrow_left() { remove_done_mark; }
-bind_m() { mark_done_task; }
-bind_u() { remove_done_mark; }
-
+bind_arrow_up() { previous_item!; }
+bind_arrow_down() { next_item!; }
 bind_esc() { clear_screen_exit; }
 
 ## Etapa final que lista os diretórios e arquivos criados,
 ## espera a confirmação das ações realizadas e atualiza o
 ## arquivo das tarefas (progresso, etc).
-## @use: sed printf
 bind_blank() {
+  local num_tasks num_tasks_done percentage
+  local color_key="r"
+
   move_to_eof || {
     move_to_sof ## para a versão no MinGW
     printf "\\e[0J" ## apagar até o fim da tela
@@ -215,129 +400,87 @@ bind_blank() {
 
   show_cursor
 
-  # local nums_tasks=$(grep -c -P "^\s*(${TASK_DONE_MARK}|\|\|)" "$PATH_TO_TASKS_FILE")
-  local nums_tasks=$(grep -c -P "^\s*(${TASK_DONE_MARK}|\|\|)" "tests/texto_base.1")
-  local nums_tasks_done=$(( nums_tasks - nums_tasks_not_done ))
+  [ -n "$num_items" ] || exit 0
 
-  [ ${#created_dirs[@]} -ne 0 ] && {
-    printf "~ Diretórios Criados (${#created_dirs[@]}):\n"
-    printf "%s\n" "${created_dirs[@]}"
-  }
+  if [ -n "$MODE_EDIT" ]; then
+    num_tasks=$num_items
+    num_tasks_done=$(grep -c -P "^\s*${TASK_DONE_MARK}" "tests/texto_base.1")
+    command_edit
 
-  [ ${#created_files[@]} -ne 0 ] && {
-    printf "~ Arquivos Criados   (${#created_files[@]}):\n"
-    printf "%s\n" "${created_files[@]}"
-  }
+  elif [ -n "$MODE_NEW" ]; then
+    command_new
+    ##<%c
+    num_tasks=$(grep -c -P "^\s*(${TASK_DONE_MARK}|\|\|)" "tests/texto_base.1")
+    ##c%>
+    num_tasks_done=$(grep -c -P "^\s*${TASK_DONE_MARK}" "tests/texto_base.1")
 
-  [ ${#tasks_done[@]} -ne 0 ] && {
-    confirm "~ ${#tasks_done[@]} Tarefa(s) Feita(s)" && {
-      local emoji task_ref
+  else ## operações exclusivas para modo "action" (default)
+    ##<%c
+    num_tasks=$(grep -c -P "^\s*(${TASK_DONE_MARK}|\|\|)" "tests/texto_base.1")
+    ##c%>
+    num_tasks_done=$(( num_tasks - num_items ))
 
-      for real_line in "${tasks_done[@]}"; do
-        # sed -i "${real_line} s/^||/${TASK_DONE_MARK} |/" "$PATH_TO_TASKS_FILE" && ((nums_tasks_done++))
-        sed -i "${real_line} s/^\s*||/${TASK_DONE_MARK} |/" "tests/texto_base.1" && ((nums_tasks_done++))
-
-        ## referenciando o arquivo/diretório criado para esta tarefa
-        if [ -n "${created_files[$real_line]+_}" ]; then
-          sed -i "${real_line} s%$% [:${TASK_REF_EMOJIS[f]}:](${created_files[$real_line]})%" "tests/texto_base.1"
-        elif [ -n "${created_dirs[$real_line]+_}" ]; then
-          sed -i "${real_line} s%$% [:${TASK_REF_EMOJIS[d]}:](${created_dirs[$real_line]})%" "tests/texto_base.1"
-        fi
-      done
+    [ ${#created_dirs[@]} -ne 0 ] && {
+      printf "~ Diretórios Criados (${#created_dirs[@]}):\n"
+      printf "%s\n" "${created_dirs[@]}"
     }
 
-    printf "\n"
-  }
-
-  [ ${#tasks_to_remove[@]} -ne 0 ] && {
-    confirm "~ ${#tasks_to_remove[@]} Tarefa(s) Removidas(s)" && {
-      local lines_to_delete="${tasks_to_remove[@]/%/d;}"
-      # sed -i "$lines_to_delete" "$PATH_TO_TASKS_FILE" && nums_tasks="$(( nums_tasks - ${#tasks_to_remove[@]} ))"
-      sed -i "$lines_to_delete" "tests/texto_base.1" && nums_tasks="$(( nums_tasks - ${#tasks_to_remove[@]} ))"
+    [ ${#created_files[@]} -ne 0 ] && {
+      printf "~ Arquivos Criados   (${#created_files[@]}):\n"
+      printf "%s\n" "${created_files[@]}"
     }
 
-    printf "\n"
-  }
+    [ ${#tasks_done[@]} -ne 0 ] && {
+      confirm "~ ${#tasks_done[@]} Tarefa(s) Feita(s)" && {
+        local emoji task_ref
 
-  local color_key="r"
-  local percentage=$(( nums_tasks_done*100 / nums_tasks ))
+        for real_line in "${tasks_done[@]}"; do
+          # sed -i "${real_line} s/^||/${TASK_DONE_MARK} |/" "$PATH_TO_TASKS_FILE" && (( num_tasks_done++ ))
+          sed -i "${real_line} s/^\s*||/${TASK_DONE_MARK} |/" "tests/texto_base.1" && (( num_tasks_done++ ))
+
+          ## referenciando o arquivo/diretório criado para esta tarefa
+          if [ -n "${created_files[$real_line]+_}" ]; then
+            sed -i "${real_line} s%$% [:${TASK_REF_EMOJIS[f]}:](${created_files[$real_line]})%" "tests/texto_base.1"
+          elif [ -n "${created_dirs[$real_line]+_}" ]; then
+            sed -i "${real_line} s%$% [:${TASK_REF_EMOJIS[d]}:](${created_dirs[$real_line]})%" "tests/texto_base.1"
+          fi
+        done
+      }
+
+      printf "\n"
+    }
+
+    [ ${#tasks_to_remove[@]} -ne 0 ] && {
+      confirm "~ ${#tasks_to_remove[@]} Tarefa(s) Removidas(s)" && {
+        local lines_to_delete="${tasks_to_remove[@]/%/d;}" ## expressão única para apagar todas as linhas com o sed
+        # sed -i "$lines_to_delete" "$PATH_TO_TASKS_FILE" && num_tasks="$(( num_tasks - ${#tasks_to_remove[@]} ))"
+        sed -i "$lines_to_delete" "tests/texto_base.1" && num_tasks="$(( num_tasks - ${#tasks_to_remove[@]} ))"
+      }
+
+      printf "\n"
+    }
+
+  fi
+
+
+  percentage=$(( num_tasks_done*100 / num_tasks ))
   [ "$percentage" -eq 100 ] && color_key="g" ## se todas as tarefas foram concluídas
 
-  # sed -i -E "0,/(done-)[0-9]+(.+)\([0-9]+(.+of...)[0-9]+\)/ s//\1${percentage}\2(${nums_tasks_done}\3${nums_tasks})/" "$PATH_TO_TASKS_FILE" \
-  sed -i -E "0,/(done-)[0-9]+(.+)\([0-9]+(.+of...)[0-9]+\)/ s//\1${percentage}\2(${nums_tasks_done}\3${nums_tasks})/" "tests/texto_base.1" \
-    && printf "${COLORS[w]}Now ${COLORS[$color_key]}${percentage}%% ${COLORS[w]}(${nums_tasks_done} of ${nums_tasks}) done!${COLORS[n]}\n"
+  # sed -i -E "0,/(done-)[0-9]+(.+)\([0-9]+(.+of...)[0-9]+\)/ s//\1${percentage}\2(${num_tasks_done}\3${num_tasks})/" "$PATH_TO_TASKS_FILE" \
+  sed -i -E "0,/(done-)[0-9]+(.+)\([0-9]+(.+of...)[0-9]+\)/ s//\1${percentage}\2(${num_tasks_done}\3${num_tasks})/" "tests/texto_base.1" \
+    && printf "${COLORS[w]}Now ${COLORS[$color_key]}${percentage}%% ${COLORS[w]}(${num_tasks_done} of ${num_tasks}) done!${COLORS[n]}\n"
 
-  exit 0 ## para sair do loop (na função main) e fechar o programa
-}
-
-## Marca ou desmarca uma tarefa para remoção.
-## Bind da tecla 'delete'.
-bind_delete() {
-  ## verificando se já está marcado para remoção
-  [ -n "${tasks_to_remove[$curr_task_index]+_}" ] && remove_delete_mark || mark_delete_task
-}
-
-## Cria, se não existir, um diretório para a tarefa corrente.
-## @use: mkdir
-bind_d() {
-  set_file_and_dir! "${list_tasks_not_done[$curr_task_index]#*:}"
-  [ -n "$normalized_task_name" ] || return 1
-  # dir="$CURR_DIR/$normalized_task_name"
-  dir="./$normalized_task_name"
-
-  if [ ! -d "$dir" ]; then
-    mkdir -p "$dir" || return 1 ## ERROR
-    emit_beep
-  fi
-  created_dirs[${list_tasks_not_done[$curr_task_index]%%:*}]="$dir"
-}
-
-## Cria um arquivo de texto para a tarefa corrente.
-## @use: printf read touch
-bind_f() {
-  printf "\\e[?5h" ## turn on reverse video
-  emit_beep ## avisa que está esperando uma entrada
-  read -rs extension
-  printf "\\e[?5l" ## turn on normal video
-
-  ## remover caracteres inválidos (uso das setas, brancos, etc)
-  local extension="${extension//[[:cntrl:]]\[[[:alnum:]][[:punct:]]/}"
-  extension="${extension//[[:cntrl:]]\[[[:alnum:]]/}"
-  extension="${extension//[[:blank:]]/}"
-  extension="${extension#.}" ## remover o ponto se iniciar na 'extension'
-
-  if [ -n "$extension" ]; then
-    set_file_and_dir! "${list_tasks_not_done[$curr_task_index]#*:}" "$extension"
-    touch "$file" || return 1 ## ERROR
-    emit_beep
-  fi
-  created_files[${list_tasks_not_done[$curr_task_index]%%:*}]="$file"
-}
-
-## Abre o link da tarefa corrente.
-## @use: sed open/cygstart
-bind_o() {
-  [ -n "$OPEN" ] || return 1
-
-  local curr_task_line=${list_tasks_not_done[$curr_task_index]%%:*}
-  # local task_title=$(sed -rn "$curr_task_line s/(http[^\)]+).+$/\1/p" "$PATH_TO_TASKS_FILE")
-  local task_title=$(sed -rn "$curr_task_line s/(http[^\)]+).+$/\1/p" tests/texto_base.1)
-  local link_without_http="${task_title#*\(http}"
-
-  if [ -n "$link_without_http" ]; then
-    emit_beep
-    $OPEN "http$link_without_http"
-  fi
+  exit 0 ## para sair do loop (na função main!) e fechar o programa
 }
 
 
-# ====================================================== #
-# ==================== specific ======================== #
-# ====================================================== #
+# ======================================================= #
+# ==================== for items ======================== #
+# @use: printf                                            #
+# ======================================================= #
 
 ## Mostra o indicador de navegação.
 ## @args: [quantidade de linhas extras ocupadas pelo nome da tarefa]
-## @use: printf
 print_navi() {
   move_to_navi ${1}
   printf "%s${NAVI_SYMBOL}%s" ${NAVI_COLOR} ${COLORS[n]}
@@ -345,7 +488,6 @@ print_navi() {
 }
 
 ## Apaga o indicador de navegação e posiciona o cursor para sua coluna.
-## @use: printf
 erase_navi() {
   move_to_navi
   printf "\\e[${NAVI_LENGTH}X" ## escreve N brancos à direita
@@ -360,101 +502,219 @@ move_to_navi() {
   move_to_column $NAVI_COLUMN
 }
 
-## Marca a tarefa, que está sobre o cursor, como "concluída".
-## @use: printf
-mark_done_task() {
-  [ -n "${tasks_done[$curr_task_index]+_}" ] && return ## verificando presença no array associativo
-  tasks_done[$curr_task_index]="${list_tasks_not_done[$curr_task_index]%%:*}" ## associando o index com a linha real
-  unset tasks_to_remove[$curr_task_index] ## sobrescrevendo a ação 'remover tarefa'
 
+# ====================================================== #
+# =============== items as tasks to edit =============== #
+# @use: printf                                           #
+# ====================================================== #
+
+## Marca a tarefa, que está sobre o cursor, para futura edição.
+mark_edit_task() {
+  [ -n "${tasks_edit[$curr_item_index]+_}" ] && return ## verificando presença no array associativo
+  tasks_edit[$curr_item_index]="${list_items[$curr_item_index]%%:*}" ## associando o index com a linha real
+
+  ##<%a
   move_to_navi
 
-  local curr_task="${list_tasks_not_done[$curr_task_index]#*:}"
-  printf "%s%*d$SEPARATOR %s$curr_task%s" ${COLORS[g]} $offset $(( curr_task_index + 1 )) ${COLORS[gr]} ${COLORS[n]}
+  local curr_item="${list_items[$curr_item_index]#*:}"
+  printf "%s%*d$SEPARATOR %s$curr_item%s" ${COLORS[p]} $offset $(( curr_item_index + 1 )) ${COLORS[gr]} ${COLORS[n]}
 
-  local line_width=$(( offset + ${#curr_task_index} + ${#SEPARATOR} + ${#curr_task} ))
+  local line_width=$(( offset + ${#curr_item_index} + ${#SEPARATOR} + ${#curr_item} ))
   local voffset=$(( line_width / screen_width )) ## quantas linhas a mais o title está ocupando
 
   print_navi $voffset
+  ##a%>
+}
+
+## Remove a marca "editar" da tarefa que está sobre o cursor.
+remove_edit_mark() {
+  [ -n "${tasks_edit[$curr_item_index]+_}" ] || return ## verificando presença no array associativo
+  unset tasks_edit[$curr_item_index] ## removendo do array associativo
+
+  ##<%b
+  move_to_navi
+
+  local curr_item="${list_items[$curr_item_index]#*:}"
+  printf "%s%*d$SEPARATOR $curr_item%s" ${COLORS[n]} $offset $(( curr_item_index + 1 )) ${COLORS[n]}
+
+  local line_width=$(( offset + ${#curr_item_index} + ${#SEPARATOR} + ${#curr_item} ))
+  local voffset=$(( line_width / screen_width )) ## quantas linhas a mais o title está ocupando
+
+  print_navi $voffset
+  ##b%>
+}
+
+
+# ====================================================== #
+# ================= items as tasks ===================== #
+# @use: printf                                           #
+# ====================================================== #
+
+## Marca a tarefa, que está sobre o cursor, como "concluída".
+mark_done_task() {
+  [ -n "${tasks_done[$curr_item_index]+_}" ] && return ## verificando presença no array associativo
+  tasks_done[$curr_item_index]="${list_items[$curr_item_index]%%:*}" ## associando o index com a linha real
+  unset tasks_to_remove[$curr_item_index] ## sobrescrevendo a ação 'remover tarefa'
+
+  ##<%a
+  move_to_navi
+
+  local curr_item="${list_items[$curr_item_index]#*:}"
+  printf "%s%*d$SEPARATOR %s$curr_item%s" ${COLORS[g]} $offset $(( curr_item_index + 1 )) ${COLORS[gr]} ${COLORS[n]}
+
+  local line_width=$(( offset + ${#curr_item_index} + ${#SEPARATOR} + ${#curr_item} ))
+  local voffset=$(( line_width / screen_width )) ## quantas linhas a mais o title está ocupando
+
+  print_navi $voffset
+  ##a%>
 }
 
 ## Remove a marca "concluída" da tarefa que está sobre o cursor.
-## @use: printf
 remove_done_mark() {
-  [ -n "${tasks_done[$curr_task_index]+_}" ] || return ## verificando presença no array associativo
-  unset tasks_done[$curr_task_index] ## removendo do array associativo
+  [ -n "${tasks_done[$curr_item_index]+_}" ] || return ## verificando presença no array associativo
+  unset tasks_done[$curr_item_index] ## removendo do array associativo
 
+  ##<%b
   move_to_navi
 
-  local curr_task="${list_tasks_not_done[$curr_task_index]#*:}"
-  printf "%s%*d$SEPARATOR $curr_task%s" ${COLORS[n]} $offset $(( curr_task_index + 1 )) ${COLORS[n]}
+  local curr_item="${list_items[$curr_item_index]#*:}"
+  printf "%s%*d$SEPARATOR $curr_item%s" ${COLORS[n]} $offset $(( curr_item_index + 1 )) ${COLORS[n]}
 
-  local line_width=$(( offset + ${#curr_task_index} + ${#SEPARATOR} + ${#curr_task} ))
+  local line_width=$(( offset + ${#curr_item_index} + ${#SEPARATOR} + ${#curr_item} ))
   local voffset=$(( line_width / screen_width )) ## quantas linhas a mais o title está ocupando
 
   print_navi $voffset
+  ##b%>
 }
 
 ## Marca a tarefa, que está sobre o cursor, como "remover".
-## @use: printf
 mark_delete_task() {
-  tasks_to_remove[$curr_task_index]="${list_tasks_not_done[$curr_task_index]%%:*}" ## associando o index com a linha real
-  unset tasks_done[$curr_task_index] ## sobrescrevendo a ação 'marcar como feita'
+  tasks_to_remove[$curr_item_index]="${list_items[$curr_item_index]%%:*}" ## associando o index com a linha real
+  unset tasks_done[$curr_item_index] ## sobrescrevendo a ação 'marcar como feita'
 
   move_to_navi
 
-  local curr_task="${list_tasks_not_done[$curr_task_index]#*:}"
-  printf "%s%*d$SEPARATOR %s$curr_task%s" ${COLORS[r]} $offset $(( curr_task_index + 1 )) ${COLORS[gr]} ${COLORS[n]}
+  local curr_item="${list_items[$curr_item_index]#*:}"
+  printf "%s%*d$SEPARATOR %s$curr_item%s" ${COLORS[r]} $offset $(( curr_item_index + 1 )) ${COLORS[gr]} ${COLORS[n]}
 
-  local line_width=$(( $offset + ${#curr_task_index} + ${#SEPARATOR} + ${#curr_task} ))
+  local line_width=$(( $offset + ${#curr_item_index} + ${#SEPARATOR} + ${#curr_item} ))
   local voffset=$(( $line_width / $screen_width )) ## quantas linhas a mais o title está ocupando
 
   print_navi $voffset
 }
 
 ## Remove a marca "remover" da tarefa que está sobre o cursor.
-## @use: printf
 remove_delete_mark() {
-  unset tasks_to_remove[$curr_task_index] ## removendo do array associativo
+  unset tasks_to_remove[$curr_item_index] ## removendo do array associativo
 
   move_to_navi
 
-  local curr_task="${list_tasks_not_done[$curr_task_index]#*:}"
-  printf "%s%*d$SEPARATOR $curr_task%s" ${COLORS[n]} $offset $(( curr_task_index + 1 )) ${COLORS[n]}
+  local curr_item="${list_items[$curr_item_index]#*:}"
+  printf "%s%*d$SEPARATOR $curr_item%s" ${COLORS[n]} $offset $(( curr_item_index + 1 )) ${COLORS[n]}
 
-  local line_width=$(( offset + ${#curr_task_index} + ${#SEPARATOR} + ${#curr_task} ))
+  local line_width=$(( offset + ${#curr_item_index} + ${#SEPARATOR} + ${#curr_item} ))
   local voffset=$(( line_width / screen_width )) ## quantas linhas a mais o title está ocupando
 
   print_navi $voffset
 }
 
-## Se possível, vai para próxima tarefa (linha abaixo).
-## @use: printf
-next_task() {
-  [ $(( curr_task_index + 1 )) -lt $nums_tasks_not_done ] || return
-  erase_navi
+## Marca ou desmarca uma tarefa para remoção.
+toggle_delete_task() {
+  ## verificando se já está marcado para remoção
+  [ -n "${tasks_to_remove[$curr_item_index]+_}" ] && remove_delete_mark || mark_delete_task
+}
 
-  local curr_task="${list_tasks_not_done[$curr_task_index]}"
-  local line_width=$(( offset + ${#curr_task_index} + ${#SEPARATOR} + ${#curr_task} ))
-  local voffset=$(( line_width / screen_width ))
-  ((curr_task_index++))
+## Cria, se não existir, um diretório para a tarefa corrente.
+create_dir() {
+  set_file_and_dir! "${list_items[$curr_item_index]#*:}"
+  [ -n "$normalized_task_name" ] || return 1
+  # dir="$CURR_DIR/$normalized_task_name"
+  dir="./$normalized_task_name"
 
-  move_down_lines $(( voffset + 1 ))
+  if [ ! -d "$dir" ]; then
+    mkdir -p "$dir" || return 1 ## ERROR
+    emit_beep
+    created_dirs[${list_items[$curr_item_index]%%:*}]="$dir"
+  fi
+}
+
+## Cria um arquivo de texto para a tarefa corrente.
+## Após um sinal sonoro, espera a extensão do arquivo a ser criado.
+create_file() {
+  printf "\\e[?5h" ## turn on reverse video
+  emit_beep
+  read -rs extension
+  printf "\\e[?5l" ## turn on normal video
+
+  ## remover caracteres inválidos (uso das setas, brancos, etc)
+  local extension="${extension//[[:cntrl:]]\[[[:alnum:]][[:punct:]]/}"
+  extension="${extension//[[:cntrl:]]\[[[:alnum:]]/}"
+  extension="${extension//[[:blank:]]/}"
+  extension="${extension#.}" ## remover o ponto se iniciar na 'extension'
+
+  if [ -n "$extension" ]; then
+    set_file_and_dir! "${list_items[$curr_item_index]#*:}" "$extension"
+    touch "$file" || return 1 ## ERROR
+    emit_beep
+    created_files[${list_items[$curr_item_index]%%:*}]="$file"
+  fi
+}
+
+## Abre o link da tarefa corrente em um navegador.
+## Um sinal sonoro será emitido em caso de sucesso.
+open_title_link() {
+  [ -n "$OPEN" ] || return 1
+
+  local curr_task_line=${list_items[$curr_item_index]%%:*}
+  # local task_title=$(sed -rn "$curr_task_line s/(http[^\)]+).+$/\1/p" "$PATH_TO_TASKS_FILE")
+  local task_title=$(sed -rn "$curr_task_line s/(http[^\)]+).+$/\1/p" tests/texto_base.1)
+  local link_without_http="${task_title#*\(http}"
+
+  [ -n "$link_without_http" ] && $OPEN "http$link_without_http" && emit_beep
+}
+
+
+# ===================================================== #
+# ======================= items ======================= #
+# @use: printf                                          #
+# ===================================================== #
+
+## Se possível, vai para o próximo item (desce).
+next_item!() {
+  if [ $(( curr_item_index + 1 )) -ge $num_items ]; then
+    ## vai para o primeiro item
+    erase_navi
+    move_to_sof && curr_item_index=0
+  else
+    erase_navi
+
+    local curr_item="${list_items[$curr_item_index]}"
+    local line_width=$(( offset + ${#curr_item_index} + ${#SEPARATOR} + ${#curr_item} ))
+    local voffset=$(( line_width / screen_width ))
+    (( curr_item_index++ ))
+
+    move_down_lines $(( voffset + 1 ))
+  fi
   print_navi
 }
 
-## Se possível, vai para a tarefa anterior (linha acima).
-## @use: printf
-previous_task() {
-  [ $curr_task_index -ne 0 ] || return
-  erase_navi
+## Se possível, volta para a o item anterior (sobe).
+previous_item!() {
+  # [ $curr_item_index -ne 0 ] || return
+  if [ $curr_item_index -eq 0 ]; then
+    ## vai para o último item
+    erase_navi
+    move_to_eof 1 && curr_item_index=$(( num_items - 1))
+  else
+    erase_navi
 
-  ((curr_task_index--))
-  local curr_task="${list_tasks_not_done[$curr_task_index]}"
-  local line_width=$(( offset + ${#curr_task_index} + ${#SEPARATOR} + ${#curr_task} ))
-  local voffset=$(( line_width / screen_width ))
+    (( curr_item_index-- ))
+    local curr_item="${list_items[$curr_item_index]}"
+    local line_width=$(( offset + ${#curr_item_index} + ${#SEPARATOR} + ${#curr_item} ))
+    local voffset=$(( line_width / screen_width ))
 
-  move_up_lines $(( voffset + 1 ))
+    move_up_lines $(( voffset + 1 ))
+  fi
   print_navi
 }
 
@@ -470,7 +730,9 @@ move_to_sof() {
 
 move_to_eof() {
   [ -n "$NOT_MINGW_TERM" ] || return 1 ## ERROR (não compatível com o MinGW)
-  printf "\\e[${eof_cursor_pos%;*};1f"
+  local line="${eof_cursor_pos%;*}"
+  line=$(( line - ${1:-0} ))
+  printf "\\e[${line};1f"
 }
 
 erase_to_eol() {
@@ -530,6 +792,6 @@ update_screen_width!() {
 }
 
 
-####
-main
-####
+#########
+main! "$@"
+#########
