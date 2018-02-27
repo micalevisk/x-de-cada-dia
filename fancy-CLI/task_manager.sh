@@ -301,7 +301,7 @@ edit_file() {
 ## Itera sobre as tarefas marcadas para edição
 ## executando a ação de editar arquivo.
 command_edit() {
-  for i in "${!tasks_edit[@]}"; do  tests/texto_base.1
+  for i in "${!tasks_edit[@]}"; do
     edit_file "${tasks_edit[$i]}" && printf "Tarefa %s$(( i + 1 ))%s editada!\\n" ${COLORS[y]} ${COLORS[n]}
   done
 }
