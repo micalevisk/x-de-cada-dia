@@ -32,11 +32,11 @@ declare OPEN="open"
 command -v $EDITOR >/dev/null 2>&1 || EDITOR="vi" ## ou 'open -e'
 command -v $OPEN >/dev/null 2>&1 || OPEN="cygstart"
 
-exec 2>/dev/null ## não mostrar erros na saída padrão
+# exec 2>/dev/null ## não mostrar erros na saída padrão; causa ERRO no tput no MinGW
 
 
 PATH_TO_TASKS_FILE="tests/texto_pos_grep.1"
-# __debug.log() { echo -e "$(date +'[%M:%S]') $*" >> "__.logfile"; }
+__debug.log() { echo -e "$(date +'[%M:%S]') $*" >> "__.logfile"; }
 # __debug.cursor() { echo -en "\E[6n"; read -sdR CURPOS; __debug.log "${CURPOS#*[}"; } ## (c) https://unix.stackexchange.com/questions/88296
 # __debug.loop() { while :; do :; done; }
 
@@ -366,7 +366,7 @@ command_new() {
 ## execução. Trata apenas o primeiro, caso mais de
 ## um forem fornecidos.
 commands_switcher__() {
-  # [ $# -gt 1 ] && return 1 ## ERROR ~ nenhum comando encontrado, ignorar
+  # [ $# -lt 2 ] && return 1 ## ERROR ~ nenhum comando encontrado, ignorar
   # case "${2,,}" in
   [ $# -eq 0 ] && return 1 ## tests only
   case "${1,,}" in ## tests only
@@ -509,16 +509,17 @@ move_to_navi() {
 ## Marca a tarefa, que está sobre o cursor, para futura edição.
 mark_edit_task() {
   [ -n "${tasks_edit[$curr_item_index]+_}" ] && return ## verificando presença no array associativo
-  local curr_item line_width voffset
+  local curr_item_value line_width voffset curr_item_index_normalized
 
   move_to_navi
   tasks_edit[$curr_item_index]="${list_items[$curr_item_index]%%:*}" ## associando o index com a linha real
 
   ##<%a
-  curr_item="${list_items[$curr_item_index]#*:}"
-  printf "%s%*d${SEPARATOR} %s${curr_item}%s" ${COLORS[p]} $offset $(( curr_item_index + 1 )) ${COLORS[gr]} ${COLORS[n]}
+  curr_item_value="${list_items[$curr_item_index]#*:}"
+  curr_item_index_normalized=$(( curr_item_index + 1 ))
+  printf "%s%*d${SEPARATOR} %s${curr_item_value}%s" ${COLORS[p]} $offset $curr_item_index_normalized ${COLORS[gr]} ${COLORS[n]}
 
-  line_width=$(( offset + ${#curr_item_index} + ${#SEPARATOR} + ${#curr_item} ))
+  line_width=$(( offset + ${#curr_item_index_normalized} + ${#SEPARATOR} + ${#curr_item_value} ))
   voffset=$(( line_width / screen_width )) ## quantas linhas a mais o title está ocupando
 
   print_navi $voffset
@@ -528,16 +529,17 @@ mark_edit_task() {
 ## Remove a marca "editar" da tarefa que está sobre o cursor.
 remove_edit_mark() {
   [ -n "${tasks_edit[$curr_item_index]+_}" ] || return ## verificando presença no array associativo
-  local curr_item line_width voffset
+  local curr_item_value line_width voffset curr_item_index_normalized
 
   move_to_navi
   unset tasks_edit[$curr_item_index] ## removendo do array associativo
 
   ##<%b
-  curr_item="${list_items[$curr_item_index]#*:}"
-  printf "%s%*d${SEPARATOR} ${curr_item}%s" ${COLORS[n]} $offset $(( curr_item_index + 1 )) ${COLORS[n]}
+  curr_item_value="${list_items[$curr_item_index]#*:}"
+  curr_item_index_normalized=$(( curr_item_index + 1 ))
+  printf "%s%*d${SEPARATOR} ${curr_item_value}%s" ${COLORS[n]} $offset $curr_item_index_normalized ${COLORS[n]}
 
-  line_width=$(( offset + ${#curr_item_index} + ${#SEPARATOR} + ${#curr_item} ))
+  line_width=$(( offset + ${#curr_item_index_normalized} + ${#SEPARATOR} + ${#curr_item_value} ))
   voffset=$(( line_width / screen_width )) ## quantas linhas a mais o title está ocupando
   print_navi $voffset
   ##b%>
@@ -552,17 +554,18 @@ remove_edit_mark() {
 ## Marca a tarefa, que está sobre o cursor, como "concluída".
 mark_done_task() {
   [ -n "${tasks_done[$curr_item_index]+_}" ] && return ## verificando presença no array associativo
-  local curr_item line_width voffset
+  local curr_item_value line_width voffset curr_item_index_normalized
 
   tasks_done[$curr_item_index]="${list_items[$curr_item_index]%%:*}" ## associando o index com a linha real
   move_to_navi
   unset tasks_to_remove[$curr_item_index] ## sobrescrevendo a ação 'remover tarefa'
 
   ##<%a
-  curr_item="${list_items[$curr_item_index]#*:}"
-  printf "%s%*d${SEPARATOR} %s${curr_item}%s" ${COLORS[g]} $offset $(( curr_item_index + 1 )) ${COLORS[gr]} ${COLORS[n]}
+  curr_item_value="${list_items[$curr_item_index]#*:}"
+  curr_item_index_normalized=$(( curr_item_index + 1 ))
+  printf "%s%*d${SEPARATOR} %s${curr_item_value}%s" ${COLORS[g]} $offset $curr_item_index_normalized ${COLORS[gr]} ${COLORS[n]}
 
-  line_width=$(( offset + ${#curr_item_index} + ${#SEPARATOR} + ${#curr_item} ))
+  line_width=$(( offset + ${#curr_item_index_normalized} + ${#SEPARATOR} + ${#curr_item_value} ))
   voffset=$(( line_width / screen_width )) ## quantas linhas a mais o title está ocupando
 
   print_navi $voffset
@@ -572,16 +575,17 @@ mark_done_task() {
 ## Remove a marca "concluída" da tarefa que está sobre o cursor.
 remove_done_mark() {
   [ -n "${tasks_done[$curr_item_index]+_}" ] || return ## verificando presença no array associativo
-  local curr_item line_width voffset
+  local curr_item_value line_width voffset curr_item_index_normalized
 
   move_to_navi
   unset tasks_done[$curr_item_index] ## removendo do array associativo
 
   ##<%b
-  curr_item="${list_items[$curr_item_index]#*:}"
-  printf "%s%*d${SEPARATOR} ${curr_item}%s" ${COLORS[n]} $offset $(( curr_item_index + 1 )) ${COLORS[n]}
+  curr_item_value="${list_items[$curr_item_index]#*:}"
+  curr_item_index_normalized=$(( curr_item_index + 1 ))
+  printf "%s%*d${SEPARATOR} ${curr_item_value}%s" ${COLORS[n]} $offset $curr_item_index_normalized ${COLORS[n]}
 
-  line_width=$(( offset + ${#curr_item_index} + ${#SEPARATOR} + ${#curr_item} ))
+  line_width=$(( offset + ${#curr_item_index_normalized} + ${#SEPARATOR} + ${#curr_item_value} ))
   voffset=$(( line_width / screen_width )) ## quantas linhas a mais o title está ocupando
   print_navi $voffset
   ##b%>
@@ -589,17 +593,18 @@ remove_done_mark() {
 
 ## Marca a tarefa, que está sobre o cursor, como "remover".
 mark_delete_task() {
-  local curr_item line_width voffset
+  local curr_item_value line_width voffset curr_item_index_normalized
 
   move_to_navi
   tasks_to_remove[$curr_item_index]="${list_items[$curr_item_index]%%:*}" ## associando o index com a linha real
   unset tasks_done[$curr_item_index] ## sobrescrevendo a ação 'marcar como feita'
 
-  curr_item="${list_items[$curr_item_index]#*:}"
-  printf "%s%*d${SEPARATOR} %s${curr_item}%s" ${COLORS[r]} $offset $(( curr_item_index + 1 )) ${COLORS[gr]} ${COLORS[n]}
+  curr_item_value="${list_items[$curr_item_index]#*:}"
+  curr_item_index_normalized=$(( curr_item_index + 1 ))
+  printf "%s%*d${SEPARATOR} %s${curr_item_value}%s" ${COLORS[r]} $offset $curr_item_index_normalized ${COLORS[gr]} ${COLORS[n]}
 
   ##<%f
-  line_width=$(( offset + ${#curr_item_index} + ${#SEPARATOR} + ${#curr_item} ))
+  line_width=$(( offset + ${#curr_item_index_normalized} + ${#SEPARATOR} + ${#curr_item_value}+1 ))
   voffset=$(( line_width / screen_width )) ## quantas linhas a mais o title está ocupando
   print_navi $voffset
   ##f%>
@@ -607,16 +612,17 @@ mark_delete_task() {
 
 ## Remove a marca "remover" da tarefa que está sobre o cursor.
 remove_delete_mark() {
-  local curr_item line_width voffset
+  local curr_item_value line_width voffset curr_item_index_normalized
 
   move_to_navi
   unset tasks_to_remove[$curr_item_index] ## removendo do array associativo
 
-  curr_item="${list_items[$curr_item_index]#*:}"
-  printf "%s%*d${SEPARATOR} ${curr_item}%s" ${COLORS[n]} $offset $(( curr_item_index + 1 )) ${COLORS[n]}
+  curr_item_value="${list_items[$curr_item_index]#*:}"
+  curr_item_index_normalized=$(( curr_item_index + 1 ))
+  printf "%s%*d${SEPARATOR} ${curr_item_value}%s" ${COLORS[n]} $offset $curr_item_index_normalized ${COLORS[n]}
 
   ##<%f
-  line_width=$(( offset + ${#curr_item_index} + ${#SEPARATOR} + ${#curr_item} ))
+  line_width=$(( offset + ${#curr_item_index_normalized} + ${#SEPARATOR} + ${#curr_item_value}+1 ))
   voffset=$(( line_width / screen_width )) ## quantas linhas a mais o title está ocupando
   print_navi $voffset
   ##f%>
@@ -684,41 +690,39 @@ open_title_link() {
 
 ## Se possível, vai para o próximo item (desce).
 next_item__() {
+  erase_navi
   if [ $(( curr_item_index + 1 )) -ge "$num_items" ]; then
     ## vai para o primeiro item
-    erase_navi
     move_to_sof && curr_item_index=0
   else
-    erase_navi
-
-    local curr_item="${list_items[$curr_item_index]}"
-    local line_width=$(( offset + ${#curr_item_index} + ${#SEPARATOR} + ${#curr_item} ))
+    local curr_item_value="${list_items[$curr_item_index]#*:}"
+    local curr_item_index_normalized=$(( curr_item_index + 1 ))
+    local line_width=$(( offset + ${#curr_item_index_normalized} + ${#SEPARATOR} + ${#curr_item_value} ))
     local voffset=$(( line_width / screen_width ))
+
+    move_down_lines $(( voffset + 1))
     (( curr_item_index++ ))
-
-    move_down_lines $(( voffset + 1 ))
   fi
-
   print_navi
 }
 
 ## Se possível, volta para a o item anterior (sobe).
 previous_item__() {
-  if [ "$curr_item_index" -eq 0 ]; then
+  erase_navi
+
+  (( curr_item_index-- ))
+  local curr_item_value="${list_items[$curr_item_index]#*:}"
+  local curr_item_index_normalized=$(( curr_item_index + 2 ))
+  local line_width=$(( offset + ${#curr_item_index_normalized} + ${#SEPARATOR} + ${#curr_item_value} ))
+  local voffset=$(( line_width / screen_width ))
+
+  if [ "$curr_item_index" -lt 0 ]; then
     ## vai para o último item
-    erase_navi
-    move_to_eof 1 && curr_item_index=$(( num_items - 1))
+    curr_item_index=$(( num_items - 1))
+    move_to_eof $(( voffset + 1 )) || curr_item_index=0
   else
-    erase_navi
-
-    (( curr_item_index-- ))
-    local curr_item="${list_items[$curr_item_index]}"
-    local line_width=$(( offset + ${#curr_item_index} + ${#SEPARATOR} + ${#curr_item} ))
-    local voffset=$(( line_width / screen_width ))
-
     move_up_lines $(( voffset + 1 ))
   fi
-
   print_navi
 }
 
@@ -782,11 +786,15 @@ move_to_column() {
   printf "\\e[%dG" ${1:-0}
 }
 
+## Move N linhas para baixo.
+## Se N for 0, terá o mesmo efeito que se quando 1.
 ## @args: [número de linhas]
 move_up_lines() {
   printf "\\e[%dA" ${1:-0}
 }
 
+## Move N linhas para baixo.
+## Se N for 0, terá o mesmo efeito que se quando 1.
 ## @args: [número de linhas]
 move_down_lines() {
   printf "\\e[%dB" ${1:-0}
