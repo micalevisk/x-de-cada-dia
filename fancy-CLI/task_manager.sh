@@ -22,6 +22,7 @@
 ##  2- Ao fechar o editor de texto (após a ação 'edit task') o prompt pode voltar com algumas linhas apagadas;
 ##  3- Não apaga o diretório/arquivo criado (antes) para uma tarefa caso o usuário deseja (agora) removê-la;
 ##  4- Não considera (corretamente) o redimensionamento da janela;
+##  5- Não lista corretamente se o número de linhas da janela for menor que o número de itens;
 ##
 
 # shopt -s extglob
@@ -41,41 +42,37 @@ PATH_TO_TASKS_FILE="tests/texto_pos_grep.1"
 
 # ------------------------------------------------------------------------------------------------------------------------------- #
 declare -A COLORS=( [w]=$'\e[37;1m' [y]=$'\e[33m' [g]=$'\e[32m' [r]=$'\e[31m' [p]=$'\e[35;1m' [n]=$'\e[0m' [gr]=$'\e[30;1m' )
-declare -a HEADERS_E=("<!-- title* -->\n" "<!-- last update -->\n" "<!-- snippet -->\n" "<!-- notes -->\n")
 declare -A TASK_REF_EMOJIS=( [d]="file_folder" [f]="memo")
+declare -a HEADERS_E=("<!-- title* -->\n" "<!-- last update -->\n" "<!-- snippet -->\n" "<!-- notes -->\n")
+declare -r NAVI_SYMBOL='>'
+declare -r NAVI_LENGTH=${#NAVI_SYMBOL} ## forçar tamanho aqui se for usar símbolo hexadecimal (UTF-8 literal)
+declare -r NAVI_COLOR=${COLORS[y]}
+declare -r NAVI_COLUMN=0
+declare -r SEPARATOR='.'
+declare -r TASKS_FILE="README.md"
+declare -r MISCELLANEOUS_DIRNAME="avulsos"
+declare -r TASK_DONE_MARK=":white_check_mark:"
+declare -r SPECIAL_LIST="[]\[|\`_*]" ## lista regex dos caracteres que foram escapados no title para evitar a interpretação do MD
+declare -r KERNEL_NAME="$(uname -s)"
+declare -r NOT_MINGW_TERM="${KERNEL_NAME/#MINGW[[:digit:]]*}"
+declare -r CURR_DIR="${1%%/}"
+# declare -r PATH_TO_TASKS_FILE="${CURR_DIR,,}/$TASKS_FILE"
+declare -r PATH_TO_MISCELLANEOUS_DIRNAME="${CURR_DIR,,}/$MISCELLANEOUS_DIRNAME"
 declare -A tasks_done ## a chave é o seu index (no array de tarefas) e o valor é a sua linha real
 declare -A tasks_to_remove ## a chave é o seu index (no array de tarefas) e o valor é a sua linha real
 declare -A tasks_edit ## a chave é o seu index (no array de tarefas) e o valor é a sua linha real
 declare -A created_files ## a chave é a linha real da tarefa e o valor é o caminho para o arquivo
 declare -A created_dirs ## a chave é a linha real da tarefa e o valor é o caminho para o diretório
 declare -a list_items ## cada elemento é um item na lista que será exibida
-
-declare -r NAVI_SYMBOL='>'
-declare -r NAVI_LENGTH=${#NAVI_SYMBOL} ## forçar tamanho aqui se for usar símbolo hexadecimal (UTF-8 literal)
-declare -r NAVI_COLOR=${COLORS[y]}
-declare -r NAVI_COLUMN=0
-declare -r SEPARATOR='.'
-declare -r KERNEL_NAME="$(uname -s)"
-declare -r NOT_MINGW_TERM="${KERNEL_NAME/#MINGW[[:digit:]]*}"
-declare -r special_list="[]\[|\`_*]" ## lista regex dos caracteres que foram escapados no title para evitar a interpretação do MD
-declare -r CURR_DIR="${1%%/}"
-declare -r TASKS_FILE="README.md"
-declare -r MISCELLANEOUS_DIRNAME="avulsos"
-declare -r TASK_DONE_MARK=":white_check_mark:"
-# declare -r PATH_TO_TASKS_FILE="${CURR_DIR,,}/$TASKS_FILE"
-declare -r PATH_TO_MISCELLANEOUS_DIRNAME="${CURR_DIR,,}/$MISCELLANEOUS_DIRNAME"
-
 declare -i index
 declare -i num_items
 declare -i offset
 declare -i column_sep
 declare -i screen_width
 declare -i curr_item_index
-
 declare -l normalized_task_name
 declare -l file
 declare -l dir
-
 declare SOF_CURSOR_POS
 declare eof_cursor_pos
 declare all_tasks
@@ -84,7 +81,7 @@ declare MODE_NEW
 declare command_end_action
 # ------------------------------------------------------------------------------------------------------------------------------- #
 
-trap update_screen_width! WINCH ## user has resized the window
+trap update_screen_width__ WINCH ## user has resized the window
 trap clear_screen_exit SIGINT  ## user press Ctrl-C
 trap clear_screen_exit SIGTSTP SIGHUP SIGKILL SIGQUIT SIGTERM ## user press Ctrl-Z or quit this process
 
@@ -92,14 +89,14 @@ trap clear_screen_exit SIGTSTP SIGHUP SIGKILL SIGQUIT SIGTERM ## user press Ctrl
 # ===================== begin ========================= #
 # @use: grep sed gawk read mapfile                      #
 # ===================================================== #
-main!() {
+main__() {
   local items_to_show
   local bind_arrow_right bind_arrow_left bind_delete bind_d bind_f bind_o
 
-  commands_switcher! "$@"
+  commands_switcher__ "$@"
 
   clear ## apagar tela para previnir a issue#1 ~ movee o cursor para (1,1)
-  SOF_CURSOR_POS="1;1"
+  SOF_CURSOR_POS="0;0"
   # printf "\\e[6n"; read -sdR SOF_CURSOR_POS
 
   ## definindo bindings padrões
@@ -109,8 +106,8 @@ main!() {
   bind_o=open_title_link
 
   if [ -n "$MODE_EDIT" ]; then ## items as all tasks
-    set_all_tasks!
-    items_to_show="$(printf "$all_tasks" | sort -n | sed -E "s~\\\(${special_list})~\1~g")" ## lista de tarefas encontradas
+    set_all_tasks__
+    items_to_show="$(printf "$all_tasks" | sort -n | sed -E "s~\\\(${SPECIAL_LIST})~\1~g")" ## lista de tarefas encontradas
 
     bind_arrow_right=mark_edit_task
     bind_arrow_left=remove_edit_mark
@@ -120,7 +117,7 @@ main!() {
     bind_arrow_right=bind_blank
     bind_delete=; bind_d=; bind_f=; bind_o=; ## desativando bindings padrões
   else ## items as tasks not done
-    items_to_show="$(grep --color=never -n -o -P '(?<=^\|\| \[).+(?=\])' "tests/texto_base.1" | sed -E "s~\\\(${special_list})~\1~g")" ## lista de tarefas pendentes
+    items_to_show="$(grep --color=never -n -o -P '(?<=^\|\| \[).+(?=\])' "tests/texto_base.1" | sed -E "s~\\\(${SPECIAL_LIST})~\1~g")" ## lista de tarefas pendentes
 
     bind_arrow_right=mark_done_task
     bind_arrow_left=remove_done_mark
@@ -128,17 +125,18 @@ main!() {
 
 
   mapfile -t list_items <<< "$items_to_show" ## array com elementos no formato `<real_line>:<task_tittle>`
-  [ -n "${list_items[0]//[[[:cntrl:]][[:blank:]]]/}" ] || bind_blank ## verifica se existe algo para listar
+  [ -n "${list_items[0]//[[[:cntrl:]][[:blank:]]]}" ] || bind_blank ## verifica se existe algo para listar
 
   num_items=${#list_items[@]} ## quantidade de linhas obtidas da extração das tarefas
   offset=$(( NAVI_LENGTH + ${#num_items} )) ## quantidade de colunas antes do 'SEPARATOR'
   column_sep=$(( offset + 1 ))
 
-  update_screen_width!
+  update_screen_width__
+  [ $(tput lines) -lt $num_items ] && resize_window $(( num_items + 2 )) ## previne a issue#5
 
   save_cursor
   gawk -v offset=$offset -v sep="$SEPARATOR" '{ printf "%*d%s %s\n", offset, NR, sep, gensub(/^[0-9]+:?/, "", 1) }' <<< "$items_to_show"
-  update_eof_cursor_pos!
+  update_eof_cursor_pos__
   restore_cursor
   hide_cursor
 
@@ -193,7 +191,7 @@ confirm() {
 ## 'normalized_task_name' que guarda o nome tratado da tarefa.
 ## @args: <nome da tarefa> [extensão para o arquivo]
 ## @use: sed
-set_file_and_dir!() {
+set_file_and_dir__() {
   ## XXX: talvez não precise remover a acentuação pois o file system as permite.
   normalized_task_name=$(sed -E '
     y/àáâãäåèéêëìíîïòóôõöùúûü/aaaaaaeeeeiiiiooooouuuu/
@@ -204,13 +202,13 @@ set_file_and_dir!() {
     s_([^[:alnum:]])\1_\1_g' <<< "${1,,}")
 
   file="$PATH_TO_MISCELLANEOUS_DIRNAME/${normalized_task_name}.$2"
-  dir="$CURR_DIR/${normalized_task_name}"
+  dir="$CURR_DIR/$normalized_task_name"
 }
 
 ## Define a variável 'all_tasks' que é uma string com todos os `title`
 ## recuperados do arquivo das tarefas.
 ## @use: grep
-set_all_tasks!() {
+set_all_tasks__() {
   ## OPTIMIZE: evitar o uso de dois grep (talvez com sed -En e o comando '='; para casar tudo e apagar lixos).
   all_tasks="$(grep --color=never -n -o -P "(?<=${TASK_DONE_MARK} \| \[).+(?=\])" "tests/texto_base.1")"
   all_tasks="${all_tasks:+${all_tasks}\n}$(grep --color=never -n -o -P '(?<=^\|\| \[).+(?=\])' "tests/texto_base.1")"
@@ -222,7 +220,7 @@ show_help_exit() {
   "Fancy" CLI Tool para gerenciar as tarefas de \`X de Cada Dia\`.
 
   Usage:
-    $0 [COMMANDS] <path/to/lang/dir>
+    $0 <path/to/lang/dir> [COMMANDS]
 
   A ausência de um comando implicará na listagem das tarefas pendentes
   que poderão sofrer as seguintes ações:
@@ -270,8 +268,8 @@ edit_file() {
   [ -w "$temp_file" ] || return 1 ## ERROR
 
   ##<%e
-  set_all_tasks!
-  less < <(printf "Todas as Tarefas:\\n${all_tasks}" | sort -n | sed -E "s~\\\(${special_list})~\1~g") ## lista todas as tarefas
+  set_all_tasks__
+  less < <(printf "Todas as Tarefas:\\n${all_tasks}" | sort -n | sed -E "s~\\\(${SPECIAL_LIST})~\1~g") ## lista todas as tarefas
   ##e%>
 
   sed -En "${1}\
@@ -292,7 +290,7 @@ edit_file() {
   new_values="${new_values[@]/%/\|}"
   new_values="${new_values%\|}"
   new_values="${new_values%%*( )}" ## trim trailing whitespaces
-  new_values="$(sed -E "s~(\\\)(${special_list})~\1\1\2~g" <<< "$new_values")"
+  new_values="$(sed -E "s~(\\\)(${SPECIAL_LIST})~\1\1\2~g" <<< "$new_values")"
 
   task_exists "${task_title}" && return 4
   ##d%>
@@ -303,8 +301,8 @@ edit_file() {
 ## Itera sobre as tarefas marcadas para edição
 ## executando a ação de editar arquivo.
 command_edit() {
-  for i in "${!tasks_edit[@]}"; do
-    edit_file "${tasks_edit[$i]}" && printf "Tarefa ${COLORS[y]}$(( i + 1 ))${COLORS[n]} editada!\n"
+  for i in "${!tasks_edit[@]}"; do  tests/texto_base.1
+    edit_file "${tasks_edit[$i]}" && printf "Tarefa %s$(( i + 1 ))%s editada!\\n" ${COLORS[y]} ${COLORS[n]}
   done
 }
 
@@ -317,8 +315,8 @@ create_new_task() {
   [ -w "$temp_file" ] || return 1 ## ERROR
 
   ##<%e
-  set_all_tasks!
-  less < <(printf "Todas as Tarefas:\\n${all_tasks}" | sort -n | sed -E "s~\\\(${special_list})~\1~g") ## lista todas as tarefas
+  set_all_tasks__
+  less < <(printf "Todas as Tarefas:\\n${all_tasks}" | sort -n | sed -E "s~\\\(${SPECIAL_LIST})~\1~g") ## lista todas as tarefas
   ##e%>
 
   real_line="$(
@@ -344,12 +342,12 @@ create_new_task() {
   new_task_values="${new_task_values[@]/%/ \|}"
   new_task_values="${new_task_values%\|}"
   new_task_values="${new_task_values%%*( )}" ## trim trailing whitespaces
-  new_task_values="$(sed -E "s~(\\\)(${special_list})~\1\1\2~g" <<< "$new_task_values")"
+  new_task_values="$(sed -E "s~(\\\)(${SPECIAL_LIST})~\1\1\2~g" <<< "$new_task_values")"
 
-  task_exists "${task_title}" && return 4
+  task_exists "$task_title" && return 4
   ##d%>
 
-  sed -i "${real_line}i\\|| ${new_task_values}" "tests/texto_base.1"
+  sed -i "${real_line}i\\|| $new_task_values" "tests/texto_base.1"
 }
 
 ## Trata a seção corrente como a alvo para a nova tarefa.
@@ -357,9 +355,9 @@ create_new_task() {
 command_new() {
   ## A tarefa será inserida no início, i.e., primeira item da seção escolhida
   if create_new_task "${list_items[$curr_item_index]%%:*}"; then
-    printf "Tarefa Inserida em %s${list_items[$curr_item_index]#*:}%s!\n" "${COLORS[y]}" "${COLORS[n]}"
+    printf "Tarefa Inserida em %s${list_items[$curr_item_index]#*:}%s!\\n" ${COLORS[y]} ${COLORS[n]}
   else
-    printf "Não foi possível inserir essa tarefa...\n"
+    printf "Não foi possível inserir essa tarefa...\\n"
   fi
 }
 
@@ -367,9 +365,11 @@ command_new() {
 ## Controla o uso dos comandos. Aceita um comando por
 ## execução. Trata apenas o primeiro, caso mais de
 ## um forem fornecidos.
-commands_switcher!() {
-  [ $# -eq 0 ] && return 1 ## ERROR ~ nenhum comando encontrado, ignorar
-  case "${1,,}" in
+commands_switcher__() {
+  # [ $# -gt 1 ] && return 1 ## ERROR ~ nenhum comando encontrado, ignorar
+  # case "${2,,}" in
+  [ $# -eq 0 ] && return 1 ## tests only
+  case "${1,,}" in ## tests only
     edit) MODE_EDIT=1 ;;
     new ) MODE_NEW=1  ;;
     * ) show_help_exit;;
@@ -382,8 +382,8 @@ commands_switcher!() {
 # @use: sed printf mkdir read touch open                #
 # ===================================================== #
 
-bind_arrow_up() { previous_item!; }
-bind_arrow_down() { next_item!; }
+bind_arrow_up() { previous_item__; }
+bind_arrow_down() { next_item__; }
 bind_esc() { clear_screen_exit; }
 
 ## Etapa final que lista os diretórios e arquivos criados,
@@ -421,13 +421,13 @@ bind_blank() {
     num_tasks_done=$(( num_tasks - num_items ))
 
     [ ${#created_dirs[@]} -ne 0 ] && {
-      printf "~ Diretórios Criados (${#created_dirs[@]}):\n"
-      printf "%s\n" "${created_dirs[@]}"
+      printf "~ Diretórios Criados (${#created_dirs[@]}):\\n"
+      printf "%s\\n" "${created_dirs[@]}"
     }
 
     [ ${#created_files[@]} -ne 0 ] && {
-      printf "~ Arquivos Criados   (${#created_files[@]}):\n"
-      printf "%s\n" "${created_files[@]}"
+      printf "~ Arquivos Criados   (${#created_files[@]}):\\n"
+      printf "%s\\n" "${created_files[@]}"
     }
 
     [ ${#tasks_done[@]} -ne 0 ] && {
@@ -447,7 +447,7 @@ bind_blank() {
         done
       }
 
-      printf "\n"
+      printf "\\n"
     }
 
     [ ${#tasks_to_remove[@]} -ne 0 ] && {
@@ -457,7 +457,7 @@ bind_blank() {
         sed -i "$lines_to_delete" "tests/texto_base.1" && num_tasks="$(( num_tasks - ${#tasks_to_remove[@]} ))"
       }
 
-      printf "\n"
+      printf "\\n"
     }
 
   fi
@@ -466,11 +466,10 @@ bind_blank() {
   percentage=$(( num_tasks_done*100 / num_tasks ))
   [ "$percentage" -eq 100 ] && color_key="g" ## se todas as tarefas foram concluídas
 
-  # sed -i -E "0,/(done-)[0-9]+(.+)\([0-9]+(.+of...)[0-9]+\)/ s//\1${percentage}\2(${num_tasks_done}\3${num_tasks})/" "$PATH_TO_TASKS_FILE" \
   sed -i -E "0,/(done-)[0-9]+(.+)\([0-9]+(.+of...)[0-9]+\)/ s//\1${percentage}\2(${num_tasks_done}\3${num_tasks})/" "tests/texto_base.1" \
-    && printf "${COLORS[w]}Now ${COLORS[$color_key]}${percentage}%% ${COLORS[w]}(${num_tasks_done} of ${num_tasks}) done!${COLORS[n]}\n"
+    && printf "%sNow %s${percentage}%% %s(${num_tasks_done} of ${num_tasks}) done!%s\\n" ${COLORS[w]} ${COLORS[$color_key]} ${COLORS[w]} ${COLORS[n]}
 
-  exit 0 ## para sair do loop (na função main!) e fechar o programa
+  exit 0 ## para sair do loop (na função main__) e fechar o programa
 }
 
 
@@ -482,16 +481,15 @@ bind_blank() {
 ## Mostra o indicador de navegação.
 ## @args: [quantidade de linhas extras ocupadas pelo nome da tarefa]
 print_navi() {
-  move_to_navi ${1}
-  printf "%s${NAVI_SYMBOL}%s" ${NAVI_COLOR} ${COLORS[n]}
+  move_to_navi $1
+  printf "%s${NAVI_SYMBOL}%s" $NAVI_COLOR ${COLORS[n]}
   # move_to_column $column_sep ## desnecessário se o cursor estiver escondido
 }
 
 ## Apaga o indicador de navegação e posiciona o cursor para sua coluna.
 erase_navi() {
   move_to_navi
-  printf "\\e[${NAVI_LENGTH}X" ## escreve N brancos à direita
-  # printf "\\e[1P" ## apaga caractere à direita
+  printf "\\e[%dX" $NAVI_LENGTH ## escreve N brancos à direita
   move_to_navi
 }
 
@@ -511,16 +509,17 @@ move_to_navi() {
 ## Marca a tarefa, que está sobre o cursor, para futura edição.
 mark_edit_task() {
   [ -n "${tasks_edit[$curr_item_index]+_}" ] && return ## verificando presença no array associativo
+  local curr_item line_width voffset
+
+  move_to_navi
   tasks_edit[$curr_item_index]="${list_items[$curr_item_index]%%:*}" ## associando o index com a linha real
 
   ##<%a
-  move_to_navi
+  curr_item="${list_items[$curr_item_index]#*:}"
+  printf "%s%*d${SEPARATOR} %s${curr_item}%s" ${COLORS[p]} $offset $(( curr_item_index + 1 )) ${COLORS[gr]} ${COLORS[n]}
 
-  local curr_item="${list_items[$curr_item_index]#*:}"
-  printf "%s%*d$SEPARATOR %s$curr_item%s" ${COLORS[p]} $offset $(( curr_item_index + 1 )) ${COLORS[gr]} ${COLORS[n]}
-
-  local line_width=$(( offset + ${#curr_item_index} + ${#SEPARATOR} + ${#curr_item} ))
-  local voffset=$(( line_width / screen_width )) ## quantas linhas a mais o title está ocupando
+  line_width=$(( offset + ${#curr_item_index} + ${#SEPARATOR} + ${#curr_item} ))
+  voffset=$(( line_width / screen_width )) ## quantas linhas a mais o title está ocupando
 
   print_navi $voffset
   ##a%>
@@ -529,17 +528,17 @@ mark_edit_task() {
 ## Remove a marca "editar" da tarefa que está sobre o cursor.
 remove_edit_mark() {
   [ -n "${tasks_edit[$curr_item_index]+_}" ] || return ## verificando presença no array associativo
+  local curr_item line_width voffset
+
+  move_to_navi
   unset tasks_edit[$curr_item_index] ## removendo do array associativo
 
   ##<%b
-  move_to_navi
+  curr_item="${list_items[$curr_item_index]#*:}"
+  printf "%s%*d${SEPARATOR} ${curr_item}%s" ${COLORS[n]} $offset $(( curr_item_index + 1 )) ${COLORS[n]}
 
-  local curr_item="${list_items[$curr_item_index]#*:}"
-  printf "%s%*d$SEPARATOR $curr_item%s" ${COLORS[n]} $offset $(( curr_item_index + 1 )) ${COLORS[n]}
-
-  local line_width=$(( offset + ${#curr_item_index} + ${#SEPARATOR} + ${#curr_item} ))
-  local voffset=$(( line_width / screen_width )) ## quantas linhas a mais o title está ocupando
-
+  line_width=$(( offset + ${#curr_item_index} + ${#SEPARATOR} + ${#curr_item} ))
+  voffset=$(( line_width / screen_width )) ## quantas linhas a mais o title está ocupando
   print_navi $voffset
   ##b%>
 }
@@ -553,17 +552,18 @@ remove_edit_mark() {
 ## Marca a tarefa, que está sobre o cursor, como "concluída".
 mark_done_task() {
   [ -n "${tasks_done[$curr_item_index]+_}" ] && return ## verificando presença no array associativo
+  local curr_item line_width voffset
+
   tasks_done[$curr_item_index]="${list_items[$curr_item_index]%%:*}" ## associando o index com a linha real
+  move_to_navi
   unset tasks_to_remove[$curr_item_index] ## sobrescrevendo a ação 'remover tarefa'
 
   ##<%a
-  move_to_navi
+  curr_item="${list_items[$curr_item_index]#*:}"
+  printf "%s%*d${SEPARATOR} %s${curr_item}%s" ${COLORS[g]} $offset $(( curr_item_index + 1 )) ${COLORS[gr]} ${COLORS[n]}
 
-  local curr_item="${list_items[$curr_item_index]#*:}"
-  printf "%s%*d$SEPARATOR %s$curr_item%s" ${COLORS[g]} $offset $(( curr_item_index + 1 )) ${COLORS[gr]} ${COLORS[n]}
-
-  local line_width=$(( offset + ${#curr_item_index} + ${#SEPARATOR} + ${#curr_item} ))
-  local voffset=$(( line_width / screen_width )) ## quantas linhas a mais o title está ocupando
+  line_width=$(( offset + ${#curr_item_index} + ${#SEPARATOR} + ${#curr_item} ))
+  voffset=$(( line_width / screen_width )) ## quantas linhas a mais o title está ocupando
 
   print_navi $voffset
   ##a%>
@@ -572,61 +572,64 @@ mark_done_task() {
 ## Remove a marca "concluída" da tarefa que está sobre o cursor.
 remove_done_mark() {
   [ -n "${tasks_done[$curr_item_index]+_}" ] || return ## verificando presença no array associativo
+  local curr_item line_width voffset
+
+  move_to_navi
   unset tasks_done[$curr_item_index] ## removendo do array associativo
 
   ##<%b
-  move_to_navi
+  curr_item="${list_items[$curr_item_index]#*:}"
+  printf "%s%*d${SEPARATOR} ${curr_item}%s" ${COLORS[n]} $offset $(( curr_item_index + 1 )) ${COLORS[n]}
 
-  local curr_item="${list_items[$curr_item_index]#*:}"
-  printf "%s%*d$SEPARATOR $curr_item%s" ${COLORS[n]} $offset $(( curr_item_index + 1 )) ${COLORS[n]}
-
-  local line_width=$(( offset + ${#curr_item_index} + ${#SEPARATOR} + ${#curr_item} ))
-  local voffset=$(( line_width / screen_width )) ## quantas linhas a mais o title está ocupando
-
+  line_width=$(( offset + ${#curr_item_index} + ${#SEPARATOR} + ${#curr_item} ))
+  voffset=$(( line_width / screen_width )) ## quantas linhas a mais o title está ocupando
   print_navi $voffset
   ##b%>
 }
 
 ## Marca a tarefa, que está sobre o cursor, como "remover".
 mark_delete_task() {
+  local curr_item line_width voffset
+
+  move_to_navi
   tasks_to_remove[$curr_item_index]="${list_items[$curr_item_index]%%:*}" ## associando o index com a linha real
   unset tasks_done[$curr_item_index] ## sobrescrevendo a ação 'marcar como feita'
 
-  move_to_navi
+  curr_item="${list_items[$curr_item_index]#*:}"
+  printf "%s%*d${SEPARATOR} %s${curr_item}%s" ${COLORS[r]} $offset $(( curr_item_index + 1 )) ${COLORS[gr]} ${COLORS[n]}
 
-  local curr_item="${list_items[$curr_item_index]#*:}"
-  printf "%s%*d$SEPARATOR %s$curr_item%s" ${COLORS[r]} $offset $(( curr_item_index + 1 )) ${COLORS[gr]} ${COLORS[n]}
-
-  local line_width=$(( $offset + ${#curr_item_index} + ${#SEPARATOR} + ${#curr_item} ))
-  local voffset=$(( $line_width / $screen_width )) ## quantas linhas a mais o title está ocupando
-
+  ##<%f
+  line_width=$(( offset + ${#curr_item_index} + ${#SEPARATOR} + ${#curr_item} ))
+  voffset=$(( line_width / screen_width )) ## quantas linhas a mais o title está ocupando
   print_navi $voffset
+  ##f%>
 }
 
 ## Remove a marca "remover" da tarefa que está sobre o cursor.
 remove_delete_mark() {
-  unset tasks_to_remove[$curr_item_index] ## removendo do array associativo
+  local curr_item line_width voffset
 
   move_to_navi
+  unset tasks_to_remove[$curr_item_index] ## removendo do array associativo
 
-  local curr_item="${list_items[$curr_item_index]#*:}"
-  printf "%s%*d$SEPARATOR $curr_item%s" ${COLORS[n]} $offset $(( curr_item_index + 1 )) ${COLORS[n]}
+  curr_item="${list_items[$curr_item_index]#*:}"
+  printf "%s%*d${SEPARATOR} ${curr_item}%s" ${COLORS[n]} $offset $(( curr_item_index + 1 )) ${COLORS[n]}
 
-  local line_width=$(( offset + ${#curr_item_index} + ${#SEPARATOR} + ${#curr_item} ))
-  local voffset=$(( line_width / screen_width )) ## quantas linhas a mais o title está ocupando
-
+  ##<%f
+  line_width=$(( offset + ${#curr_item_index} + ${#SEPARATOR} + ${#curr_item} ))
+  voffset=$(( line_width / screen_width )) ## quantas linhas a mais o title está ocupando
   print_navi $voffset
+  ##f%>
 }
 
 ## Marca ou desmarca uma tarefa para remoção.
 toggle_delete_task() {
-  ## verificando se já está marcado para remoção
-  [ -n "${tasks_to_remove[$curr_item_index]+_}" ] && remove_delete_mark || mark_delete_task
+  if [ -n "${tasks_to_remove[$curr_item_index]+_}" ]; then remove_delete_mark; else mark_delete_task; fi
 }
 
 ## Cria, se não existir, um diretório para a tarefa corrente.
 create_dir() {
-  set_file_and_dir! "${list_items[$curr_item_index]#*:}"
+  set_file_and_dir__ "${list_items[$curr_item_index]#*:}"
   [ -n "$normalized_task_name" ] || return 1
   # dir="$CURR_DIR/$normalized_task_name"
   dir="./$normalized_task_name"
@@ -647,13 +650,13 @@ create_file() {
   printf "\\e[?5l" ## turn on normal video
 
   ## remover caracteres inválidos (uso das setas, brancos, etc)
-  local extension="${extension//[[:cntrl:]]\[[[:alnum:]][[:punct:]]/}"
-  extension="${extension//[[:cntrl:]]\[[[:alnum:]]/}"
-  extension="${extension//[[:blank:]]/}"
+  local extension="${extension//[[:cntrl:]]\[[[:alnum:]][[:punct:]]}"
+  extension="${extension//[[:cntrl:]]\[[[:alnum:]]}"
+  extension="${extension//[[:blank:]]}"
   extension="${extension#.}" ## remover o ponto se iniciar na 'extension'
 
   if [ -n "$extension" ]; then
-    set_file_and_dir! "${list_items[$curr_item_index]#*:}" "$extension"
+    set_file_and_dir__ "${list_items[$curr_item_index]#*:}" "$extension"
     touch "$file" || return 1 ## ERROR
     emit_beep
     created_files[${list_items[$curr_item_index]%%:*}]="$file"
@@ -664,13 +667,13 @@ create_file() {
 ## Um sinal sonoro será emitido em caso de sucesso.
 open_title_link() {
   [ -n "$OPEN" ] || return 1
+  local curr_task_line task_title title_link
 
-  local curr_task_line=${list_items[$curr_item_index]%%:*}
-  # local task_title=$(sed -rn "$curr_task_line s/(http[^\)]+).+$/\1/p" "$PATH_TO_TASKS_FILE")
-  local task_title=$(sed -rn "$curr_task_line s/(http[^\)]+).+$/\1/p" tests/texto_base.1)
-  local link_without_http="${task_title#*\(http}"
+  curr_task_line=${list_items[$curr_item_index]%%:*}
+  task_title="$(sed -En "$curr_task_line s/(http[^)]+).+/\\1/p" "tests/texto_base.1")"
+  title_link="http${task_title#*\(http}"
 
-  [ -n "$link_without_http" ] && $OPEN "http$link_without_http" && emit_beep
+  [ -n "$title_link" ] && $OPEN "$title_link" && emit_beep
 }
 
 
@@ -680,8 +683,8 @@ open_title_link() {
 # ===================================================== #
 
 ## Se possível, vai para o próximo item (desce).
-next_item!() {
-  if [ $(( curr_item_index + 1 )) -ge $num_items ]; then
+next_item__() {
+  if [ $(( curr_item_index + 1 )) -ge "$num_items" ]; then
     ## vai para o primeiro item
     erase_navi
     move_to_sof && curr_item_index=0
@@ -695,13 +698,13 @@ next_item!() {
 
     move_down_lines $(( voffset + 1 ))
   fi
+
   print_navi
 }
 
 ## Se possível, volta para a o item anterior (sobe).
-previous_item!() {
-  # [ $curr_item_index -ne 0 ] || return
-  if [ $curr_item_index -eq 0 ]; then
+previous_item__() {
+  if [ "$curr_item_index" -eq 0 ]; then
     ## vai para o último item
     erase_navi
     move_to_eof 1 && curr_item_index=$(( num_items - 1))
@@ -715,6 +718,7 @@ previous_item!() {
 
     move_up_lines $(( voffset + 1 ))
   fi
+
   print_navi
 }
 
@@ -725,21 +729,21 @@ previous_item!() {
 # ===================================================== #
 
 move_to_sof() {
-  printf "\\e[${SOF_CURSOR_POS:-1}f"
+  printf "\\e[%sf" ${SOF_CURSOR_POS:-1}
 }
 
+## @args: [número de linhas a serem subtraídas da última]
 move_to_eof() {
   [ -n "$NOT_MINGW_TERM" ] || return 1 ## ERROR (não compatível com o MinGW)
   local line="${eof_cursor_pos%;*}"
-  line=$(( line - ${1:-0} ))
-  printf "\\e[${line};1f"
+  printf "\\e[%d;1f" $(( line - ${1:-0} ))
 }
 
 erase_to_eol() {
   printf "\\e[K"
 }
 
-update_eof_cursor_pos!() {
+update_eof_cursor_pos__() {
   [ -n "$NOT_MINGW_TERM" ] || return 1 ## ERROR (não compatível com o MinGW)
   printf "\\e[6n" ## no MinGW não funciona como o esperado
   read -sdR eof_cursor_pos
@@ -760,7 +764,7 @@ show_cursor() {
 
 clear_screen_exit() {
   ## limpar até o fim da tela (representando a "parada" do programa) e ativa o vídeo normal
-  printf "\n\\e[0J\\e[?5l"
+  printf "\\n\\e[0J\\e[?5l"
   show_cursor
   exit 0
 }
@@ -773,25 +777,32 @@ restore_cursor() {
   printf "\\e[u"
 }
 
+## @args: [número da coluna]
 move_to_column() {
-  printf "\\e[%dG" $((${1:-0}))
+  printf "\\e[%dG" ${1:-0}
 }
 
+## @args: [número de linhas]
 move_up_lines() {
-  local lines=${1:-0}
-  printf "\\e[%dA" $lines
+  printf "\\e[%dA" ${1:-0}
 }
 
+## @args: [número de linhas]
 move_down_lines() {
-  local lines=${1:-0}
-  printf "\\e[%dB" $lines
+  printf "\\e[%dB" ${1:-0}
 }
 
-update_screen_width!() {
+## @args: [linhas] [colunas]
+resize_window() {
+  printf "\\e[8;${1};${2}t"
+}
+
+update_screen_width__() {
   screen_width=$(tput cols)
 }
 
 
-#########
-main! "$@"
-#########
+######################
+# [ $# -lt 1 ] && show_help_exit
+main__ "$@"
+######################
