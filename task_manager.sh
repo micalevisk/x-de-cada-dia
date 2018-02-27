@@ -126,7 +126,8 @@ main__() {
   column_sep=$(( offset + 1 ))
 
   update_screen_width__
-  [ $(tput lines) -lt $num_items ] && resize_window $(( num_items + 2 )) ## previne a issue#5
+  [ $(tput lines) -lt $num_items ] && resize_window $(( num_items + 5 )) ## previne (parcialmente) a issue#5
+  ## HACK:                                                         ^^ depende do número de lihhas exibidas
 
   save_cursor
   gawk -v offset=$offset -v sep="$SEPARATOR" '{ printf "%*d%s %s\n", offset, NR, sep, gensub(/^[0-9]+:?/, "", 1) }' <<< "$items_to_show"
