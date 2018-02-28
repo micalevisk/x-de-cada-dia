@@ -25,7 +25,7 @@
 ##  5- Não lista corretamente se o número de linhas da janela for menor que o número de itens;
 ##
 
-# shopt -s extglob
+shopt -s extglob ## ativar extended pattern matching features
 
 declare EDITOR="vim"
 declare OPEN="open"
@@ -803,3 +803,5 @@ update_screen_width__() {
 [ $# -lt 1 ] && show_help_exit
 main__ "$@"
 ##############################
+
+shopt -u extglob
