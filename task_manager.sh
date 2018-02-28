@@ -663,13 +663,12 @@ create_file() {
 ## Um sinal sonoro será emitido em caso de sucesso.
 open_title_link() {
   [ -n "$OPEN" ] || return 1
-  local curr_task_line task_title title_link
+  local curr_task_line task_title
 
   curr_task_line=${list_items[$curr_item_index]%%:*}
-  task_title="$(sed -En "$curr_task_line s/(http[^)]+).+/\\1/p" "$PATH_TO_TASKS_FILE")"
-  title_link="http${task_title#*\(http}"
+  task_title="$(sed -En "$curr_task_line s/(http[^)]+).+/\\1/p" "$PATH_TO_TASKS_FILE")" ## recupera a primeira ocorrência
 
-  [ -n "$title_link" ] && $OPEN "$title_link" && emit_beep
+  [ -n "$task_title" ] && $OPEN "http${task_title#*\(http}" && emit_beep
 }
 
 
