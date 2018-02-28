@@ -283,3 +283,7 @@ __*
 
 # eventually
 node_modules
+
+# arquivos temporários gerados pelo CLI
+.edit-task*
+.new-task*
