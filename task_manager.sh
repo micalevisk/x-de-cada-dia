@@ -38,9 +38,9 @@ command -v $OPEN >/dev/null 2>&1 || OPEN="cygstart"
 declare -A COLORS=( [w]=$'\e[37;1m' [y]=$'\e[33m' [g]=$'\e[32m' [r]=$'\e[31m' [p]=$'\e[35;1m' [n]=$'\e[0m' [gr]=$'\e[30;1m' )
 declare -A TASK_REF_EMOJIS=( [d]="file_folder" [f]="memo")
 declare -a HEADERS_E=("<!-- title* -->\n" "<!-- last update -->\n" "<!-- snippet -->\n" "<!-- notes -->\n")
-declare -r NAVI_SYMBOL='>'
-declare -r NAVI_LENGTH=${#NAVI_SYMBOL} ## forçar tamanho aqui se for usar símbolo hexadecimal (UTF-8 literal)
-declare -r NAVI_COLOR=${COLORS[y]}
+declare -r NAVI_SYMBOL='\xE2\x96\xB8'
+declare -r NAVI_LENGTH=2 ## forçar tamanho aqui se for usar símbolo hexadecimal (UTF-8 literal)
+declare -r NAVI_COLOR=${COLORS[y]/%m/;1m}
 declare -r NAVI_COLUMN=0
 declare -r SEPARATOR='.'
 declare -r TASKS_FILE="README.md"
