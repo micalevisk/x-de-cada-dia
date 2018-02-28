@@ -205,7 +205,7 @@ set_file_and_dir__() {
 ## @use: grep
 set_all_tasks__() {
   ## OPTIMIZE: evitar o uso de dois grep (talvez com sed -En e o comando '='; para casar tudo e apagar lixos).
-  all_tasks_done="$(grep --color=never -n -o -P "(?<=${TASK_DONE_MARK} \| \[).+?(?=[^\\\]\])." "$PATH_TO_TASKS_FILE")"
+  all_tasks_done="$(grep --color=never -n -o -P "(?<=${TASK_DONE_MARK} \| \[).+?[^\\\](?=\])" "$PATH_TO_TASKS_FILE")"
   all_tasks="${all_tasks_done:+${all_tasks_done}\n}$(grep --color=never -n -o -P '(?<=^\|\| \[).+(?=\])' "$PATH_TO_TASKS_FILE")"
 }
 
