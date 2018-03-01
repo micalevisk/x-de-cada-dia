@@ -84,3 +84,12 @@ Ao passo que uma dita **concluída** deve estar assim:
 > ```
 > ^:white_check_mark: | [nome-da-tarefa](link-para-a-tarefa) | data | |$
 > ```
+
+## CLI Tool: Task Manager
+> testado no `bash` (MinGW, Cygwin e Fish) e `zsh` (vide o script)
+
+O script [task_manager.sh](./task_manager.sh) utiliza os padrões definidos para facilitar a criação, edição, remoção das tarefas.
+Além de marcar as tarefas pendentes como _feitas_, abrir links do _title_ e criar arquivos e diretórios.
+> `$ ./taskmanager.sh` para maiores detalhes
+
+[demo](./demo-task_manager.sh.gif)
