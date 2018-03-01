@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://techsquare.co/wp-content/uploads/2017/08/1481354.png" width="160">
   <h1><i>Elixir</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-36%25%20(14%20of%2038)-6E4A7E.svg" width="180">
+  <img src="https://img.shields.io/badge/done-35%25%20(14%20of%2040)-6E4A7E.svg" width="180">
 </div>
 
 <p align="center">
@@ -54,6 +54,8 @@ status | title | last update | snnipet | notes
 
 status | title | last update | snnipet | notes
 :-----:|:------|:-----------:|:-------:|:----:
+|| [Elixir: GETTING STARTED](https://elixir-lang.org/getting-started) |  | oficial; 23 tópicos |
+|| [Elixir: META-PROGRAMMING IN ELIXIR](https://elixir-lang.org/getting-started/meta) |  | oficial; 3 tópicos |
 :white_check_mark: | [Elixir and Unicode, Part 1: Unicode and UTF-8 Explained](https://www.bignerdranch.com/blog/unicode-and-utf-8-explained) | 2016 | adaptação da talk _String Theory_ |
 :white_check_mark: | [Elixir and Unicode, Part 2: Working with Unicode Strings](https://www.bignerdranch.com/blog/elixir-and-unicode-part-2-working-with-unicode-strings) | 2016 |  | [:memo:](./avulsos/elixir_and_unicode,_part_2_working_with_unicode_strings.exs)
 || [Elixir School (PT)](https://elixirschool.com/pt) | 2017 | |
