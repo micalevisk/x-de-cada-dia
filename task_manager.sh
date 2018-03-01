@@ -185,6 +185,8 @@ confirm() {
 ## Define as variáveis 'file' e 'dir' que são caminhos para o
 ## arquivo ou diretório da tarefa. Além da variável
 ## 'normalized_task_name' que guarda o nome tratado da tarefa.
+## Esses caminhos são em relação a raiz do projeto e serão usados para
+## criar um arquivo/dir.
 ## @args: <nome da tarefa> [extensão para o arquivo]
 ## @use: sed
 set_file_and_dir__() {
@@ -414,12 +416,12 @@ bind_blank() {
     num_tasks_done=$(( num_tasks - num_items ))
 
     [ ${#created_dirs[@]} -ne 0 ] && {
-      printf "~ Diretórios Criados (${#created_dirs[@]}):\\n"
+      printf "~ Diretórios Criados em '${CURR_DIR,,}' (${#created_dirs[@]}):\\n"
       printf "%s\\n" "${created_dirs[@]}"
     }
 
     [ ${#created_files[@]} -ne 0 ] && {
-      printf "~ Arquivos Criados   (${#created_files[@]}):\\n"
+      printf "~ Arquivos Criados em '${CURR_DIR,,}'   (${#created_files[@]}):\\n"
       printf "%s\\n" "${created_files[@]}"
     }
 
@@ -624,17 +626,14 @@ toggle_delete_task() {
   if [ -n "${tasks_to_remove[$curr_item_index]+_}" ]; then remove_delete_mark; else mark_delete_task; fi
 }
 
-## Cria, se não existir, um diretório para a tarefa corrente.
+## Cria, um diretório para a tarefa corrente.
 create_dir() {
   set_file_and_dir__ "${list_items[$curr_item_index]#*:}"
   [ -n "$normalized_task_name" ] || return 1
-  dir="$CURR_DIR/$normalized_task_name"
 
-  if [ ! -d "$dir" ]; then
-    mkdir -p "$dir" || return 1 ## ERROR
-    emit_beep
-  fi
-  created_dirs[${list_items[$curr_item_index]%%:*}]="$dir"
+  mkdir -p "$dir" || return 1 ## ERROR
+  emit_beep
+  created_dirs[${list_items[$curr_item_index]%%:*}]=".${dir#${CURR_DIR,,}}"
 }
 
 ## Cria um arquivo de texto para a tarefa corrente.
@@ -655,7 +654,7 @@ create_file() {
     set_file_and_dir__ "${list_items[$curr_item_index]#*:}" "$extension"
     touch "$file" || return 1 ## ERROR
     emit_beep
-    created_files[${list_items[$curr_item_index]%%:*}]="$file"
+    created_files[${list_items[$curr_item_index]%%:*}]=".${file#${CURR_DIR,,}}"
   fi
 }
 
