@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://techsquare.co/wp-content/uploads/2017/08/1481354.png" width="160">
   <h1><i>Elixir</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-28%25%20(11%20of%2038)-6E4A7E.svg" width="180">
+  <img src="https://img.shields.io/badge/done-34%25%20(13%20of%2038)-6E4A7E.svg" width="180">
 </div>
 
 <p align="center">
@@ -54,8 +54,8 @@ status | title | last update | snnipet | notes
 
 status | title | last update | snnipet | notes
 :-----:|:------|:-----------:|:-------:|:----:
-|| [Elixir and Unicode, Part 1: Unicode and UTF-8 Explained](https://www.bignerdranch.com/blog/unicode-and-utf-8-explained) | 2016 | adaptação da talk _String Theory_ |
-|| [Elixir and Unicode, Part 2: Working with Unicode Strings](https://www.bignerdranch.com/blog/elixir-and-unicode-part-2-working-with-unicode-strings) | 2016 |  |
+:white_check_mark: | [Elixir and Unicode, Part 1: Unicode and UTF-8 Explained](https://www.bignerdranch.com/blog/unicode-and-utf-8-explained) | 2016 | adaptação da talk _String Theory_ |
+:white_check_mark: | [Elixir and Unicode, Part 2: Working with Unicode Strings](https://www.bignerdranch.com/blog/elixir-and-unicode-part-2-working-with-unicode-strings) | 2016 |  | [:memo:](./avulsos/elixir_and_unicode,_part_2_working_with_unicode_strings.exs)
 || [Elixir School (PT)](https://elixirschool.com/pt) | 2017 | |
 || [Quick & Easy Elixir Refactorings — Part 1](https://medium.com/@efexen/quick-easy-elixir-refactorings-part-1-17376e9c455a) | 2017 | |
 :white_check_mark: | [Elixir for Java Developers, Episode I](https://medium.com/skyhub-labs/elixir-for-java-developers-episode-i-66b65c862652) | 2017 | |
