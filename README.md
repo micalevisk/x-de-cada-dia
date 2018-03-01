@@ -90,6 +90,6 @@ Ao passo que uma dita **concluída** deve estar assim:
 
 O script [task_manager.sh](./task_manager.sh) utiliza os padrões definidos para facilitar a criação, edição, remoção das tarefas.
 Além de marcar as tarefas pendentes como _feitas_, abrir links do _title_ e criar arquivos e diretórios.
-> `$ ./taskmanager.sh` para maiores detalhes
+> `$ ./task_manager.sh` para maiores detalhes
 
 [![demo](./demo-task_manager.sh.gif)]()
