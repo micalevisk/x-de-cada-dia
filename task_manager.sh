@@ -1,6 +1,6 @@
 #!/bin/bash
 ##
-##  v0.26-2
+##  v0.28-2
 ##  resources for cursor movements with ANSI escape sequences and other stuffs:
 ##  - http://shellscript.com.br
 ##  - https://www.tldp.org/HOWTO/Bash-Prompt-HOWTO/x361.html
@@ -23,9 +23,10 @@
 ##  3- Não apaga o diretório/arquivo criado (antes) para uma tarefa caso o usuário deseja (agora) removê-la;
 ##  4- Não considera (corretamente) o redimensionamento da janela;
 ##  5- Não lista corretamente se o número de linhas da janela for menor que o número de itens;
+##  6- Não associa arquivos/diretórios criados fora da mesma execução em que a tarefa foi marcada como feita;
 ##
 
-shopt -s extglob ## ativar extended pattern matching features
+shopt -s extglob ## ativar extended pattern matching features ~ remover esta linha se for zsh
 
 declare EDITOR="vim"
 declare OPEN="open"
@@ -632,8 +633,8 @@ create_dir() {
   if [ ! -d "$dir" ]; then
     mkdir -p "$dir" || return 1 ## ERROR
     emit_beep
-    created_dirs[${list_items[$curr_item_index]%%:*}]="$dir"
   fi
+  created_dirs[${list_items[$curr_item_index]%%:*}]="$dir"
 }
 
 ## Cria um arquivo de texto para a tarefa corrente.
@@ -803,4 +804,4 @@ update_screen_width__() {
 main__ "$@"
 ##############################
 
-shopt -u extglob
+shopt -u extglob ## desativa ~ remover esta linha se for zsh
