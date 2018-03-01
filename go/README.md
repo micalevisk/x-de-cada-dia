@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://cdn-images-1.medium.com/max/1600/1*yh90bW8jL4f8pOTZTvbzqw.png" width="180">
   <h1><i>Go</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-0%25%20(0%20of%2017)-375EAB.svg" width="180">
+  <img src="https://img.shields.io/badge/done-0%25%20(0%20of%2018)-375EAB.svg" width="180">
 </div>
 
 <p align="center">
@@ -52,6 +52,7 @@ status | title | last update | snnipet | notes
 
 status | title | last update | snnipet | notes
 :-----:|:------|:-----------:|:-------:|:----:
+|| [Essential Go - a free Go programming book](https://www.programming-books.io/essential/go) | 2018 | online |
 || [Programando em Go - Caio Filipini](https://www.casadocodigo.com.br/products/livro-google-go) | 2014 | |
 || [Go Lang A linguagem do Google - Suelen Goularte Carvalho](https://www.ime.usp.br/~gold/cursos/2015/MAC5742/reports/GoLang.pdf) | 2015 | |
 
