@@ -58,7 +58,7 @@ status | title | last update | snnipet | notes
 || [Elixir: META-PROGRAMMING IN ELIXIR](https://elixir-lang.org/getting-started/meta) |  | oficial; 3 tópicos |
 :white_check_mark: | [Elixir and Unicode, Part 1: Unicode and UTF-8 Explained](https://www.bignerdranch.com/blog/unicode-and-utf-8-explained) | 2016 | adaptação da talk _String Theory_ |
 :white_check_mark: | [Elixir and Unicode, Part 2: Working with Unicode Strings](https://www.bignerdranch.com/blog/elixir-and-unicode-part-2-working-with-unicode-strings) | 2016 |  | [:memo:](./avulsos/elixir_and_unicode,_part_2_working_with_unicode_strings.exs)
-|| [Elixir School \[BÁSICO\]](https://elixirschool.com/pt) | 2017 | oficial; 16 tópicos |
+|| [Elixir School \[BÁSICO\]](https://elixirschool.com/pt) | 2018 | oficial; 16 tópicos |
 || [Quick & Easy Elixir Refactorings — Part 1](https://medium.com/@efexen/quick-easy-elixir-refactorings-part-1-17376e9c455a) | 2017 | |
 :white_check_mark: | [Elixir for Java Developers, Episode I](https://medium.com/skyhub-labs/elixir-for-java-developers-episode-i-66b65c862652) | 2017 | |
 :white_check_mark: | [Elixir for Java Developers, Episode II](https://medium.com/skyhub-labs/elixir-for-java-developers-episode-ii-a75c368c6e13) | 2017 |  |
