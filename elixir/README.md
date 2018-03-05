@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://techsquare.co/wp-content/uploads/2017/08/1481354.png" width="160">
   <h1><i>Elixir</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-42%25%20(17%20of%2040)-6E4A7E.svg" width="180">
+  <img src="https://img.shields.io/badge/done-41%25%20(17%20of%2041)-6E4A7E.svg" width="180">
 </div>
 
 <p align="center">
@@ -74,6 +74,7 @@ status | title | last update | snnipet | notes
 
 status | title | last update | snnipet | notes
 :-----:|:------|:-----------:|:-------:|:----:
+|| [Elxix in Action - Saša Jurić](https://www.manning.com/books/elixir-in-action) | 2016 | 376 páginas |
 || [Learning Elixir - Kenny Ballou](https://www.packtpub.com/application-development/learning-elixir) | 2016 | |
 || [Programming Phoenix - by Chris McCord, Bruce Tate, José Valim](https://pragprog.com/book/phoenix/programming-phoenix) | 2016 | |
 
