@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://techsquare.co/wp-content/uploads/2017/08/1481354.png" width="160">
   <h1><i>Elixir</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-39%25%20(18%20of%2046)-6E4A7E.svg" width="180">
+  <img src="https://img.shields.io/badge/done-45%25%20(21%20of%2046)-6E4A7E.svg" width="180">
 </div>
 
 <p align="center">
@@ -56,9 +56,9 @@ status | title | last update | snnipet | notes
 status | title | last update | snnipet | notes
 :-----:|:------|:-----------:|:-------:|:----:
 :white_check_mark: | [Quick & Easy Elixir Refactorings — Part 1](https://medium.com/@efexen/quick-easy-elixir-refactorings-part-1-17376e9c455a) | 2017 | |
-|| [Quick & Easy Elixir Refactorings — Part 2](https://medium.com/@efexen/quick-easy-elixir-refactorings-part-2-4cd66bad1b20) | 2017 | funções que termimam com condicional |
-|| [Quick & Easy Elixir Refactorings — Part 3](https://medium.com/@efexen/quick-easy-elixir-refactorings-part-3-def1aae4b072) | 2017 | condicionais no meio |
-|| [Quick & Easy Elixir Refactorings — Part 4](https://hackernoon.com/quick-easy-elixir-refactorings-part-4-4096a8022988) | 2017 | condicionais aninhadas |
+:white_check_mark: | [Quick & Easy Elixir Refactorings — Part 2](https://medium.com/@efexen/quick-easy-elixir-refactorings-part-2-4cd66bad1b20) | 2017 | funções que termimam com condicional |
+:white_check_mark: | [Quick & Easy Elixir Refactorings — Part 3](https://medium.com/@efexen/quick-easy-elixir-refactorings-part-3-def1aae4b072) | 2017 | condicionais no meio |
+:white_check_mark: | [Quick & Easy Elixir Refactorings — Part 4](https://hackernoon.com/quick-easy-elixir-refactorings-part-4-4096a8022988) | 2017 | condicionais aninhadas |
 :white_check_mark: | [Elixir and IO Lists, Part 1: Building Output Efficiently](https://www.bignerdranch.com/blog/elixir-and-io-lists-part-1-building-output-efficiently) | 2016 | |
 || [Elixir: GETTING STARTED](https://elixir-lang.org/getting-started) |  | oficial; 23 tópicos |
 || [Elixir: META-PROGRAMMING IN ELIXIR](https://elixir-lang.org/getting-started/meta) |  | oficial; 3 tópicos |
