@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://techsquare.co/wp-content/uploads/2017/08/1481354.png" width="160">
   <h1><i>Elixir</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-42%25%20(18%20of%2042)-6E4A7E.svg" width="180">
+  <img src="https://img.shields.io/badge/done-39%25%20(18%20of%2046)-6E4A7E.svg" width="180">
 </div>
 
 <p align="center">
@@ -55,8 +55,13 @@ status | title | last update | snnipet | notes
 
 status | title | last update | snnipet | notes
 :-----:|:------|:-----------:|:-------:|:----:
+:white_check_mark: | [Elixir and IO Lists, Part 1: Building Output Efficiently](https://www.bignerdranch.com/blog/elixir-and-io-lists-part-1-building-output-efficiently) | 2016 | |
+|| [Quick & Easy Elixir Refactorings — Part 2](https://medium.com/@efexen/quick-easy-elixir-refactorings-part-2-4cd66bad1b20) | 2017 | funções que termimam com condicional |
+|| [Quick & Easy Elixir Refactorings — Part 3](https://medium.com/@efexen/quick-easy-elixir-refactorings-part-3-def1aae4b072) | 2017 | condicionais no meio |
+|| [Quick & Easy Elixir Refactorings — Part 4](Quick & Easy Elixir Refactorings — Part 4) | 2017 | condicionais aninhadas |
 || [Elixir: GETTING STARTED](https://elixir-lang.org/getting-started) |  | oficial; 23 tópicos |
 || [Elixir: META-PROGRAMMING IN ELIXIR](https://elixir-lang.org/getting-started/meta) |  | oficial; 3 tópicos |
+|| [Isolating code in contexts](https://medium.com/@lasseebert/isolating-code-in-contexts-172ec93ce532) | 2017 | sobre o design pattern "The Context Pattern" |
 :white_check_mark: | [Elixir and Unicode, Part 1: Unicode and UTF-8 Explained](https://www.bignerdranch.com/blog/unicode-and-utf-8-explained) | 2016 | adaptação da talk _String Theory_ |
 :white_check_mark: | [Elixir and Unicode, Part 2: Working with Unicode Strings](https://www.bignerdranch.com/blog/elixir-and-unicode-part-2-working-with-unicode-strings) | 2016 |  | [:memo:](./avulsos/elixir_and_unicode,_part_2_working_with_unicode_strings.exs)
 || [Elixir School \[BÁSICO\]](https://elixirschool.com/pt) | 2018 | oficial; 16 tópicos |
@@ -66,7 +71,6 @@ status | title | last update | snnipet | notes
 :white_check_mark: | [Aprenda Elixir em Y Minutos](https://learnxinyminutes.com/docs/pt-br/elixir-pt) | 2017 | | [:memo:](./avulsos/aprenda_elixir_em_y_minutos.ex)
 :white_check_mark: | [Intro to Elixir for non Ruby programmers](https://ryanwinchester.ca/posts/intro-to-elixir-for-non-ruby-programmers) | 2017 | perspectiva do PHP e JS |
 || [Elixir with José Valim](http://howistart.org/posts/elixir/1) | | de _How I Start._ |
-:white_check_mark: | [Elixir and IO Lists, Part 1: Building Output Efficiently](https://www.bignerdranch.com/blog/elixir-and-io-lists-part-1-building-output-efficiently) | 2016 | |
 || [\[001.3\] Mix and Modules](https://www.dailydrip.com/topics/elixir/drips/mix-and-modules-db615e15-d790-403d-a6d0-c65444e35ef2) | 2017 | "Using the `mix` tool and defining modules, functions, and structs" |
 || [\[001.4\] Processes and Messaging](https://www.dailydrip.com/topics/elixir/drips/processes-and-messaging-08687de7-07c6-4cc3-b6c6-4398d137820c.html) | 2017 | "Processes are the unit of concurrency. We'll spawn some processes and let them have a conversation." |
 
