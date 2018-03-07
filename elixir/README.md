@@ -55,17 +55,17 @@ status | title | last update | snnipet | notes
 
 status | title | last update | snnipet | notes
 :-----:|:------|:-----------:|:-------:|:----:
-:white_check_mark: | [Elixir and IO Lists, Part 1: Building Output Efficiently](https://www.bignerdranch.com/blog/elixir-and-io-lists-part-1-building-output-efficiently) | 2016 | |
+:white_check_mark: | [Quick & Easy Elixir Refactorings — Part 1](https://medium.com/@efexen/quick-easy-elixir-refactorings-part-1-17376e9c455a) | 2017 | |
 || [Quick & Easy Elixir Refactorings — Part 2](https://medium.com/@efexen/quick-easy-elixir-refactorings-part-2-4cd66bad1b20) | 2017 | funções que termimam com condicional |
 || [Quick & Easy Elixir Refactorings — Part 3](https://medium.com/@efexen/quick-easy-elixir-refactorings-part-3-def1aae4b072) | 2017 | condicionais no meio |
 || [Quick & Easy Elixir Refactorings — Part 4](https://hackernoon.com/quick-easy-elixir-refactorings-part-4-4096a8022988) | 2017 | condicionais aninhadas |
+:white_check_mark: | [Elixir and IO Lists, Part 1: Building Output Efficiently](https://www.bignerdranch.com/blog/elixir-and-io-lists-part-1-building-output-efficiently) | 2016 | |
 || [Elixir: GETTING STARTED](https://elixir-lang.org/getting-started) |  | oficial; 23 tópicos |
 || [Elixir: META-PROGRAMMING IN ELIXIR](https://elixir-lang.org/getting-started/meta) |  | oficial; 3 tópicos |
 || [Isolating code in contexts](https://medium.com/@lasseebert/isolating-code-in-contexts-172ec93ce532) | 2017 | sobre o design pattern "The Context Pattern" |
 :white_check_mark: | [Elixir and Unicode, Part 1: Unicode and UTF-8 Explained](https://www.bignerdranch.com/blog/unicode-and-utf-8-explained) | 2016 | adaptação da talk _String Theory_ |
 :white_check_mark: | [Elixir and Unicode, Part 2: Working with Unicode Strings](https://www.bignerdranch.com/blog/elixir-and-unicode-part-2-working-with-unicode-strings) | 2016 |  | [:memo:](./avulsos/elixir_and_unicode,_part_2_working_with_unicode_strings.exs)
 || [Elixir School \[BÁSICO\]](https://elixirschool.com/pt) | 2018 | oficial; 16 tópicos |
-:white_check_mark: | [Quick & Easy Elixir Refactorings — Part 1](https://medium.com/@efexen/quick-easy-elixir-refactorings-part-1-17376e9c455a) | 2017 | |
 :white_check_mark: | [Elixir for Java Developers, Episode I](https://medium.com/skyhub-labs/elixir-for-java-developers-episode-i-66b65c862652) | 2017 | |
 :white_check_mark: | [Elixir for Java Developers, Episode II](https://medium.com/skyhub-labs/elixir-for-java-developers-episode-ii-a75c368c6e13) | 2017 |  |
 :white_check_mark: | [Aprenda Elixir em Y Minutos](https://learnxinyminutes.com/docs/pt-br/elixir-pt) | 2017 | | [:memo:](./avulsos/aprenda_elixir_em_y_minutos.ex)
