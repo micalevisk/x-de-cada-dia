@@ -1,6 +1,6 @@
 #!/bin/bash
 ##
-##  v0.28-2
+##  v0.07-3
 ##  resources for cursor movements with ANSI escape sequences and other stuffs:
 ##  - http://shellscript.com.br
 ##  - https://www.tldp.org/HOWTO/Bash-Prompt-HOWTO/x361.html
@@ -112,7 +112,7 @@ main__() {
     bind_arrow_right=bind_blank
     bind_delete=; bind_d=; bind_f=; bind_o=; ## desativando bindings padrões
   else ## items as tasks not done
-    items_to_show="$(grep --color=never -n -o -P '(?<=^\|\| \[).+(?=\])' "$PATH_TO_TASKS_FILE" | sed -E "s~\\\(${SPECIAL_LIST})~\1~g")" ## lista de tarefas pendentes
+    items_to_show="$(grep --color=never -n -o -P '(?<=^\|\| \[).+?[^\\](?=\])' "$PATH_TO_TASKS_FILE" | sed -E "s~\\\(${SPECIAL_LIST})~\1~g")" ## lista de tarefas pendentes
 
     bind_arrow_right=mark_done_task
     bind_arrow_left=remove_done_mark
@@ -209,7 +209,7 @@ set_file_and_dir__() {
 set_all_tasks__() {
   ## OPTIMIZE: evitar o uso de dois grep (talvez com sed -En e o comando '='; para casar tudo e apagar lixos).
   all_tasks_done="$(grep --color=never -n -o -P "(?<=${TASK_DONE_MARK} \| \[).+?[^\\\](?=\])" "$PATH_TO_TASKS_FILE")"
-  all_tasks="${all_tasks_done:+${all_tasks_done}\n}$(grep --color=never -n -o -P '(?<=^\|\| \[).+(?=\])' "$PATH_TO_TASKS_FILE")"
+  all_tasks="${all_tasks_done:+${all_tasks_done}\n}$(grep --color=never -n -o -P '(?<=^\|\| \[).+?[^\\](?=\])' "$PATH_TO_TASKS_FILE")"
 }
 
 show_help_exit() {
