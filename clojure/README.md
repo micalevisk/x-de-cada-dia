@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/1024px-Clojure_logo.svg.png" width="160">
   <h1><i>Clojure</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-48%25%20(24%20of%2050)-DB5855.svg" width="180">
+  <img src="https://img.shields.io/badge/done-50%25%20(25%20of%2050)-DB5855.svg" width="180">
 </div>
 
 <p align="center">
@@ -26,7 +26,7 @@ status | title | last update | snnipet | notes
 :white_check_mark: | [A arte da simplicidade com Clojure por Maurício Szabo](https://www.youtube.com/watch?v=_kGwRVuH6mU) | 2015 | de _GURU SP talks_ |
 :white_check_mark: | [ClojureScript vs JavaScript (ES5 & ES6) - Oliver Mooney](https://www.youtube.com/watch?v=yQSbFlcIDUQ) | 2015 | de _DublinJS_ |
 :white_check_mark: | [From JavaScript to ClojureScript](https://www.youtube.com/watch?v=8UYa8PV3CXQ) | 2015 | de _Doing Computers_ |
-|| [Clojure/ClojureScript: One Language to Rule the Web](https://www.youtube.com/watch?v=EpcNDd8nuYY) | 2013 | de _Oracle Learning Library_ |
+:white_check_mark: | [Clojure/ClojureScript: One Language to Rule the Web](https://www.youtube.com/watch?v=EpcNDd8nuYY) | 2013 | de _Oracle Learning Library_; [slide notes](https://stuartsierra.com/download/2012-10-01-clojurescript-javaone.html) |
 || [Meetup Clojure BR - 01 - Introdução a Linguagem](https://www.youtube.com/watch?v=u7O785o9Bvo) | 2016 | de _clj-br_ |
 :white_check_mark: | [Intro to ClojureScript (CLJS) - Julio Barros](https://www.youtube.com/watch?v=C2JmQ1gSqjk) | 2017 | de _PDX Node_ |
 :white_check_mark: | [ClojureScript "Quick Start" (Actually Pretty In-Depth)](https://www.youtube.com/watch?v=TGHPYMbgOUM) | 2016 | de _Florian Klampfer_ |
