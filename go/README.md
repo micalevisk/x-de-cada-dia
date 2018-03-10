@@ -20,7 +20,7 @@
 
 status | title | last update | snnipet | notes
 :-----:|:------|:-----------:|:-------:|:----:
-|| [[Webinar] Introdução a GO](https://www.youtube.com/watch?v=GtQWUGX33XE) | 2016 | de _MATERA Systems_; transmissão gravada |
+|| [\[Webinar\] Introdução a GO](https://www.youtube.com/watch?v=GtQWUGX33XE) | 2016 | de _MATERA Systems_; transmissão gravada |
 || [Go Programming](https://www.youtube.com/watch?v=CF9S4QZuV30) | 2015 | de _Derek Banas_ |
 || [Go Programming Tutorial](https://www.youtube.com/watch?v=U7oAV65wIeE) | 2017 | de _Learn To Code_ |
 || [Comparing Erlang and Go Concurrency](https://www.youtube.com/watch?v=2yiKUIDFc2I) | 2016 | de _Bryan Ray_ |
