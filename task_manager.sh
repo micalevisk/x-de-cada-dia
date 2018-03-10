@@ -1,6 +1,6 @@
 #!/bin/bash
 ##
-##  v0.07-3
+##  v0.10-3
 ##  resources for cursor movements with ANSI escape sequences and other stuffs:
 ##  - http://shellscript.com.br
 ##  - https://www.tldp.org/HOWTO/Bash-Prompt-HOWTO/x361.html
@@ -29,9 +29,11 @@
 shopt -s extglob ## ativar extended pattern matching features ~ remover esta linha se for zsh
 
 declare EDITOR="vim"
-declare OPEN="open"
-command -v $EDITOR >/dev/null 2>&1 || EDITOR="vi" ## ou 'open -e'
+declare OPEN="firefox"
+declare EXPLORER="explorer" ## `xdg-open` or `nauttilus` to open a file manager
+command -v $EDITOR >/dev/null 2>&1 || EDITOR="vi" ## or `open -e`
 command -v $OPEN >/dev/null 2>&1 || OPEN="cygstart"
+command -v $EXPLORER >/dev/null 2>&1 || EXPLORER="xdg-open"
 
 # exec 2>/dev/null ## não mostrar erros na saída padrão; causa ERRO no tput no MinGW
 
@@ -99,6 +101,7 @@ main__() {
   bind_d=create_dir
   bind_f=create_file
   bind_o=open_title_link
+  bind_dot=open_dir
 
   if [ -n "$MODE_EDIT" ]; then ## items as all tasks
     set_all_tasks__
@@ -162,6 +165,7 @@ main__() {
       $'\x64') $bind_d ;;
       $'\x66') $bind_f ;;
       $'\x6f') $bind_o ;;
+      $'\x2e') $bind_dot ;;
 
       *) ;; ## do nothing
     esac
@@ -234,6 +238,7 @@ show_help_exit() {
     | 8  | f               | create a [f] to current task (waiting for an extension after 'beep')|
     | 9  | o               | [o]pen task \`title\` link                                            |
     | 10 | space/ENTER     | go to next step (and update the progress)                           |
+    | 11 | .               | open current project directory                                      |
     +----+-----------------+---------------------------------------------------------------------+
 
   COMMANDS:
@@ -634,6 +639,11 @@ create_dir() {
   mkdir -p "$dir" || return 1 ## ERROR
   emit_beep
   created_dirs[${list_items[$curr_item_index]%%:*}]=".${dir#${CURR_DIR,,}}"
+}
+
+## Abre o diretório da linguagem/projeto escolhida.
+open_dir() {
+  $EXPLORER "$CURR_DIR"
 }
 
 ## Cria um arquivo de texto para a tarefa corrente.
