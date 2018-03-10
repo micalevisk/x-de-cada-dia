@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://techsquare.co/wp-content/uploads/2017/08/1481354.png" width="160">
   <h1><i>Elixir</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-45%25%20(21%20of%2046)-6E4A7E.svg" width="180">
+  <img src="https://img.shields.io/badge/done-47%25%20(22%20of%2046)-6E4A7E.svg" width="180">
 </div>
 
 <p align="center">
@@ -71,7 +71,7 @@ status | title | last update | snnipet | notes
 :white_check_mark: | [Aprenda Elixir em Y Minutos](https://learnxinyminutes.com/docs/pt-br/elixir-pt) | 2017 | | [:memo:](./avulsos/aprenda_elixir_em_y_minutos.ex)
 :white_check_mark: | [Intro to Elixir for non Ruby programmers](https://ryanwinchester.ca/posts/intro-to-elixir-for-non-ruby-programmers) | 2017 | perspectiva do PHP e JS |
 || [Elixir with José Valim](http://howistart.org/posts/elixir/1) | | de _How I Start._ |
-|| [\[001.3\] Mix and Modules](https://www.dailydrip.com/topics/elixir/drips/mix-and-modules-db615e15-d790-403d-a6d0-c65444e35ef2) | 2017 | "Using the `mix` tool and defining modules, functions, and structs" |
+:white_check_mark: | [\[001.3\] Mix and Modules](https://www.dailydrip.com/topics/elixir/drips/mix-and-modules-db615e15-d790-403d-a6d0-c65444e35ef2) | 2017 | "Using the `mix` tool and defining modules, functions, and structs" |
 || [\[001.4\] Processes and Messaging](https://www.dailydrip.com/topics/elixir/drips/processes-and-messaging-08687de7-07c6-4cc3-b6c6-4398d137820c.html) | 2017 | "Processes are the unit of concurrency. We'll spawn some processes and let them have a conversation." |
 
 
