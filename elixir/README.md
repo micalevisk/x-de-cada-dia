@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://techsquare.co/wp-content/uploads/2017/08/1481354.png" width="160">
   <h1><i>Elixir</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-47%25%20(22%20of%2046)-6E4A7E.svg" width="180">
+  <img src="https://img.shields.io/badge/done-46%25%20(22%20of%2047)-6E4A7E.svg" width="180">
 </div>
 
 <p align="center">
@@ -48,6 +48,7 @@ status | title | last update | snnipet | notes
 || [Elixir Tutorial](https://www.youtube.com/playlist?list=PLDbt-8dyNTUWRUv0Cutoj2avYUd_lqdqn) | 2017 | de _SysAdmin Cat_ |
 || [elixir](https://www.youtube.com/playlist?list=PLJbE2Yu2zumAgKjSPyFtvYjP5LqgzafQq) | 2017 | de _Tensor Programming_ |
 || [Getting Started with Elixir Tutorial](https://www.youtube.com/playlist?list=PLTgRMOcmRb3Nd4IJDrGWaUhCjeuWLVcdI) | 2017 | de _Packt Video_ |
+|| [Elixir OTP](https://www.youtube.com/playlist?list=PLZZkJeUxu6QkFsqar5pIqaLoqVnBycDoU) | 2017 | de _omgneering_ |
 || [Elixir + Phoenix: Building a simple chatroom](https://www.youtube.com/watch?v=e5jlIejl9Fs) | 2016 | de _YayCode_ |
 
 
