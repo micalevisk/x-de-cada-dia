@@ -312,7 +312,7 @@ command_edit() {
 ## para a inserção de uma nova tarefa em uma seção específica.
 ## @args: <linha real de seção>
 create_new_task() {
-  local new_task_values task_title real_line
+  local new_task_values task_title line_first_task
   local temp_file="$(mktemp -q ".new-task-L${1}.XXXXXXXXXXXX.md")"
   [ -w "$temp_file" ] || return 1 ## ERROR
 
@@ -321,11 +321,9 @@ create_new_task() {
   less < <(printf "Todas as Tarefas:\\n${all_tasks}" | sort -n | sed -E "s~\\\(${SPECIAL_LIST})~\1~g") ## lista todas as tarefas
   ##e%>
 
-  real_line="$(
-    sed -En "$(( $1 + 2 )),\
-    /\s*(${TASK_DONE_MARK}|\|\|)/{
-      h;
-      /\s*(${TASK_DONE_MARK}|\|\|)/{x; =;}
+  line_first_task="$(sed -En "$(( $1 + 2 )),\
+    /^\s*(${TASK_DONE_MARK}|\|\|)/{
+      /^\s*(${TASK_DONE_MARK}|\|\|)/=;
     }" "$PATH_TO_TASKS_FILE")"
 
   printf "%s\\n\\n\\n" "${HEADERS_E[@]//\\n}" > "$temp_file" || return 2 ## ERROR
@@ -337,6 +335,7 @@ create_new_task() {
   ## estão 1 linha abaixo do campo indicado e não ocupam mais de 1 linha.
   mapfile -t new_task_values < <(sed -n '2p; 5p; 8p; 11p' "$temp_file") ## XXX: versão "bruta" mas rápida
   rm -f "$temp_file"
+
   task_title="${new_task_values[0]##*( )}" ## trim leading whitespaces
   [ -n "$task_title" ] || return 3 ## ERROR 'title' (obrigatório) está vazio
 
@@ -349,7 +348,7 @@ create_new_task() {
   task_exists "$task_title" && return 4
   ##d%>
 
-  sed -i "${real_line}i\\|| $new_task_values" "$PATH_TO_TASKS_FILE"
+  sed -i "${line_first_task}i\\|| $new_task_values" "$PATH_TO_TASKS_FILE"
 }
 
 ## Trata a seção corrente como a alvo para a nova tarefa.
