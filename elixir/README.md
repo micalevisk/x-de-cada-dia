@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://techsquare.co/wp-content/uploads/2017/08/1481354.png" width="160">
   <h1><i>Elixir</i> de Cada Dia</h1>
-  <img src="https://img.shields.io/badge/done-44%25%20(22%20of%2049)-6E4A7E.svg" width="180">
+  <img src="https://img.shields.io/badge/done-44%25%20(22%20of%2050)-6E4A7E.svg" width="180">
 </div>
 
 <p align="center">
@@ -57,6 +57,7 @@ status | title | last update | snnipet | notes
 
 status | title | last update | snnipet | notes
 :-----:|:------|:-----------:|:-------:|:----:
+|| [Elixir Examples](https://elixir-examples.github.io/single-page) | 2016 | A collection of small Elixir programming language examples. |
 || [Elixir to start with](https://dc0d.github.io/2017/03/24/elixir-to-start-with) | 2017 | desenvolvendo um bot para o Telegram |
 :white_check_mark: | [Quick & Easy Elixir Refactorings — Part 1](https://medium.com/@efexen/quick-easy-elixir-refactorings-part-1-17376e9c455a) | 2017 | |
 :white_check_mark: | [Quick & Easy Elixir Refactorings — Part 2](https://medium.com/@efexen/quick-easy-elixir-refactorings-part-2-4cd66bad1b20) | 2017 | funções que termimam com condicional |
