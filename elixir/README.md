@@ -83,7 +83,7 @@ status | title | last update | snnipet | notes
 
 status | title | last update | snnipet | notes
 :-----:|:------|:-----------:|:-------:|:----:
-|| [Elxix in Action - Saša Jurić](https://www.manning.com/books/elixir-in-action) | 2016 | 376 páginas |
+|| [Elixir in Action - Saša Jurić](https://www.manning.com/books/elixir-in-action) | 2016 | 376 páginas |
 || [Learning Elixir - Kenny Ballou](https://www.packtpub.com/application-development/learning-elixir) | 2016 | |
 || [Programming Phoenix - by Chris McCord, Bruce Tate, José Valim](https://pragprog.com/book/phoenix/programming-phoenix) | 2016 | |
 
