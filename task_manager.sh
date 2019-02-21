@@ -1,6 +1,6 @@
 #!/bin/bash
 ##
-##  v0.10-3
+##  v0.21-2
 ##  resources for cursor movements with ANSI escape sequences and other stuffs:
 ##  - http://shellscript.com.br
 ##  - https://www.tldp.org/HOWTO/Bash-Prompt-HOWTO/x361.html
@@ -28,6 +28,7 @@
 
 shopt -s extglob ## ativar extended pattern matching features ~ remover esta linha se for zsh
 
+declare READ_WITH_PROMPT="read -p"
 declare EDITOR="vim"
 declare OPEN="firefox"
 declare EXPLORER="explorer" ## `xdg-open` or `nauttilus` to open a file manager
@@ -73,6 +74,7 @@ declare -l dir
 declare SOF_CURSOR_POS
 declare eof_cursor_pos
 declare all_tasks
+declare MODE_INIT
 declare MODE_EDIT
 declare MODE_NEW
 declare command_end_action
@@ -91,6 +93,10 @@ main__() {
   local bind_arrow_right bind_arrow_left bind_delete bind_d bind_f bind_o
 
   commands_switcher__ "$@"
+
+  if [ -n "$MODE_INIT" ]; then ## caso especial: não usa a interação avançada
+    command_init "${CURR_DIR,,}"
+  fi
 
   clear ## apagar tela para previnir a issue#1 ~ movee o cursor para (1,1)
   SOF_CURSOR_POS="0;0"
@@ -217,7 +223,7 @@ set_all_tasks__() {
 }
 
 show_help_exit() {
-  cat <<EOF
+  cat <<-EOF
   "Fancy" CLI Tool para gerenciar as tarefas de \`X de Cada Dia\`.
 
   Usage:
@@ -242,6 +248,7 @@ show_help_exit() {
     +----+-----------------+---------------------------------------------------------------------+
 
   COMMANDS:
+    init   - Create a new directory with proper 'README.md'. (non-interactive)
     new    - Select the section to create a new task. (off: 4..9)
     edit   - Select tasks to edit.
 EOF
@@ -253,6 +260,80 @@ EOF
 # ==================== command ======================== #
 # @use: mktemp sed rm mapfile less                      #
 # ===================================================== #
+
+## Solicita informações para a criação
+## de um novo diretório (para uma nova lang) com
+## o boilerplate do arquivo `README.md` adequado.
+## @args: <diretório a ser criado>
+command_init() {
+  DEFAULT_BADGE_WIDTH="180"
+  DEFAULT_LOGO_WIDTH="160"
+
+  new_dir="${1,,}" ## Language name
+  new_default_file="${new_dir}/README.md"
+
+  [ -e "$new_dir" ] && { echo "[ERROR] File '${new_dir}' exists." && exit 1; }
+
+  $READ_WITH_PROMPT "Badge Hex Color (look https://raw.githubusercontent.com/github/linguist/master/lib/linguist/languages.yml): " lang_badge_color && lang_badge_color=${lang_badge_color//#}
+  [ -z $lang_badge_color ] && { echo "[ERROR] Badge color is undefined." && exit 2; }
+
+  $READ_WITH_PROMPT "Badge Width (default=${DEFAULT_BADGE_WIDTH}): " lang_badge_width && lang_badge_width=${lang_badge_width:-$DEFAULT_BADGE_WIDTH}
+  $READ_WITH_PROMPT "Logo Path: " lang_logo_path && [ -z $lang_logo_path ] && { echo "[ERROR] Logo path is undefined." && exit 3; }
+  $READ_WITH_PROMPT "Logo Width (default=${DEFAULT_LOGO_WIDTH}): " lang_logo_width && lang_logo_width=${lang_logo_width:-$DEFAULT_LOGO_WIDTH}
+
+  mkdir -p "$new_dir" || return 1 ## ERROR
+
+  ## FIXME: trailling tabs are not stripped
+  cat <<-EOF > "$new_default_file"
+  <div align="center">
+    <img src="${lang_logo_path}" width="${lang_logo_width}">
+    <h1><i>${lang_name}</i> de Cada Dia</h1>
+    <img src="https://img.shields.io/badge/done-0%25%20(0%20of%200)-${lang_badge_color}.svg" width="${lang_badge_width}">
+  </div>
+
+  <p align="center">
+    <a href="#vídeos">:video_camera:</a>&nbsp;
+    <a href="#screencasts-e-relacionados">:floppy_disk:</a>&nbsp;
+    <a href="#artigos-e-relacionados">:newspaper:</a>&nbsp;
+    <a href="#livros">:books:</a>&nbsp;
+  </p>
+
+  ---
+
+  <div align="center">
+
+
+  ## Vídeos
+
+  status | title | last update | snnipet | notes
+  :-----:|:------|:-----------:|:-------:|:----:
+
+
+  ## Screencasts e Relacionados
+
+  status | title | last update | snnipet | notes
+  :-----:|:------|:-----------:|:-------:|:----:
+
+
+  ## Artigos e Relacionados
+
+  status | title | last update | snnipet | notes
+  :-----:|:------|:-----------:|:-------:|:----:
+
+
+  ## Livros
+
+  status | title | last update | snnipet | notes
+  :-----:|:------|:-----------:|:-------:|:----:
+
+
+  </div>
+EOF
+
+  printf "~ Diretório %s${new_dir}%s Criado com o Arquivo %s${new_default_file}\\n" ${COLORS[gr]} ${COLORS[n]} ${COLORS[g]}
+
+  exit 0
+}
 
 ## Verifica se existe uma tarefa com o title passado.
 ## @args: <title da tarefa>
@@ -369,6 +450,7 @@ command_new() {
 commands_switcher__() {
   [ $# -lt 2 ] && return 1 ## ERROR ~ nenhum comando encontrado, ignorar
   case "${2,,}" in
+    init) MODE_INIT=1 ;;
     edit) MODE_EDIT=1 ;;
     new ) MODE_NEW=1  ;;
     * ) show_help_exit;;
