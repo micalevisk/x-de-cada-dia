@@ -52,11 +52,6 @@ lang: {
 };
 sections: [{ name: String, emoji: String }];
 ```
-<div align="right">
-  <small>
-    um exemplo de uso pode ser visto em <a href="./gerar_readme_eg.js">gerar_readme_eg.js</a>.
-  </small>
-</div>
 
 
 ### Sobre a tabela
@@ -85,11 +80,11 @@ Ao passo que uma dita **concluída** deve estar assim:
 > ^:white_check_mark: | [nome-da-tarefa](link-para-a-tarefa) | data | |$
 > ```
 
-## CLI Tool: Task Manager
+## CLI Tool: Tasks Manager
 > testado no `bash` (MinGW, Cygwin e Fish) e `zsh` (vide o script)
 
-O script [task_manager.sh](./task_manager.sh) utiliza os padrões definidos para facilitar a criação, edição, remoção das tarefas.
+O script [tasks_manager.sh](./tasks_manager.sh) utiliza os padrões definidos para facilitar a criação, edição, remoção das tarefas.
 Além de marcar as tarefas pendentes como _feitas_, abrir links do _title_ e criar arquivos e diretórios.
-> `$ ./task_manager.sh` para maiores detalhes
+> `$ ./tasks_manager.sh` para maiores detalhes
 
 [![demo](./demo-task_manager.sh.gif)]()
