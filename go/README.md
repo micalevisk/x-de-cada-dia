@@ -18,7 +18,7 @@
 
 ## Vídeos
 
-status | title | last update | snnipet | notes
+status | title | last update | snippet | notes
 :-----:|:------|:-----------:|:-------:|:----:
 || [\[Webinar\] Introdução a GO](https://www.youtube.com/watch?v=GtQWUGX33XE) | 2016 | de _MATERA Systems_; transmissão gravada |
 || [Go Programming](https://www.youtube.com/watch?v=CF9S4QZuV30) | 2015 | de _Derek Banas_ |
@@ -28,7 +28,7 @@ status | title | last update | snnipet | notes
 
 ## Screencasts e Relacionados
 
-status | title | last update | snnipet | notes
+status | title | last update | snippet | notes
 :-----:|:------|:-----------:|:-------:|:----:
 || [Curso de Introdução a Linguagem Go (Golang)](https://www.youtube.com/playlist?list=PLXFk6ROPeWoAvLMyJ_PPfu8oF0-N_NgEI) | 2018 | de _EuProgramador_ |
 || [Tour da Linguagem Go](https://www.youtube.com/playlist?list=PLlirAFBMoIJt5YY81q9l4jM9BFLHRdngZ) | 2017 | de _Rudá Moura_ |
@@ -37,7 +37,7 @@ status | title | last update | snnipet | notes
 
 ## Artigos e Relacionados
 
-status | title | last update | snnipet | notes
+status | title | last update | snippet | notes
 :-----:|:------|:-----------:|:-------:|:----:
 || [The beauty of Go](https://hackernoon.com/the-beauty-of-go-98057e3f0a7d) | 2017 | |
 || [Aprenda Go em Y Minutos](https://learnxinyminutes.com/docs/pt-br/go-pt) | | |
@@ -50,7 +50,7 @@ status | title | last update | snnipet | notes
 
 ## Livros
 
-status | title | last update | snnipet | notes
+status | title | last update | snippet | notes
 :-----:|:------|:-----------:|:-------:|:----:
 || [Essential Go - a free Go programming book](https://www.programming-books.io/essential/go) | 2018 | online |
 || [Programando em Go - Caio Filipini](https://www.casadocodigo.com.br/products/livro-google-go) | 2014 | |

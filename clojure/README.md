@@ -17,7 +17,7 @@
 
 ## Vídeos
 
-status | title | last update | snnipet | notes
+status | title | last update | snippet | notes
 :-----:|:------|:-----------:|:-------:|:----:
 :white_check_mark: | [Understanding Clojure's thread macros](https://www.youtube.com/watch?v=qxE5wDbt964) | 2013 | de _Misophistful_ | [:memo:](./avulsos/understanding_clojure's_thread_macros.clj)
 :white_check_mark: | [Understanding list comprehension in Clojure](https://www.youtube.com/watch?v=5lvV9ICwaMo) | 2013 | de _Misophistful_ | [:memo:](./avulsos/understanding_list_comprehension_in_clojure.clj)
@@ -41,7 +41,7 @@ status | title | last update | snnipet | notes
 
 ## Screencasts e Relacionados
 
-status | title | last update | snnipet | notes
+status | title | last update | snippet | notes
 :-----:|:------|:-----------:|:-------:|:----:
 || [Learn Clojure - Clojure Koans Walkthrough](http://www.clojurescreencasts.com) | 2013 | de _slatterypod_ |
 :white_check_mark: | [Clojure spec Screencast Series](https://www.youtube.com/playlist?list=PLZdCLR02grLrju9ntDh3RGPpWSWBvjwXg) | 2016 | de _ClojureTV_; sobre a lib 'spec' do Clojure 1.9 | [:file_folder:](./clojure_spec_screencast_series)
@@ -49,7 +49,7 @@ status | title | last update | snnipet | notes
 
 ## Artigos e Relacionados
 
-status | title | last update | snnipet | notes
+status | title | last update | snippet | notes
 :-----:|:------|:-----------:|:-------:|:----:
 :white_check_mark: | [Fast String Interpolation in Clojure](http://blog.wjlr.org.uk/2015/01/15/string-interpolation-clojure.html) | 2015 | de Will Roe’s blog |
 :white_check_mark: | [Learn Clojure in Y Minutes](https://learnxinyminutes.com/docs/clojure) | 2017 | | [:memo:](./avulsos/learn-clojure-in-y-minutes.clj)
@@ -78,7 +78,7 @@ status | title | last update | snnipet | notes
 
 ## Livros
 
-status | title | last update | snnipet | notes
+status | title | last update | snippet | notes
 :-----:|:------|:-----------:|:-------:|:----:
 :white_check_mark: | [Seven Languages in Seven Weeks - Bruce A. Tate (capítulo 7)](https://geneticmail.com/scott/library/text/seven-languages-in-seven-weeks_p1_0.pdf) | 2010 | |
 || [Clojure for the brave and true](https://www.braveclojure.com/clojure-for-the-brave-and-true) | 2015 | |

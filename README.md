@@ -34,7 +34,7 @@ Para o correto funcionamento desses scripts para "automatizar" a atualização d
 <% sections.forEach(function(section) { -%>
 ## <%= section.name %>
 
-status | title | last update | snnipet | notes
+status | title | last update | snippet | notes
 :-----:|:------|:-----------:|:-------:|:----:
 
 

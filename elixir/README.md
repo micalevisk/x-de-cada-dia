@@ -17,7 +17,7 @@
 
 ## Vídeos
 
-status | title | last update | snnipet | notes
+status | title | last update | snippet | notes
 :-----:|:------|:-----------:|:-------:|:----:
 :white_check_mark: | [Introdução a Elixir \| #livecoding - com Leandro Bighetti](https://www.youtube.com/watch?v=sReZI1izRZI) | 2017 | de _Training Center_ | [:memo:](./avulsos/introducao_a_elixir_livecoding_-_com_leandro_bighetti.exs)
 :white_check_mark: | [Let's Get Functional With Elixir!](https://www.youtube.com/watch?v=wVrnoxNbOts) | 2017 | talk de _Nate Taylor_ |
@@ -36,7 +36,7 @@ status | title | last update | snnipet | notes
 
 ## Screencasts e Relacionados
 
-status | title | last update | snnipet | notes
+status | title | last update | snippet | notes
 :-----:|:------|:-----------:|:-------:|:----:
 || [Collections in Elixir](https://www.youtube.com/watch?v=MTXuphIuq6A) | 2017 | de _Montreal Elixir_; by Hugo Frappier |
 :white_check_mark: | [Elixir Tutorial - Basics](https://www.youtube.com/playlist?list=PLDbt-8dyNTUUQZcX5oVP1c9dABuS8ZsMp) | 2017 | de _SysAdmin Cat_ |
@@ -55,7 +55,7 @@ status | title | last update | snnipet | notes
 
 ## Artigos e Relacionados
 
-status | title | last update | snnipet | notes
+status | title | last update | snippet | notes
 :-----:|:------|:-----------:|:-------:|:----:
 || [Elixir Examples](https://elixir-examples.github.io/single-page) | 2016 | A collection of small Elixir programming language examples. |
 || [Elixir to start with](https://dc0d.github.io/2017/03/24/elixir-to-start-with) | 2017 | desenvolvendo um bot para o Telegram |
@@ -81,7 +81,7 @@ status | title | last update | snnipet | notes
 
 ## Livros
 
-status | title | last update | snnipet | notes
+status | title | last update | snippet | notes
 :-----:|:------|:-----------:|:-------:|:----:
 || [Elixir in Action - Saša Jurić](https://www.manning.com/books/elixir-in-action) | 2016 | 376 páginas |
 || [Learning Elixir - Kenny Ballou](https://www.packtpub.com/application-development/learning-elixir) | 2016 | |

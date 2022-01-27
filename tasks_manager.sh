@@ -305,25 +305,25 @@ command_init() {
 
   ## Vídeos
 
-  status | title | last update | snnipet | notes
+  status | title | last update | snippet | notes
   :-----:|:------|:-----------:|:-------:|:----:
 
 
   ## Screencasts e Relacionados
 
-  status | title | last update | snnipet | notes
+  status | title | last update | snippet | notes
   :-----:|:------|:-----------:|:-------:|:----:
 
 
   ## Artigos e Relacionados
 
-  status | title | last update | snnipet | notes
+  status | title | last update | snippet | notes
   :-----:|:------|:-----------:|:-------:|:----:
 
 
   ## Livros
 
-  status | title | last update | snnipet | notes
+  status | title | last update | snippet | notes
   :-----:|:------|:-----------:|:-------:|:----:
 
 

@@ -18,7 +18,7 @@
 
 ## Vídeos
 
-status | title | last update | snnipet | notes
+status | title | last update | snippet | notes
 :-----:|:------|:-----------:|:-------:|:----:
 || [Ruby On Rails In 60 Minutes](https://www.youtube.com/watch?v=pPy0GQJLZUM) | 2016 | de _Traversy Media_ |
 || [Ruby & Ruby on Rails Tutorial](https://www.youtube.com/watch?v=bbERZkJ8kZ8) | 2017 | de _Code Once_ |
@@ -29,7 +29,7 @@ status | title | last update | snnipet | notes
 
 ## Screencasts e Relacionados
 
-status | title | last update | snnipet | notes
+status | title | last update | snippet | notes
 :-----:|:------|:-----------:|:-------:|:----:
 :white_check_mark: | [Tutoriais Ruby](https://www.youtube.com/playlist?list=PLIPUpvW8kY_Mk6akPkQ9EkuZvyawSO-rq) | 2016 | de _Sérgio Toledo_; 8 vídeos | [:file_folder:](./tutoriais_ruby)
 || [Curso de Ruby on Rails para Iniciantes](https://www.youtube.com/playlist?list=PLe3LRfCs4go-mkvHRMSXEOG-HDbzesyaP) | 2016 | de _Jackson Pires_; 50 vídeos |
@@ -37,7 +37,7 @@ status | title | last update | snnipet | notes
 
 ## Artigos e Relacionados
 
-status | title | last update | snnipet | notes
+status | title | last update | snippet | notes
 :-----:|:------|:-----------:|:-------:|:----:
 :white_check_mark: | [Ruby em Vinte Minutos](https://www.ruby-lang.org/pt/documentation/quickstart) | | (oficial) |
 :white_check_mark: | [Aprenda Ruby em Y Minutos](https://learnxinyminutes.com/docs/pt-br/ruby-pt) | 2016 | | [:memo:](./avulsos/aprenda_ruby_em_y_minutos.rb)
@@ -52,7 +52,7 @@ status | title | last update | snnipet | notes
 
 ## Livros
 
-status | title | last update | snnipet | notes
+status | title | last update | snippet | notes
 :-----:|:------|:-----------:|:-------:|:----:
 || [Seven Languages in Seven Weeks - Bruce A. Tate](https://geneticmail.com/scott/library/text/seven-languages-in-seven-weeks_p1_0.pdf) | 2010 | _ver o capítulo 2_ |
 || [Apostila Desenv. Ágil para Web com Ruby on Rails - Caelum](https://www.caelum.com.br/apostila-ruby-on-rails) | | versão web; 20 capítulos |
